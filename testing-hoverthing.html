@@ -1,0 +1,47 @@
+<!doctype html>
+<html lang="en">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, width=device-width">
+<title>Testing HoverThing</title>
+
+<style>
+.hover-thing {
+    position: relative;
+}
+
+.hover-thing__content {
+    display: none;
+    position: absolute;
+    left: 0;
+    top: 100%;
+    border: 1px solid #000;
+    background-color: #fff;
+    padding: 1em;
+}
+
+.is-open > .hover-thing__content {
+    display: block;
+}
+</style>
+
+</head>
+<body>
+
+<div class="hover-thing js--hover-thing">
+    <button type="button">Show things!</button>
+    <div class="hover-thing__content">
+        <p style="margin:0;">I am hover content with a <a href="#">link</a>.</p>
+    </div>
+</div>
+
+<p><button type="button">I do nothing</button></p>
+
+<script src="./HoverThing.js"></script>
+<script>
+var hoverThing = new HoverThing(document.querySelector(".js--hover-thing"));
+</script>
+
+</body>
+</html>
