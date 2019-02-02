@@ -51,6 +51,7 @@ Ignoring this since we don't tend to do much of it.
 Worth knowing that videos should have captions.
 
 **1.2.2 Captions (Prerecorded) (Level A)** - have captions for videos.
+
 **1.2.3 Audio Description of Media Alternative (Prerecorded) (Level A)** - have alt text.
 
 ### 1.3 Adaptable
@@ -106,6 +107,16 @@ var breakpoints = new BreakPoints({
 var nodeToMove = document.querySelector("...");
 var parentNode = nodeToMove.closest("...");
 
+breakpoints.on("change", "md", function (e) {
+
+    if (e.detail.matches) {
+        parentNode.appendChild(nodeToMove);
+    } else {
+        parentNode.insertBefore(nodeToMove, parentNode.firstChild);
+    }
+
+}, true);
+/*
 function moveNode(matches) {
 
     if (matches) {
@@ -120,6 +131,7 @@ breakpoints.on("change", "md", function (e) {
     moveNode(e.detail.matches);
 });
 moveNode(breakpoints.matches("md"));
+*/
 ```
 
 Pro tip: **don't reorder items using CSS** because the tab order will not be updated. Re-order them in JavaScript instead.
@@ -398,3 +410,71 @@ If you have keyboard shortcuts using only a letter, punctuation, number or symbo
 - It's only active when a component is focussed.
 
 ### 2.2 Enough Time
+
+#### 2.2.1 Timing Adjustable (Level A)
+
+If you have content that changes after a set time, at least one of the following is true:
+
+- User can turn off the time limit.
+- User can adjust the time limit up to 10 times the default.
+- User is warned at least 20 seconds before the change and allowed to extend.
+- The time limit is part of a real-time event and there is no alternative (eg: auction).
+- The time limit is essential and extending would invalidate the activity.
+- The time limit is more than 20 hours.
+
+Pro tip: focus on autoplay carousel to pause the scrolling.
+
+#### 2.2.2 Pause, Stop, Hide (Level A)
+
+Blinking, moving, scrolland or auto-updating information, all of the following are true:
+
+- Moving, blinking, scrolling: where it **starts automatically**, **lasts more than 5 seconds** and **presented in parallel with other content** then let the user pause, stop or hide it.
+- Auto-updating that **starts automatically** **presented in parallel with other content** then let the user pause, stop or hide or control the frequency of the updates.
+
+This is for things like Twitter feeds rather than things like the `<blink>` tag.
+
+#### 2.2.3 No Timing (Level AAA)
+
+Timing is not an essential part except for synchronised media and real-time events.
+
+#### 2.2.4 Interruptions (Level AAA)
+
+Interruptions can be postponed or suppressed by the user unless in an emergency.
+
+`aria-live="assertive"` for an emergency.
+`aria-live="polite"` or `aria-live="off"` for other things.
+
+#### 2.2.5 Re-authenticating (Level AAA)
+
+When the session expires, the user can continue without loss of data after re-authenticating.
+
+#### 2.2.6 Timeouts (Level AAA)
+
+Warn user if inactivity could cause loss of data, unless the data is preserved for more than 20 hours.
+
+### 2.3 Seizures and Physical Reactions
+
+#### 2.3.1 Three Flashes or Below Threshold (Level A)
+
+Don't make something flash more than three times a second.
+
+#### 2.3.2 Three Flashes (Level AAA)
+
+Don't make anything that flashes more than three times a second.
+
+#### 2.3.3 Animation from Interactions (Level AAA)
+
+Motion animation triggered by interaction can be disabled unless it's essential.
+
+```css
+@media screen and (prefers-reduced-motion) {
+    .my-element {
+        transition: none;
+    }
+}
+```
+
+A couple of interesting posts:
+
+- [Toggle animation (CSS custom properties)](https://www.kirupa.com/html5/toggling_animations_on_off.htm)
+- [Introduction to the Reduced Motion Media Query](https://css-tricks.com/introduction-reduced-motion-media-query/)
