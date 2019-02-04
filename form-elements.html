@@ -13,6 +13,11 @@
     box-sizing: border-box;
 }
 
+h2[tabindex="-1"],
+h3[tabindex="-1"] {
+    cursor: pointer;
+}
+
 label {
     background-color: #FCC;
     display: block;
@@ -78,13 +83,13 @@ label {
 
 <h1>Testing Form Elements</h1>
 
-<div class="o-structure">
+<form id="my-form" method="GET" class="o-structure">
 
     <section class="o-structure__column">
 
-        <h2>Checkboxes</h2>
+        <h2 tabindex="-1">Checkboxes</h2>
 
-        <h3>No label</h3>
+        <h3 tabindex="-1">No label</h3>
 
         <dl class="o-def-list">
 
@@ -117,7 +122,7 @@ label {
 
         </dl>
 
-        <h3>Separate Labels</h3>
+        <h3 tabindex="-1">Separate Labels</h3>
 
         <dl class="o-def-list">
 
@@ -150,7 +155,7 @@ label {
 
         </dl>
 
-        <h3>Parent Labels</h3>
+        <h3 tabindex="-1">Parent Labels</h3>
 
         <ul class="o-bare-list">
 
@@ -204,9 +209,9 @@ label {
 
     <section class="o-structure__column">
 
-        <h2>Radio buttons</h2>
+        <h2 tabindex="-1">Radio buttons</h2>
 
-        <h3>No label</h3>
+        <h3 tabindex="-1">No label</h3>
 
         <dl class="o-def-list">
 
@@ -227,7 +232,7 @@ label {
 
         </dl>
 
-        <h3>Separate Labels</h3>
+        <h3 tabindex="-1">Separate Labels</h3>
 
         <dl class="o-def-list">
 
@@ -248,7 +253,7 @@ label {
 
         </dl>
 
-        <h3>Parent Labels</h3>
+        <h3 tabindex="-1">Parent Labels</h3>
 
         <ul class="o-bare-list">
 
@@ -288,9 +293,9 @@ label {
 
     <section class="o-structure__column">
 
-        <h2>Dropdowns</h2>
+        <h2 tabindex="-1">Dropdowns</h2>
 
-        <h3>No label</h3>
+        <h3 tabindex="-1">No label</h3>
 
         <dl class="o-def-list o-def-list--dropdown">
 
@@ -397,7 +402,7 @@ label {
 
         </dl>
 
-        <h3>Separate Labels</h3>
+        <h3 tabindex="-1">Separate Labels</h3>
 
         <dl class="o-def-list o-def-list--dropdown">
 
@@ -504,7 +509,7 @@ label {
 
         </dl>
 
-        <h3>Parent Labels</h3>
+        <h3 tabindex="-1">Parent Labels</h3>
 
         <ul class="o-bare-list">
 
@@ -621,7 +626,14 @@ label {
 
     </section>
 
-</div>
+</form>
+
+<script>
+document.getElementById("my-form").addEventListener("submit", function (e) {
+    alert("The form would have submitted.");
+    e.preventDefault();
+});
+</script>
 
 </body>
 </html>

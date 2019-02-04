@@ -10,7 +10,7 @@ Three levels:
 
 ### 1.1 Text Alternatives
 
-#### 1.1.1 Non-text Content (Level A)
+#### 1.1.1 Non-text Content - Level A
 
 ```html
 <img src="/path/to/image" alt="Describe the image">
@@ -50,13 +50,13 @@ For an image that purely decorative.
 Ignoring this since we don't tend to do much of it.
 Worth knowing that videos should have captions.
 
-**1.2.2 Captions (Prerecorded) (Level A)** - have captions for videos.
+**1.2.2 Captions (Prerecorded) - Level A** - have captions for videos.
 
-**1.2.3 Audio Description of Media Alternative (Prerecorded) (Level A)** - have alt text.
+**1.2.3 Audio Description of Media Alternative (Prerecorded) - Level A** - have alt text.
 
 ### 1.3 Adaptable
 
-#### 1.3.1 Info and Relationships (Level A)
+#### 1.3.1 Info and Relationships - Level A
 
 Use WAI-ARIA landmark roles to identify content area - [`role` attribute](https://www.w3.org/TR/wai-aria/#landmark_roles).
 
@@ -75,7 +75,7 @@ Use WAI-ARIA landmark roles to identify content area - [`role` attribute](https:
 </html>
 ```
 
-#### 1.3.2 Meaningful Sequence (Level A)
+#### 1.3.2 Meaningful Sequence - Level A
 
 ##### Working with bi-directional text.
 
@@ -116,22 +116,6 @@ breakpoints.on("change", "md", function (e) {
     }
 
 }, true);
-/*
-function moveNode(matches) {
-
-    if (matches) {
-        parentNode.appendChild(nodeToMove);
-    } else {
-        parentNode.insertBefore(nodeToMove, parentNode.firstChild);
-    }
-
-}
-
-breakpoints.on("change", "md", function (e) {
-    moveNode(e.detail.matches);
-});
-moveNode(breakpoints.matches("md"));
-*/
 ```
 
 Pro tip: **don't reorder items using CSS** because the tab order will not be updated. Re-order them in JavaScript instead.
@@ -153,7 +137,7 @@ element.tabIndex = -1;
 element.tabIndex = 0;
 ```
 
-#### 1.3.3 Sensory Characteristics (Level A)
+#### 1.3.3 Sensory Characteristics - Level A
 
 Don't just rely on colour/sound/shape for understanding operating content.
 
@@ -164,11 +148,11 @@ Don't just rely on colour/sound/shape for understanding operating content.
 <button type="button">Submit</button>
 ```
 
-#### 1.3.4 Orientation (Level AA)
+#### 1.3.4 Orientation - Level AA
 
 Content doesn't force the user to see it in a certain orientation (rotating your phone will update the layout).
 
-#### 1.3.5 Identify Input Purpose (Level AA)
+#### 1.3.5 Identify Input Purpose - Level AA
 
 Make sure inputs have labels.
 
@@ -182,7 +166,7 @@ Make sure inputs have labels.
 <input type="text" aria-labelledby="text-id">
 ```
 
-#### 1.3.6 Identify Purpose (Level AAA)
+#### 1.3.6 Identify Purpose - Level AAA
 
 Make sure the purpose of things like icons can be programmatically determined.
 
@@ -194,7 +178,7 @@ Make sure the purpose of things like icons can be programmatically determined.
 
 ### 1.4 Distinguishable
 
-#### 1.4.1 Use of Colour (Level A)
+#### 1.4.1 Use of Colour - Level A
 
 ##### Colour isn't the only visual means for showing information.
 
@@ -272,11 +256,11 @@ Rules:
 
 Logos are exempt from this.
 
-#### 1.4.2 Audio Control (Level A)
+#### 1.4.2 Audio Control - Level A
 
 If a sound plays for more than 3 seconds, allow the user to pause/stop it.
 
-#### 1.4.3 Contrast (Minimum) (Level AA)
+#### 1.4.3 Contrast (Minimum) - Level AA
 
 Text should have a contrast of at least 4.5:1 except:
 
@@ -284,11 +268,11 @@ Text should have a contrast of at least 4.5:1 except:
 - Incidental text (not visible to anyone, pure decoration, part of a picture etc.)
 - Logos
 
-#### 1.4.4 Resize text (Level AA)
+#### 1.4.4 Resize text - Level AA
 
 Should be able to zoom to 200% without loss of functionality.
 
-#### 1.4.5 Images of Text (Level AA)
+#### 1.4.5 Images of Text - Level AA
 
 If we can do it in text instead of images, we should. Except:
 
@@ -298,7 +282,7 @@ If we can do it in text instead of images, we should. Except:
 Logos are considered "Essential".
 See 1.4.9 for Level AAA standards.
 
-#### 1.4.6 Contrast (Enhanced) (Level AAA)
+#### 1.4.6 Contrast (Enhanced) - Level AAA
 
 Text should have a contrast of 7:1 except:
 
@@ -306,7 +290,7 @@ Text should have a contrast of 7:1 except:
 - Incidental
 - Logos
 
-#### 1.4.7 Low or No Background Audio (Level AAA)
+#### 1.4.7 Low or No Background Audio - Level AAA
 
 If you have background audio that:
 
@@ -320,7 +304,7 @@ then make sure at least 1 of the following is true:
 - The background sounds can be turned off.
 - The background sounds are at least 20 dB lower than the foreground (except for occasional sounds lasting for only 1 or 2 seconds).
 
-#### 1.4.8 Visual Presentation (Level AAA)
+#### 1.4.8 Visual Presentation - Level AAA
 
 For a large block of text, the user should be able to do the following:
 
@@ -330,12 +314,12 @@ For a large block of text, the user should be able to do the following:
 4. Line spacing is at least 1.5 and paragraph spacing is at least 1.5 times larger.
 5. Text can be resized without assistive technology up to 200% without requiring a horizontal scrollbar.
 
-#### 1.4.9 Images of Text (No Exception) (Level AAA)
+#### 1.4.9 Images of Text (No Exception) - Level AAA
 
 Images of text should be purely for decoration unless the presentation is essential.
 Logos are exceptions.
 
-#### 1.4.10 Reflow (Level AA)
+#### 1.4.10 Reflow - Level AA
 
 Content can be displayed without loss of functionality or information and without horizontal and vertical scroll bars for:
 
@@ -344,14 +328,14 @@ Content can be displayed without loss of functionality or information and withou
 
 Except where two-dimensional scrolling is necessary for usage or meaning.
 
-#### 1.4.11 Non-text Contrast (Level AA)
+#### 1.4.11 Non-text Contrast - Level AA
 
 Have a contrast ratio of at least 3:1 against adjacent colours for:
 
 - User Interface Components (except inactive components or components that are styled through the device not the author).
 - Graphical Objects
 
-#### 1.4.12 Text Spacing (Level AA)
+#### 1.4.12 Text Spacing - Level AA
 
 If these style properties are supported, no loss of content or functionality should occur if we set the following and change nothing else:
 
@@ -360,7 +344,7 @@ If these style properties are supported, no loss of content or functionality sho
 - Letter spacing to at least 0.12 times the font size. (`letter-spacing: 0.12em`)
 - Word spacing to at least 0.16 times the font size. (`word-spacing: 0.16em`)
 
-#### 1.4.13 Content on Hover or Focus (Level AA)
+#### 1.4.13 Content on Hover or Focus - Level AA
 
 If something appears on hover or focus then the following should be true:
 
@@ -380,7 +364,7 @@ var hoverThing = new HoverThing(document.querySelector(".js--hover-thing"));
 
 ### 2.1 Keyboard Accessible
 
-#### 2.1.1 Keyboard (Level A)
+#### 2.1.1 Keyboard - Level A
 
 Make widgets that can be used with the keyboard, but don't stop them being used by a mouse.
 There are [WAI-ARIA bestpractices](https://www.w3.org/TR/wai-aria-practices-1.1/) that show most generic widgets with mouse and keyboard support.
@@ -391,17 +375,17 @@ Some pro tips to make this easier:
 - [`e.key` works in everything we need it to](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key) and is much easier to remember than `e.which` (some IE mistakes, but they're easy to work with).
 - Order of key events: "keydown", "keypress", "keyup". "keypress" can act slightly differently from "keydown"/"keyup" - don't be afraid to swap one for the another if your widget isn't responding correctly.
 
-#### 2.1.2 No Keyboard Trap (Level A)
+#### 2.1.2 No Keyboard Trap - Level A
 
 If pressing tab at the end of a widget takes you to the beginning of the widget rather than the next thing, you've built a keyboard trap.
 
 Modals are exceptions since they _should_ be keyboard traps _and_ closable using the "Esc" key. The focus should be returned to the trigger element and the tabbing can continue as normal.
 
-#### 2.1.3 Keyboard (No Exception) (Level AAA)
+#### 2.1.3 Keyboard (No Exception) - Level AAA
 
 All functionality of the content is operable through the keyboard without requiring specific timings for individual keystrokes.
 
-#### 2.1.4 Character Key Shortcuts (Level A)
+#### 2.1.4 Character Key Shortcuts - Level A
 
 If you have keyboard shortcuts using only a letter, punctuation, number or symbol character then at least 1 of the following is true:
 
@@ -411,7 +395,7 @@ If you have keyboard shortcuts using only a letter, punctuation, number or symbo
 
 ### 2.2 Enough Time
 
-#### 2.2.1 Timing Adjustable (Level A)
+#### 2.2.1 Timing Adjustable - Level A
 
 If you have content that changes after a set time, at least one of the following is true:
 
@@ -424,7 +408,7 @@ If you have content that changes after a set time, at least one of the following
 
 Pro tip: focus on autoplay carousel to pause the scrolling.
 
-#### 2.2.2 Pause, Stop, Hide (Level A)
+#### 2.2.2 Pause, Stop, Hide - Level A
 
 Blinking, moving, scrolland or auto-updating information, all of the following are true:
 
@@ -433,36 +417,36 @@ Blinking, moving, scrolland or auto-updating information, all of the following a
 
 This is for things like Twitter feeds rather than things like the `<blink>` tag.
 
-#### 2.2.3 No Timing (Level AAA)
+#### 2.2.3 No Timing - Level AAA
 
 Timing is not an essential part except for synchronised media and real-time events.
 
-#### 2.2.4 Interruptions (Level AAA)
+#### 2.2.4 Interruptions - Level AAA
 
 Interruptions can be postponed or suppressed by the user unless in an emergency.
 
 `aria-live="assertive"` for an emergency.
 `aria-live="polite"` or `aria-live="off"` for other things.
 
-#### 2.2.5 Re-authenticating (Level AAA)
+#### 2.2.5 Re-authenticating - Level AAA
 
 When the session expires, the user can continue without loss of data after re-authenticating.
 
-#### 2.2.6 Timeouts (Level AAA)
+#### 2.2.6 Timeouts - Level AAA
 
 Warn user if inactivity could cause loss of data, unless the data is preserved for more than 20 hours.
 
 ### 2.3 Seizures and Physical Reactions
 
-#### 2.3.1 Three Flashes or Below Threshold (Level A)
+#### 2.3.1 Three Flashes or Below Threshold - Level A
 
 Don't make something flash more than three times a second.
 
-#### 2.3.2 Three Flashes (Level AAA)
+#### 2.3.2 Three Flashes - Level AAA
 
 Don't make anything that flashes more than three times a second.
 
-#### 2.3.3 Animation from Interactions (Level AAA)
+#### 2.3.3 Animation from Interactions - Level AAA
 
 Motion animation triggered by interaction can be disabled unless it's essential.
 
@@ -478,3 +462,278 @@ A couple of interesting posts:
 
 - [Toggle animation (CSS custom properties)](https://www.kirupa.com/html5/toggling_animations_on_off.htm)
 - [Introduction to the Reduced Motion Media Query](https://css-tricks.com/introduction-reduced-motion-media-query/)
+
+### 2.4 Navigable
+
+#### 2.4.1 Bypass Blocks - Level A
+
+Allow users to bypass content that's repeated on multiple web pages.
+
+Tricks include:
+
+- "Skip to content" links.
+- ARIA landmarks.
+- Collapsed elements.
+
+"Skip to content" links don't have to be initially visible. We do this on Digigraphie:
+
+```html
+<html>
+<!-- head ... -->
+<body>
+<ul class="nav-access" aria-label="Short-cuts">
+    <li><a href="#main-content" class="nav-access__link">Skip to main content</a></li>
+</ul>
+<!-- header, nav, hero ... -->
+<main id="main-content" role="main" tabindex="-1" aria-label="Main content">
+    <!-- ... -->
+</main>
+<!-- teasers, footer ... -->
+</body>
+</html>
+```
+
+```css
+.nav-access {
+    left: 0;
+    position: absolute;
+    top: -20rem;
+    width: 100%;
+    z-index: 1070; /* same as a tooltip - on top of everything */
+}
+
+.nav-access__link {
+
+    /*
+    @extend .btn;
+    @extend .btn-torange;
+    @extend .btn-block;
+    */
+
+    left: 0;
+    position: absolute;
+    top: 0;
+
+}
+
+.nav-access__link:focus {
+    top: 20rem;
+}
+```
+
+[Bootstrap 4 has classes to do this.](https://getbootstrap.com/docs/4.2/utilities/screenreaders/)
+
+```html
+<a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+```
+
+It works by changing `position:absolute` to `position:static` so it might affect general layout - be sure to test or wrap the link in a `position:absolute` parent.
+
+#### 2.4.2 Page Titles - Level A
+
+Make sure pages have a `<title>` tag.
+
+```html
+<html>
+<head>
+    <title>My page</title>
+    <!-- ... -->
+</head>
+<body>
+<!-- ... -->
+</body>
+</html>
+```
+
+#### 2.4.3 Focus Order - Level A
+
+Make sure the focus order (`tabIndex`) matches the visual order.
+
+#### 2.4.4 Link Purpose (In Context) - Level A
+
+The purpose of each link can be determined from the link text (and programmatically determined link context) alone. Exception: link is intentionally ambiguous.
+
+```html
+<!-- BAD examples -->
+<a href="...">Click here</a>
+<a href="...">Find out more</a>
+<button type="button">Buy now</button>
+
+<!-- GOOD examples -->
+<a href="...">Click here to contact us</a>
+<a href="...">Find out more <span class="sr-only">about the SuperProduct 2000</span></a>
+<button type="button" aria-label="Add the SuperProduct 2000 to your shopping cart">Buy now</button>
+```
+
+Bootstrap `sr-only` class (makes content visible to screen readers but not to sighted users):
+
+```css
+/* v4.3 */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+```
+
+#### 2.4.5 Multiple Ways - Level AA
+
+More than one way to get to a web page within a set of pages. Exception: page is a step or part of a larger process (paginated link, checkout step etc.).
+
+Ways we can achieve this:
+
+- Sitemap.
+- Site search.
+- Table of contents.
+- Links like previous/next article.
+
+We don't need every technique, different techniques will be appropriate to different websites.
+
+#### 2.4.6 Headings and Labels - Level AA
+
+Headings and labels should be descriptive.
+
+```html
+<!-- BAD examples -->
+<h1>Page</h1>
+<h2>Product</h2>
+
+<!-- GOOD examples -->
+<h1>Contact Us</h1>
+<h2>Acme SuperProduct 2000</h2>
+```
+
+#### 2.4.7 Focus Visible - Level AA
+
+Users should be able to tell which element is focused when using a keyboard.
+
+Things we can do to make that happen:
+
+- Don't add `outline: none;` to the style sheet (unless there's something else to identify the element on focus).
+- Making sure links (and buttons etc.) have `:hover` _and_ `:focus` styles.
+    ```css
+    a:hover,
+    a:focus {
+        /* ... */
+    }
+    ```
+
+A keyboard-only visible focus:
+
+```css
+/* https://twitter.com/leaverou/status/1045768279753666562?lang=en */
+:focus:not(:focus-visible) {
+    outline: none;
+}
+```
+
+For older browsers:
+
+```html
+<a href="..." class="my-link">
+    <span class="my-link__focus-hider" tabindex="-1">
+        Click here to go somewhere
+    </span>
+</a>
+```
+
+```css
+.my-link {
+    /* No padding, no border */
+}
+
+.my-link:focus {
+    outline: 2px solid pink;
+}
+
+.my-link__focus-hider {
+    padding: 1em;
+    width: 100%;
+    height: 100%;
+}
+/* no `.my-link__focus-hider:focus` styles */
+```
+
+If `.my-link` has padding, `.my-link__focus-hider` needs corresponding negative margin and padding. This is much more fiddly than simply avoiding padding on `.my-link`.
+
+```css
+.my-link {
+    padding: 1em;
+}
+
+.my-link__focus-hider {
+    margin: -1em;
+    padding: 1em;
+}
+```
+
+Has the minor side-effect of tabbing backwards from the `focus-hider` will select the parent link instead of the previous one.
+
+#### 2.4.8 Location - Level AAA
+
+Let users know where they are within a set of web pages.
+
+For example:
+
+- Site map.
+- Breadcrumb trail.
+- Highlighted link (for example: in a sidebar).
+
+We don't need all of these techniques - different techniques work for different websites.
+
+```html
+<nav aria-label="Breadcrumbs">
+    <h2>You are here:</h2>
+    <ul>
+        <li><a href="/">Acme Company</a> &#8594;</li>
+        <li><a href="/electronics/">Electronics</a> &#8594;</li>
+        <li><a href="/electronics/computers/">Computers</a> &#8594;</li>
+        <li>Laptops</li>
+    </ul>
+</nav>
+```
+
+(`&#8594;` renders as a right-pointing arrow →)
+
+Protip for highlighted link: use `aria-current` instead of an "active" class.
+
+```html
+<!-- Was: -->
+<ul>
+    <li><a href="...">Computers</a></li>
+    <li><a href="..." class="active">Games Consoles</a></li>
+    <li><a href="...">Music Players</a></li>
+    <li><a href="...">Televisions</a></li>
+</ul>
+
+<!-- Now: -->
+<ul>
+    <li><a href="...">Computers</a></li>
+    <li><a href="..." aria-current="page">Games Consoles</a></li>
+    <li><a href="...">Music Players</a></li>
+    <li><a href="...">Televisions</a></li>
+</ul>
+```
+
+```css
+/* Was */
+.breadcrumb .active { /* ... */ }
+
+/* Now */
+.breadcrumb [aria-current="page"] { /* ... */ }
+```
+
+#### 2.4.9 Link Purpose (Link Only) - Level AAA
+
+Make sure that links can be identified from link text alone.
+
+See **2.4.4** for examples
+
+#### 2.4.10 Section Headings - Level AAA
+
+Use section headings to organise the content.
