@@ -737,3 +737,106 @@ See **2.4.4** for examples
 #### 2.4.10 Section Headings - Level AAA
 
 Use section headings to organise the content.
+
+### 2.5 Input Modalities
+
+#### 2.5.1 Pointer Gestures - Level A
+
+Inputs that require multipoint of path-based gestures ("stretch to zoom" etc.) should be available through single pointer gestures ("click to zoom" etc.).
+
+#### 2.5.2 Pointer Cancellation - Level A
+
+It should be possible to cancel a single pointer gesture. For any single pointer functionality, at least one of the following is true:
+
+- No Down Event: "mousedown" and "keydown" aren't used to execute things.
+- Abort or Undo: The user can abort the operation or undo the action.
+- Up Reversal: the "mouseup" or "keyup" would abort or undo the related "mousedown" or "keydown" action.
+- Essential: there's no alternative.
+
+Protip: "click" events only trigger when "mousedown" and "mouseup" happen on the same element - dragging the cursor off the link/button before releasing would abort the action. Typing in an input field doesn't count ("essential").
+
+#### 2.5.3 Label in Name - Level A
+
+UI components with labels should contain the text that's presented visually.
+
+Just use sensible labels. Things like an `aria-label` replacement for "buy now" should probably start with "buy now" etc.
+
+#### 2.5.4 Motion Actuation - Level A
+
+Any functionality that can be operated by device motion or user motion can also be operated by user interface. Exceptions:
+
+- Supported Interface: the motions is used to operate functionality through and accessibility suported interface.
+- Essential: no other options.
+
+Good examples: iPhone's "shake to undo" feature is complemented by the delete button on its virtual keyboard.
+
+#### 2.5.5 Target Size - Level AAA
+
+The thing you're clicking/tapping should be at least 44 x 44 pixels. Exceptions:
+
+- Equivalent: there's an equivalent that's large enough.
+- Inline: it's inline with a block of text (links etc.)
+- User Agent Control: the size is determined by the user agent (checkboxes etc.)
+- Essential: the size is essential to the information being conveyed.
+
+#### 2.5.6 Concurrent Input Mechanisms - Level AAA
+
+The web doesn't limit the use of different input mechanisms. For example: a mouse and/or keyboard can be used to navigate a website.
+
+## 3 Understandable
+
+### 3.1 Readable
+
+#### 3.1.1 Language of Page - Level A
+
+Make sure the language of the page can be programmatically determined.
+
+```html
+<!-- HTML 5 -->
+<!doctype html>
+<html lang="fr">
+
+<!-- XHTML 1.1 -->
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+   "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr">
+```
+
+For "XHTML transitional" use `xml:lang` and `lang` attributes.
+
+Also use these `lang` attributes for any element on the page in another language.
+
+The format should be a lower-case ISO2 code.
+
+```html
+<html lang="en">
+<html lang="fr">
+<html lang="da">
+<html lang="el">
+```
+
+The script subtag can also be added to define the script that's being used.
+
+```html
+<html lang="ja-Kana"><!-- Japanese written in Katakana -->
+<html lang="ru-Cyrl"><!-- Russian written in Cyrillic -->
+```
+
+The region subtag can be added. It's usually the ISO2 code for the country in upper-case but not always.
+
+```html
+<html lang="en-GB">
+<html lang="fr-CA">
+<html lang="da-DK">
+<html lang="el-GR">
+
+<html lang="es-013"><!-- Central American Spanish -->
+```
+
+They can be combined.
+
+```html
+<html lang="ru-Cyrl-BY"><!-- Russian written in Cyrillic spoken in Belarus -->
+```
+
+If you're unsure, look it up. The language itself is usually enough.
