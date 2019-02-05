@@ -8,7 +8,11 @@ Three levels:
 
 ## 1. Perceivable
 
+Present things in a way that users can perceive.
+
 ### 1.1 Text Alternatives
+
+Provide text-alternatives for non-text thngs.
 
 #### 1.1.1 Non-text Content - Level A
 
@@ -47,14 +51,36 @@ For an image that purely decorative.
 
 ### 1.2 Time-based Media
 
+Provide alternatives for time-based media.
+
+#### 1.2.1 Audio-only and Video-only - Level A
+
+For pre-recorded audio-only or video-only, the following are true unless the audio/video is an alternative for existing text:
+
+- **Pre-recorded Audio-only**: an alternative is provided that has the same content.
+- **Pre-recorded Video-only**: either an alternative or an audio track with the same content.
+
+#### 1.2.2 Captions (Pre-recorded) - Level A
+
+Captions are provided for all pre-recorded audio unless it's an alternative for text and clearly labelled.
+
+#### 1.2.3 Audio Description or Media Alternative (Pre-recorded) - Level A
+
+Alternative text or audio description of the video is provided unless the video is an alternative for text and clearly labelled.
+
+
+```
 Ignoring this since we don't tend to do much of it.
 Worth knowing that videos should have captions.
 
 **1.2.2 Captions (Prerecorded) - Level A** - have captions for videos.
 
 **1.2.3 Audio Description of Media Alternative (Prerecorded) - Level A** - have alt text.
+```
 
 ### 1.3 Adaptable
+
+Allow content to be presented in different ways / layouts without losing content.
 
 #### 1.3.1 Info and Relationships - Level A
 
@@ -177,6 +203,8 @@ Make sure the purpose of things like icons can be programmatically determined.
 ```
 
 ### 1.4 Distinguishable
+
+Make it easy for users to tell the difference between foreground and background.
 
 #### 1.4.1 Use of Colour - Level A
 
@@ -360,9 +388,13 @@ var hoverThing = new HoverThing(document.querySelector(".js--hover-thing"));
 </script>
 ```
 
-## 2. Operarable
+## 2. Operable
+
+Users must be able to operate the UI and/or navigation.
 
 ### 2.1 Keyboard Accessible
+
+Make functionality available from the keyboard.
 
 #### 2.1.1 Keyboard - Level A
 
@@ -394,6 +426,8 @@ If you have keyboard shortcuts using only a letter, punctuation, number or symbo
 - It's only active when a component is focussed.
 
 ### 2.2 Enough Time
+
+Give users enough time to absorb the content.
 
 #### 2.2.1 Timing Adjustable - Level A
 
@@ -438,6 +472,8 @@ Warn user if inactivity could cause loss of data, unless the data is preserved f
 
 ### 2.3 Seizures and Physical Reactions
 
+Don't do things that'll give people seizures and/or physical reactions.
+
 #### 2.3.1 Three Flashes or Below Threshold - Level A
 
 Don't make something flash more than three times a second.
@@ -464,6 +500,8 @@ A couple of interesting posts:
 - [Introduction to the Reduced Motion Media Query](https://css-tricks.com/introduction-reduced-motion-media-query/)
 
 ### 2.4 Navigable
+
+Make it easy for people to navigate your site and work out where they are.
 
 #### 2.4.1 Bypass Blocks - Level A
 
@@ -740,6 +778,8 @@ Use section headings to organise the content.
 
 ### 2.5 Input Modalities
 
+Make it easy for users to use your site with any input device they prefer.
+
 #### 2.5.1 Pointer Gestures - Level A
 
 Inputs that require multipoint of path-based gestures ("stretch to zoom" etc.) should be available through single pointer gestures ("click to zoom" etc.).
@@ -785,7 +825,11 @@ The web doesn't limit the use of different input mechanisms. For example: a mous
 
 ## 3 Understandable
 
+Users must be able to understand your site.
+
 ### 3.1 Readable
+
+Make text content readable and understandable.
 
 #### 3.1.1 Language of Page - Level A
 
@@ -851,7 +895,7 @@ Make sure any foreign words in the code is wrapped in an element with a `lang` a
 Examples:
 
 ```html
-<p>The way that show uses <em lang="la">deus ex machina</em> really annoys me.</p>
+<p>... so I said <span lang="zh-CN">新年快乐</span> and left.</p>
 
 <ul>
     <li><a href="?locale=1" lang="fr">France</a></li>
@@ -861,3 +905,35 @@ Examples:
     <li><a href="?locale=5" lang="en">UK</a></li>
 </ul>
 ```
+
+#### 3.1.3 Unusual Words - Level AAA
+
+Avoid using jargon or idioms. If you use them, provide a way for explaining them. Examples are a glossary or a definition list.
+
+#### 3.1.4 Abbreviations - Level AAA
+
+Add a mechanism for explaining the expanded form or meaning of an abbreviation.
+
+```html
+<!-- Do it in copy -->
+<p>The United Nations High Commissioner for Human Rights (UNHCR) was established in 1950 to provide protection and assistance to refugees.</p>
+
+<!-- Do it in markup -->
+<p>Reading the <abbr title="Web Content Accessibility Guidelines">WCAG</abbr> is really boring.</p>
+```
+
+#### 3.1.5 Reading Level - Level AAA
+
+If text is too complex for a "lower secondary education level" (roughly 11 years old / Year 7) then provide a text summary or graphs/diagrams to illustrate complex data.
+
+#### 3.1.6 Pronunciation - Level AAA
+
+If the pronunciation of a word is ambiguous or there are multiple possible meaning, include an explanation.
+
+```html
+<p> 慶應大学 (けいおうだいがく) </p>
+```
+
+### 3.2 Predictable
+
+Make the website work in a predictable way.
