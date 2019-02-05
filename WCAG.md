@@ -804,8 +804,6 @@ Make sure the language of the page can be programmatically determined.
 
 For "XHTML transitional" use `xml:lang` and `lang` attributes.
 
-Also use these `lang` attributes for any element on the page in another language.
-
 The format should be a lower-case ISO2 code.
 
 ```html
@@ -840,3 +838,26 @@ They can be combined.
 ```
 
 If you're unsure, look it up. The language itself is usually enough.
+
+#### 3.1.2 Language of Parts - Level AA
+
+Make sure any foreign words in the code is wrapped in an element with a `lang` attribute. Exceptions:
+
+- Technical terms. ("Nasopharyngitis")
+- Proper names. ("Vladimir Putin")
+- Words/phrases of an indeterminate language. ("Lorem ipsum dolor sit amet ...")
+- Words/phrases that are part of the vernacular. ("status quo")
+
+Examples:
+
+```html
+<p>The way that show uses <em lang="la">deus ex machina</em> really annoys me.</p>
+
+<ul>
+    <li><a href="?locale=1" lang="fr">France</a></li>
+    <li><a href="?locale=2" lang="de">Deutschland</a></li>
+    <li><a href="?locale=3" lang="it">Italia</a></li>
+    <li><a href="?locale=4" lang="es">España</a></li>
+    <li><a href="?locale=5" lang="en">UK</a></li>
+</ul>
+```
