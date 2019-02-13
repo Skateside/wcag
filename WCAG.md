@@ -68,15 +68,31 @@ Captions are provided for all pre-recorded audio unless it's an alternative for 
 
 Alternative text or audio description of the video is provided unless the video is an alternative for text and clearly labelled.
 
+#### 1.2.4 Captions (Live) - Level AA
 
-```
-Ignoring this since we don't tend to do much of it.
-Worth knowing that videos should have captions.
+Captions are provided for live streams in synchronised media.
 
-**1.2.2 Captions (Prerecorded) - Level A** - have captions for videos.
+#### 1.2.5 Audio Description (Pre-recorded) - Level AA
 
-**1.2.3 Audio Description of Media Alternative (Prerecorded) - Level A** - have alt text.
-```
+Provide an audio description for all pre-recorded video content in synchronised media.
+
+#### 1.2.6 Sign Language (Pre-recorded) - Level AAA
+
+Sign language is provided for all pre-recorded audio content in synchronised media.
+
+#### 1.2.7 Extended Audio Description - Level AAA
+
+Provide audio description like **1.2.5 (AA)** but pause the main media when necessary to provide full description.
+
+#### 1.2.8 Media Alternative (Pre-recorded) - Level AAA
+
+Provide an alternative for all pre-recorded time-based media (video and audio).
+
+#### 1.2.9 Audio-only (Live) - Level AAA
+
+Have live captioning of live audio.
+
+This probably involves a human operator listening to the live audio and using a special keyboard to enter the text with only a minimal delay.
 
 ### 1.3 Adaptable
 
@@ -250,11 +266,11 @@ input[aria-invalid="true"] {
 Use a contrast ratio between text and background of at least 3:1 for large text (18px or 14px/bold) and 4.5:1 for normal text (based on luminosity).
 (This is mainly one for the designers.)
 
-Rules:
+###### Rules:
 
-3:1 for Text (A)
-4.5:1 for Text (AA - 1.4.4)
-7:1 for Text (AAA - 1.4.6)
+- 3:1 for Text (A)
+- 4.5:1 for Text (AA - 1.4.4)
+- 7:1 for Text (AAA - 1.4.6)
 
 ```css
 .bad {
@@ -308,7 +324,7 @@ If we can do it in text instead of images, we should. Except:
 - Essential: The presentation of the image is essential to the information being given.
 
 Logos are considered "Essential".
-See 1.4.9 for Level AAA standards.
+See **1.4.9 (AAA)** for Level AAA standards.
 
 #### 1.4.6 Contrast (Enhanced) - Level AAA
 
@@ -406,6 +422,8 @@ Some pro tips to make this easier:
 - Anchors (`<a>`) and buttons (`<button>`) fire their "click" handler when they have focus and the Enter key is pressed.
 - [`e.key` works in everything we need it to](https://developer.mozilla.org/en-US/docs/Web/API/KeyboardEvent/key) and is much easier to remember than `e.which` (some IE mistakes, but they're easy to work with).
 - Order of key events: "keydown", "keypress", "keyup". "keypress" can act slightly differently from "keydown"/"keyup" - don't be afraid to swap one for the another if your widget isn't responding correctly.
+
+Warning: this also needs to work with custom UI elements (input boxes, radio buttons, dropdowns etc.) See the [form element test page](form-elements.html). (Fun fact: [multiple select by keyboard isn't possible](https://bugs.chromium.org/p/chromium/issues/detail?id=125585))
 
 #### 2.1.2 No Keyboard Trap - Level A
 
@@ -770,7 +788,7 @@ Protip for highlighted link: use `aria-current` instead of an "active" class.
 
 Make sure that links can be identified from link text alone.
 
-See **2.4.4** for examples
+See **2.4.4 (A)** for examples
 
 #### 2.4.10 Section Headings - Level AAA
 
@@ -918,9 +936,11 @@ Add a mechanism for explaining the expanded form or meaning of an abbreviation.
 <!-- Do it in copy -->
 <p>The United Nations High Commissioner for Human Rights (UNHCR) was established in 1950 to provide protection and assistance to refugees.</p>
 
-<!-- Do it in markup -->
+<!-- Do it in markup * -->
 <p>Reading the <abbr title="Web Content Accessibility Guidelines">WCAG</abbr> is really boring.</p>
 ```
+
+( * ) Be aware that the `title` tooltip actually fails **1.4.13 (AA)**. CSS-Tricks shared an article describing [an alternative approach](https://bitsofco.de/revisiting-the-abbr-element/) to satisfy these points, if necessary.
 
 #### 3.1.5 Reading Level - Level AAA
 
@@ -937,3 +957,182 @@ If the pronunciation of a word is ambiguous or there are multiple possible meani
 ### 3.2 Predictable
 
 Make the website work in a predictable way.
+
+#### 3.2.1 On Focus - Level A
+
+Don't open a dialog or cause a "change of context" when an element gains focus.
+
+#### 3.2.2 On Input - Level A
+
+Don't open a dialog or cause a "change of context" when an input is used, unless it's obvious that a change will occur.
+
+```html
+<div>
+    <div>
+        <label for="how">How did you find us?</label>
+        <select name="how" id="how">
+            <option value="">Please select</option>
+            <option value="1">It came to me in a dream</option>
+            <option value="2">Someone shouted it from a passing car</option>
+            <option value="3">I saw it carved into a dead porcupine</option>
+            <option value="4">Other (please explain below)</option>
+        </select>
+        <input type="text" name="how-other" id="how-other" aria-label="Please explain how you found us" hidden>
+    </div>
+</div>
+<script>
+var other = document.getElementById("how-other");
+document.getElementById("how").addEventListener("change", function () {
+    other.hidden = this.value < 4;
+});
+</script>
+```
+
+#### 3.2.3 Consistent Navigation - Level AA
+
+Keep the navigation in the same place and the same order throughout the website.
+
+"Same order" doesn't mean that there can't be sub-navigation. It means that other elements aren't re-ordered.
+
+- Home
+- What is this?
+    - Why am I here?
+    - How did you get here?
+    - Can I go now?
+- Contact us
+
+#### 3.2.4 Consistent Identification - Level AA
+
+Components that have the same functionality also have the same name/icon/short-cut key etc.
+
+#### 3.2.5 Change of Request - Level AAA
+
+Changes of context are initiated only by user request or a mechanism is available to turn them off.
+
+### 3.3 Input Assistance
+
+Help users avoid and correct mistakes.
+
+#### 3.3.1 Error Identification - Level A
+
+In an input field detects an error, the input element is identified and the error is described in text.
+
+This is exactly what jQuery Validate does.
+
+#### 3.3.2 Labels or Instructions - Level A
+
+Include instructions if you require user input. The input `<label>` is probably sufficient. If a certain format is needed, write it on the page (not enough to add it to the `placeholder` attribute). Same with complex interactivity.
+
+#### 3.3.3 Error Suggestion - Level AA
+
+If there's an error with the input and suggestions for the correction are known then tell the user unless it would jeopardise the security or purpose.
+
+Good examples:
+
+- Please enter a valid e-mail address.
+- This field is required.
+- Your password must contain at least 8 letters, a capital, a plot, a protagonist with good character development, a twist & a happy ending.
+
+#### 3.3.4 Error Prevention (Legal, Financial, Data) - Level AA
+
+For web pages that would cause legal or financial commitments, modify or delete user-controllable data in data storage systems or that submit user test responses, at least one of the following is true:
+
+- **Reversible**: Submissions can be reversed.
+- **Checked**: Data entered is checked and the user has the opportunity to correct the information.
+- **Confirmed**: A mechanism is available for reviewing, confirming and correcting the data before finalising the submission.
+
+#### 3.3.5 Help - Level AAA
+
+Context-sensitive help is available.
+
+#### 3.3.6 Error Prevention (All) - Level AAA
+
+For any submitted information, at least one of the following is true.
+
+- **Reversible**: Submissions can be reversed.
+- **Checked**: Data entered is checked and the user has the opportunity to correct the information.
+- **Confirmed**: A mechanism is available for reviewing, confirming and correcting the data before finalising the submission.
+
+We can get **Checked** by having client-side and server-side validation.
+
+### 4.1 Compatible
+
+Maximise compatibility with current/future user agents and assistive technologies.
+
+#### 4.1.1 Parsing - Level A
+
+For HTML:
+
+- Elements that need them have complete start and end tags.
+- Nested according to specs (only within valid parents, only contain valid children).
+- No duplicate attributes.
+- IDs are unique.
+
+_tl;dr_: write valid HTML.
+
+#### 4.1.2 Name, Role, Value - Level A
+
+Make sure user agents can work out names and roles where appropriate (input, links etc.). Notification of state changes are available to user agents and assistive technologies.
+
+```html
+<!-- An input element with an error: -->
+<input type="text" name="my-input" class="error" aria-invalid="true">
+```
+
+#### 4.1.3 Status Messages - Level AA
+
+Make sure user agents and assistive technologies can read status messages.
+
+AJAX add-to-cart means a cart should have `role="status"`
+
+```html
+<div id="basket" role="status">
+    <p>3 items</p>
+    <ul>
+        <li><!-- ... --></li>
+        <li><!-- ... --></li>
+        <li><!-- ... --></li>
+    </ul>
+</div>
+```
+
+Same as search results.
+
+```html
+<p role="status">27 results found</p>
+```
+
+If a form has an area for containing all the validation errors, it should have `role="alert"` and `aria-atomic="true"`
+
+```html
+<form method="post" action="" id="my-form">
+    <div id="errors" role="alert" aria-atomic="true"></div>
+    <p>
+        <label for="first">First name (required)</label>
+        <input name="first" id="first" type="text">
+    </p>
+    <!-- ... -->
+</form>
+
+<script>
+document.getElementById("my-form").addEventListener("submit", function (e) {
+
+    var error;
+
+    if (document.getElementById("first").value === "") {
+
+        error = document.createElement("p");
+        error.textContent = "Please enter your first name.";
+        document.getElementById("errors").appendChild(error);
+
+        // Also include:
+        // aria-invalid="true" on <input>
+        // id="..." on error and aria-errormessage="..." on input
+
+    }
+
+    // ...
+
+});
+</script>
+```
