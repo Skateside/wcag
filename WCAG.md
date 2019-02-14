@@ -125,15 +125,31 @@ Use `&lrm;` and `&rlm;` (Left-Right Mark / Right-Left Mark) when working with bi
 Here, the exclamation point should be on the left since it's part of the Arabic text. With `&rlm;` we call tell the browser when the direction will change.
 
 ```html
-<p>The title is "<span lang="ar">مفتاح معايير الويب!</span>" in Arabic.</p>
-<p>The title is "<span lang="ar">مفتاح معايير الويب!&rlm;</span>" in Arabic.</p>
+<p>
+    The title is
+    "<span lang="ar">مفتاح معايير الويب!</span>"
+    in Arabic.
+</p>
+<p>
+    The title is
+    "<span lang="ar">مفتاح معايير الويب!&rlm;</span>"
+    in Arabic.
+</p>
 ```
 
 Use `dir` attribute to correct bi-directional text.
 
 ```html
-<p>The title is "<span lang="he">פעילות הבינאום, W3C</span>" in Hebrew.</p>
-<p>The title is "<span lang="he" dir="rtl">פעילות הבינאום, W3C</span>" in Hebrew.</p>
+<p>
+    The title is
+    "<span lang="he">פעילות הבינאום, W3C</span>"
+    in Hebrew.
+</p>
+<p>
+    The title is
+    "<span lang="he" dir="rtl">פעילות הבינאום, W3C</span>"
+    in Hebrew.
+</p>
 ```
 
 ##### Make sure the DOM order and the visual order match.
@@ -236,7 +252,8 @@ Make it easy for users to tell the difference between foreground and background.
 
 <!-- Best -->
 <label for="input-id">Descriptive label</label>
-<input type="text" id="input-id" aria-invalid="true" aria-errormessage="error-id">
+<input type="text" id="input-id"
+    aria-invalid="true" aria-errormessage="error-id">
 <label for="input-id" id="error-id">Descriptive error message</label>
 ```
 
@@ -538,7 +555,11 @@ Tricks include:
 <!-- head ... -->
 <body>
 <ul class="nav-access" aria-label="Short-cuts">
-    <li><a href="#main-content" class="nav-access__link">Skip to main content</a></li>
+    <li>
+        <a href="#main-content" class="nav-access__link">
+            Skip to main content
+        </a>
+    </li>
 </ul>
 <!-- header, nav, hero ... -->
 <main id="main-content" role="main" tabindex="-1" aria-label="Main content">
@@ -580,7 +601,9 @@ Tricks include:
 [Bootstrap 4 has classes to do this.](https://getbootstrap.com/docs/4.2/utilities/screenreaders/)
 
 ```html
-<a class="sr-only sr-only-focusable" href="#content">Skip to main content</a>
+<a class="sr-only sr-only-focusable" href="#content">
+    Skip to main content
+</a>
 ```
 
 It works by changing `position:absolute` to `position:static` so it might affect general layout - be sure to test or wrap the link in a `position:absolute` parent.
@@ -617,8 +640,13 @@ The purpose of each link can be determined from the link text (and programmatica
 
 <!-- GOOD examples -->
 <a href="...">Click here to contact us</a>
-<a href="...">Find out more <span class="sr-only">about the SuperProduct 2000</span></a>
-<button type="button" aria-label="Add the SuperProduct 2000 to your shopping cart">Buy now</button>
+<a href="...">
+    Find out more <span class="sr-only">about the SuperProduct 2000</span>
+</a>
+<button type="button"
+    aria-label="Add the SuperProduct 2000 to your shopping cart">
+    Buy now
+</button>
 ```
 
 Bootstrap `sr-only` class (makes content visible to screen readers but not to sighted users):
@@ -896,7 +924,8 @@ The region subtag can be added. It's usually the ISO2 code for the country in up
 They can be combined.
 
 ```html
-<html lang="ru-Cyrl-BY"><!-- Russian written in Cyrillic spoken in Belarus -->
+<!-- Russian written in Cyrillic spoken in Belarus -->
+<html lang="ru-Cyrl-BY">
 ```
 
 If you're unsure, look it up. The language itself is usually enough.
@@ -934,10 +963,18 @@ Add a mechanism for explaining the expanded form or meaning of an abbreviation.
 
 ```html
 <!-- Do it in copy -->
-<p>The United Nations High Commissioner for Human Rights (UNHCR) was established in 1950 to provide protection and assistance to refugees.</p>
+<p>
+    The United Nations High Commissioner for Human Rights (UNHCR)
+    was established in 1950 to provide protection and assistance
+    to refugees.
+</p>
 
 <!-- Do it in markup * -->
-<p>Reading the <abbr title="Web Content Accessibility Guidelines">WCAG</abbr> is really boring.</p>
+<p>
+    Reading the
+    <abbr title="Web Content Accessibility Guidelines">WCAG</abbr>
+    is really boring.
+</p>
 ```
 
 ( * ) Be aware that the `title` tooltip actually fails **1.4.13 (AA)**. CSS-Tricks shared an article describing [an alternative approach](https://bitsofco.de/revisiting-the-abbr-element/) to satisfy these points, if necessary.
@@ -977,7 +1014,8 @@ Don't open a dialog or cause a "change of context" when an input is used, unless
             <option value="3">I saw it carved into a dead porcupine</option>
             <option value="4">Other (please explain below)</option>
         </select>
-        <input type="text" name="how-other" id="how-other" aria-label="Please explain how you found us" hidden>
+        <input type="text" name="how-other" id="how-other"
+            aria-label="Please explain how you found us" hidden>
     </div>
 </div>
 <script>
