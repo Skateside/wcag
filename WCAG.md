@@ -280,7 +280,8 @@ input[aria-invalid="true"] {
 
 ##### Contrast Ratio
 
-Use a contrast ratio between text and background of at least 3:1 for large text (18px or 14px/bold) and 4.5:1 for normal text (based on luminosity).
+Use a contrast ratio between text and background of at least 3:1 for large text and 4.5:1 for normal text (based on luminosity). **Large text** is defined as at least 14 point (~18.66 pixels) and bold or 18 point (24 pixels).
+
 (This is mainly one for the designers.)
 
 ###### Rules:
@@ -562,7 +563,7 @@ Tricks include:
     </li>
 </ul>
 <!-- header, nav, hero ... -->
-<main id="main-content" role="main" tabindex="-1" aria-label="Main content">
+<main id="main-content" role="main" aria-label="Main content">
     <!-- ... -->
 </main>
 <!-- teasers, footer ... -->
@@ -1093,6 +1094,10 @@ For any submitted information, at least one of the following is true.
 
 We can get **Checked** by having client-side and server-side validation.
 
+## 4 Robust
+
+Content must be robust enough to be interpreted by a wide variety of user agents and assistive technologies.
+
 ### 4.1 Compatible
 
 Maximise compatibility with current/future user agents and assistive technologies.
@@ -1174,3 +1179,7 @@ document.getElementById("my-form").addEventListener("submit", function (e) {
 });
 </script>
 ```
+
+## Other notes
+
+We use [WAVE from WEBAIM](http://wave.webaim.org/) to test our websites.
