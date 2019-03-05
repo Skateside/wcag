@@ -229,7 +229,9 @@ Make sure inputs have labels.
 Make sure the purpose of things like icons can be programmatically determined.
 
 ```html
-<button type="button" title="Add field">
+<!-- aria-label provides information for screen readers -->
+<!-- title provides information for sighted users -->
+<button type="button" title="Add field" aria-label="Add field">
     <i class="fa fa-plus" aria-hidden="true"></i>
 </button>
 ```
@@ -276,6 +278,18 @@ input[aria-invalid="true"] {
     <i class="fa fa-warning" aria-label="Warning!"></i>
     Lorem ipsum dolor ...
 </div>
+```
+
+Another problem is links that change colour.
+
+```css
+/* Bad - contrast too small (1.06:1) */
+a { color: red; }
+a:hover { color: green; }
+
+/* Good - additional information */
+a { color: red; text-decoration: none; }
+a:hover { text-decoration: underline; }
 ```
 
 ##### Contrast Ratio
@@ -572,10 +586,13 @@ Tricks include:
 ```
 
 ```css
+/*
+1. Same value (although one of them is negative).
+ */
 .nav-access {
     left: 0;
     position: absolute;
-    top: -20rem;
+    top: -20rem; /* [1] */
     width: 100%;
     z-index: 1070; /* same as a tooltip - on top of everything */
 }
@@ -595,7 +612,7 @@ Tricks include:
 }
 
 .nav-access__link:focus {
-    top: 20rem;
+    top: 20rem; /* [1] */
 }
 ```
 
