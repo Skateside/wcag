@@ -1,0 +1,626 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+
+<link rel="stylesheet" href="./reveal/css/reveal.css">
+<link rel="stylesheet" href="./reveal/css/theme/black.css">
+<link rel="stylesheet" href="./reveal/lib/css/zenburn.css">
+
+<style>
+.reveal table.small {
+    font-size: 50%;
+}
+
+.reveal td {
+    vertical-align: top;
+}
+
+.reveal .emoji {
+    font-size: 200%;
+}
+
+.d-b { display: block !important }
+
+.input {
+    border: 1px solid #ccc;
+}
+.input.is-invalid { background-color: #FCC; }
+.input.is-valid { background-color: #CFC; }
+
+.reveal .bad-link { color: #CCC; }
+
+.contrast-demo {
+    display: flex;
+    flex-direction: row;
+}
+.reveal .contrast-demo__fail,
+.reveal .contrast-demo__a,
+.reveal .contrast-demo__aa,
+.reveal .contrast-demo__aaa {
+    align-items: center;
+    display: flex;
+    margin: 0.25em;
+    padding: 0;
+    text-align: center;
+    height: 6em;
+    background-color: #fff;
+    font-size: 75%;
+    flex-basis: calc(25% - 0.5em);
+    justify-content: center;
+}
+
+.contrast-demo__fail { color: #ff6600; }
+.contrast-demo__a    { color: #ff6000; }
+.contrast-demo__aa   { color: #cc4e00; }
+.contrast-demo__aaa  { color: #ae1900; }
+
+@keyframes flasher {
+    0%, 100% {
+        background-color: #fff;
+    }
+    50% {
+        background-color: #000;
+    }
+}
+
+.reveal .flasher {
+    animation: flasher 0.33s infinite paused;
+    height: 5em;
+    width: 5em;
+    outline: 0.1em solid #fff;
+    outline-offset: 0.1em;
+    margin: 0 auto;
+}
+
+.reveal .flasher.is-playing {
+    animation-play-state: running;
+}
+</style>
+
+</head>
+<body>
+
+<div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1>Web Content Accessibility Guidelines</h1>
+    <p>WCAG 2.1 for designers</p>
+</section>
+
+<section>
+
+    <h2>What WCAG Looks Like</h2>
+
+    <p>A large number of guidelines, most of which have exceptions.</p>
+
+    <div class="fragment">
+
+        <p>Each guideline has 3 levels:</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col">
+                        <span class="emoji d-b">😒</span>
+                        Level A
+                    </th>
+                    <th scope="col">
+                        <span class="emoji d-b">😃</span>
+                        Level AA
+                    </th>
+                    <th scope="col">
+                        <span class="emoji d-b">😍</span>
+                        Level AAA
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>Basic level of accessibility.</td>
+                    <td>A reasonable standard.</td>
+                    <td>Gold-standard.</td>
+                </tr>
+            </tbody>
+        </table>
+
+    </div>
+
+    <aside class="notes">
+
+        <dl>
+            <dt>A</dt><dd>We should be doing this anyway.</dd>
+            <dt>AA</dt><dd>Takes a bit more care.</dd>
+            <dt>AAA</dt><dd>W3C say this is hard to hit across the board.</dd>
+        </dl>
+
+    </aside>
+
+</section>
+
+<section>
+
+    <h2>What the law says</h2>
+
+    <p>European Union directive 2016/2102 says that the website and mobile applications for public sector bodies need to conform to WCAG 2.0 Level AA.</p>
+    <p>New websites must comply from <strong>23 September 2019</strong>.</p>
+    <p class="fragment">Old websites must comply from <strong>23 September 2020</strong>.</p>
+    <p class="fragment">Moblie applications must comply from <strong>23 June 2021</strong>.</p>
+
+    <aside class="notes">
+        <p>WCAG 2.0 was published in 2008. WCAG 2.1 was published in 2018.</p>
+        <p>WCAG 2.1 doesn't replace WCAG 2.0, it just adds to it.</p>
+    </aside>
+
+</section>
+
+<section>
+
+    <h2>Size of the problem</h2>
+
+    <p>UXPA International gave these stats:</p>
+    <p class="fragment">1.3 billion people worldwide are affected by a disability.</p>
+    <p class="fragment">A further 2.4 billion people are family or close friends of those affected.</p>
+    <p class="fragment">That's 3.7 billion people out of 7.5 billion in the world (49.3%).</p>
+
+    <aside class="notes">
+        <p>UXPA = User Experience Professionals Association</p>
+        <blockquote>
+            <p>A happy customer tells a friend; an unhappy customer tells the world.</p>
+            <cite>Unknown</cite>
+        </blockquote>
+    </aside>
+
+</section>
+
+<section>
+
+    <h2>Types of disability</h2>
+
+    <table class="small">
+        <thead>
+            <tr>
+                <th scope="col">
+                    <span class="emoji d-b">👁</span>
+                    Vision
+                </th>
+                <th scope="col">
+                    <span class="emoji d-b">👂</span>
+                    Hearing
+                </th>
+                <th scope="col">
+                    <span class="emoji d-b">🏃‍♂️</span>
+                    Mobility
+                </th>
+                <th scope="col">
+                    <span class="emoji d-b">🗣</span>
+                    Speech
+                </th>
+                <th scope="col">
+                    <span class="emoji d-b">🤷‍♂️</span>
+                    Cognitive
+                </th>
+                <th scope="col">
+                    <span class="emoji d-b">🤯</span>
+                    Neural
+                </th>
+            </tr>
+        </thead>
+        <tbody>
+            <tr>
+                <td>
+                    <ul>
+                        <li>Cataracts</li>
+                        <li>Sun glare</li>
+                        <li>Colour blind</li>
+                        <li>Low vision</li>
+                        <li>Blind</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Noise</li>
+                        <li>Ear infection</li>
+                        <li>Hard of hearing</li>
+                        <li>Deaf</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Hands full</li>
+                        <li>Broken arm</li>
+                        <li>Spinal cord injury</li>
+                        <li>Amelia</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Ambient noise</li>
+                        <li>Speech impediment</li>
+                        <li>Unable to speak</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Sleepy</li>
+                        <li>Distraction</li>
+                        <li>Migraine</li>
+                        <li>Learning disabilities</li>
+                        <li>Autism</li>
+                        <li>Seizure</li>
+                    </ul>
+                </td>
+                <td>
+                    <ul>
+                        <li>Depression</li>
+                        <li>PTSD</li>
+                        <li>Bipolar</li>
+                        <li>Anxiety</li>
+                    </ul>
+                </td>
+            </tr>
+        </tbody>
+    </table>
+
+    <aside class="notes">
+        <p>These range from permanent through temporary to situational.</p>
+        <p>You are <strong>temporarily abled</strong>.</p>
+    </aside>
+
+</section>
+
+<section>
+
+    <h2>Time-based Media</h2>
+
+    <section>
+
+        <p>
+            <span class="emoji">📽 🔊</span>
+        </p>
+        <p>Basically, provide alternatives for video or audio.</p>
+
+        <aside class="notes">
+            <p>Only giving cliff-notes for this since we don't do a lot of it.</p>
+        </aside>
+
+    </section>
+
+    <section>
+        <p>For Level A compliance, this just means text alternatives. Song lyrics, script for the training video, paragraphs below the video containing the video's text etc.</p>
+    </section>
+
+    <section>
+
+        <p>Level AA covers captions for live video and audio description for videos.</p>
+
+        <aside class="notes">
+            <p>Whereas A allows text alternative or audio description (1.2.3) AA needs audio description (1.2.5).</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>Level AAA covers things like sign language, extended audio descriptions and audio-only live video alternatives.</p>
+
+        <aside class="notes">
+            <p>Extended audio description can pause the video to describe a scene.</p>
+        </aside>
+
+    </section>
+
+</section>
+
+<section>
+
+    <h2>Adaptable</h2>
+
+    <section>
+        <p>Make sure the content can be displayed in different ways without losing content (responsive design).</p>
+        <p>Please make sure the layout doesn't require a certain orientation unless essential.</p>
+    </section>
+
+    <section>
+
+        <p>Here's the order for elements:</p>
+
+        <p>Mobile:</p>
+        <p>
+            1️⃣<br>
+            2️⃣<br>
+            3️⃣
+        </p>
+
+        <p>Desktop:</p>
+        <p>1️⃣ 2️⃣ 3️⃣</p>
+
+        <aside class="notes">
+            <p>We can work around a different layout but it makes things harder for us.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>We shouldn't need 2 vertical and horizontal scrollbars to see all the content.</p>
+        <p>Unless it's essential to convey the meaning, we shouldn't need a second scrollbar for:</p>
+        <ul>
+            <li>Vertical scrolling content at a width of <strong>320 pixels</strong></li>
+            <li>Horizontal scrolling content at a height of <strong>256 pixels</strong></li>
+        </ul>
+
+        <p class="fragment">We should be able to zoom in to 200% without loss of functionality.</p>
+
+        <aside class="notes">
+            <p>Trello is an example of horizontal scrolling content.</p>
+            <p>320px = 1280px at 400%; 256px = 1024px at 400%</p>
+            <p>Responsive layouts are usually zoomable by design.</p>
+        </aside>
+
+    </section>
+
+</section>
+
+<section>
+
+    <h2>Colour</h2>
+
+    <section>
+
+        <p>Don't rely purely on colour to differentiate things.</p>
+
+        <div class="fragment">
+
+            <p>Click the green heart to continue:</p>
+            <p>
+                <button type="button" class="emoji">❤️</button>
+                <button type="button" class="emoji">💚</button>
+                <button type="button" class="emoji">💜</button>
+            </p>
+
+            <p>Normal, invalid and valid inputs:</p>
+            <p>
+                <input type="text" class="input">
+                <input type="text" class="input is-invalid">
+                <input type="text" class="input is-valid">
+            </p>
+
+        </div>
+
+        <p class="fragment">Click <a href="#" class="bad-link">here</a> to continue.</p>
+
+        <aside class="notes">
+            <p>When you're designing a form, be aware that we need to be able to add error messages to it.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>The colour contrast between text and background should be:</p>
+        <ul>
+            <li>3:1 Level A</li>
+            <li>4.5:1 Level AA</li>
+            <li>7:1 Level AAA</li>
+        </ul>
+
+        <div class="fragment">
+            <p>Big text (at least 18 points or 14 points and bold) can be the level below.</p>
+            <p>Logos are exempt.</p>
+        </div>
+
+        <aside class="notes">
+            <p>Black/white = 21:1, white/white = 1:1</p>
+            <p>18pt = 24px, 14pt = 18.66px</p>
+            <p>Bold = 700; not semi-bold, not black.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>Text on a <code>#ffffff</code> background.</p>
+
+        <div class="contrast-demo">
+            <p class="contrast-demo__fail">
+                #ff6600<br>
+                2.94:1<br>
+                Text: Fail<br>
+                Text: Fail
+            </p>
+            <p class="contrast-demo__a">
+                #ff6000<br>
+                3.03:1<br>
+                Text: A<br>
+                Titles: AA
+            </p>
+            <p class="contrast-demo__aa">
+                #cc4e00<br>
+                4.51:1<br>
+                Text: AA<br>
+                Titles: AAA
+            </p>
+            <p class="contrast-demo__aaa">
+                #ae1900<br>
+                7.15:1<br>
+                Text: AAA<br>
+                Titles: AAA
+            </p>
+        </div>
+
+        <aside class="notes">
+            <p>It turns out that font selection isn't that big of a deal.</p>
+        </aside>
+
+    </section>
+
+</section>
+
+<section>
+
+    <h2>Animations</h2>
+
+    <section>
+
+        <p>Consider whether animation is necessary.</p>
+        <p>Don't make anything flash more than 3 times a second.</p>
+
+        <aside class="notes">
+            <p>Some iOS 7 users reported motion sickness and vertigo from some of the animations.</p>
+        </aside>
+
+    </section>
+
+    <section>
+        <div class="flasher is-playing"></div>
+    </section>
+
+</section>
+
+<section>
+
+    <h2>Text</h2>
+
+    <section>
+
+        <p>We should be able to apply these styles without any loss of functionality.</p>
+
+        <pre><code class="css" data-trim>
+.any-text {
+    letter-spacing: 0.12em; /* Tracking */
+    line-height:    1.5;    /* Line spacing */
+    margin-bottom:  2em;    /* Spacing after paragraphs */
+    word-spacing:   0.16em; /* Word spacing */
+}
+        </code></pre>
+
+        <p>All values are relative to the font-size of the text.</p>
+
+    </section>
+
+    <section>
+
+        <p>It should be possible to programmatically determine the purpose of the link from the link text alone.</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col" class="emoji" aria-label="Confusing">😕</th>
+                    <th scope="col" class="emoji" arial-label"Better example">🙂</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="#">Click here</a></td>
+                    <td><a href="#">Click here to contact us</a></td>
+                </tr>
+                <tr>
+                    <td><a href="#">Find out more</a></td>
+                    <td><a href="#">Find out more about the SuperProduct 3000</a></td>
+                </tr>
+                <tr>
+                    <td><a href="#">Buy now</a></td>
+                    <td><a href="#">Add the SuperProduct 3000 to your shopping cart</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <aside class="notes">
+            <p>This is <strong>Level A</strong>.</p>
+            <p>Screen readers can extract a list of links from the page.</p>
+            <p>There are techniques we can use to add invisible text to these links.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>Headings and labels should be descriptive as well.</p>
+
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col" class="emoji" aria-label="Confusing">😕</th>
+                    <th scope="col" class="emoji" arial-label"Better example">🙂</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Page</strong></td>
+                    <td><strong>Contact Us</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>Product</strong></td>
+                    <td><strong>Acme SuperProduct 3000</strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>If the page is only showing a single product, titles such as "<strong>Hardware</strong>" or "<strong>Drivers</strong>" can be understood from context.</p>
+
+        <aside class="notes">
+            <p>This is <strong>Level AA</strong>.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>Form fields should have lables.</p>
+
+        <p>We can make the labels invisible if necessary, but it's easier to include them in the design.</p>
+        <p>Putting the label inside the input field (placeholder text) is confusing.</p>
+
+    </section>
+
+    <section>
+
+        <h3>Level AAA Techniques</h3>
+
+        <p>Try to avoid using jargon or idioms. Provide a way for explaining them like a glossary or definition list.</p>
+        <p class="fragment">Add a mechanism for expanding abbreviations or include them in the text.</p>
+        <p class="fragment">Generally the page is too complex for someone with a <q>lower secondary education level</q> then provide a summary or graphs/diagrams.</p>
+
+        <aside class="notes">
+            <p>Roughly 11 years old / Year 7.</p>
+        </aside>
+
+    </section>
+
+</section>
+
+    </div>
+</div>
+
+
+
+<script src="./reveal/lib/js/head.min.js"></script>
+<script src="./reveal/js/reveal.js"></script>
+<script>
+Reveal.initialize({
+
+    dependencies: [
+
+        // Speaker notes.
+        {
+            src: "./reveal/plugin/notes/notes.js",
+            async: true
+        },
+
+        // Syntax highlighting.
+        {
+            src: "./reveal/plugin/highlight/highlight.js",
+            async: true,
+            callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+        }
+
+    ]
+
+});
+</script>
+
+</body>
+</html>
