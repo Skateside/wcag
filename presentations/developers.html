@@ -4,7 +4,7 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="initial-scale=1, width=device-width">
-<title>WCAG for Designers</title>
+<title>WCAG for Developers</title>
 
 <link rel="stylesheet" href="./reveal/css/reveal.css">
 <link rel="stylesheet" href="./reveal/css/theme/black.css">
@@ -100,7 +100,7 @@
 
 <section>
     <h1>Web Content Accessibility Guidelines</h1>
-    <p>WCAG 2.1 for designers</p>
+    <p>WCAG 2.1 for developers</p>
 </section>
 
 <section>
@@ -111,16 +111,20 @@
         <li><a href="#/state-of-disability">The State of Disability</a></li>
         <li><a href="#/introduction-to-wcag">Introduction to WCAG</a></li>
         <li><a href="#/the-law">The law</a></li>
-        <li><a href="#/time-based-media">Time-based Media</a></li>
+
+        <li><a href="#/text-alternatives">Text Alternatives</a></li>
+
+        <!--li><a href="#/time-based-media">Time-based Media</a></li>
         <li><a href="#/adaptable">Adaptable</a></li>
         <li><a href="#/colour">Colour</a></li>
         <li><a href="#/animations">Animations</a></li>
         <li><a href="#/text">Text</a></li>
         <li><a href="#/ux-ui">UX and UI</a></li>
+        <li><a href="#/tools">Tools</a></li-->
     </ol>
 
     <aside class="notes">
-        <p>This doesn't cover everything in WCAG, just what I think designers need to know.</p>
+        <p>This doesn't cover everything in WCAG, just what I think developers need to know.</p>
     </aside>
 
 </section>
@@ -348,7 +352,330 @@
 
 </section>
 
-<section id="time-based-media">
+<!--
+################################################################################
+-->
+
+<section id="text-alternatives">
+
+    <h2>Text alternatives</h2>
+
+    <section>
+
+        <p>Provide text alternatives for non-text things.</p>
+
+        <pre><code class="html" data-trim>
+&lt;img src="/path/to/image" alt="Describe the image"&gt;
+
+&lt;figure&gt;
+    &lt;img src="/path/to/image" alt=""&gt;
+    &lt;figcaption&gt;Describe the image&lt;/figcaption&gt;
+&lt;/figure&gt;
+
+&lt;svg role="image" aria-labelledby="svg-title"&gt;
+    &lt;title id="svg-title"&gt;Describe the image&lt;/title&gt;
+    &lt;!-- ... --&gt;
+&lt;/svg&gt;
+        </code></pre>
+
+        <p class="fragment">Images need an <code>alt</code> attribute.</p>
+
+        <aside class="notes">
+            <p><code>aria-labelledby</code> is needed to fix a bug in Chrome and Firefox.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>For images that are purely decorative:</p>
+
+        <pre><code class="html" data-trim>
+&lt;img src="/path/to/image" alt=""&gt;
+
+&lt;svg aria-hidden="true"&gt;
+    &lt;use xlink:href="#icon-reference"&gt;&lt;/use&gt;
+&lt;/svg&gt;
+
+&lt;i class="fa fa-icon" aria-hidden="true"&gt;&lt;/i&gt;
+        </code></pre>
+
+    </section>
+
+    <section>
+
+        <p>If you need to replace text with an icon:</p>
+
+        <pre><code class="html" data-trim>
+&lt;i class="fa fa-icon" aria-label="Action" title="Action"&gt;&lt;/i&gt;
+
+&lt;!-- You may need to do this for automated tools. --&gt;
+&lt;button type="button" aria-label="Action" title="Action"&gt;
+    &lt;i class="fa fa-icon" aria-hidden="true"&gt;&lt;/i&gt;
+&lt;/button&gt;
+        </code></pre>
+
+        <aside class="notes">
+            <p><code>aria-label</code> for screen readers, <code>title</code> for sighted users.</p>
+        </aside>
+
+    </section>
+
+</section>
+
+<section>
+
+    <h2>Adaptable</h2>
+
+    <section>
+        <p>Content should be able to be presented in different ways or layouts without losing content or functionality.</p>
+    </section>
+
+    <section>
+
+        <p>Use WAI-ARIA landmark roles to identify content areas.</p>
+
+        <pre><code class="html" data-trim>
+&lt;!-- Header, Logo etc. --&gt;
+&lt;header role="banner"&gt;&lt;/header&gt;
+&lt;!-- Primary navigation --&gt;
+&lt;nav role="navigation"&gt;&lt;/nav&gt;
+&lt;!-- Success/error alerts --&gt;
+&lt;div role="alert"&gt;&lt;/div&gt;
+&lt;!-- Hero - no role (assuming no &lt;h1&gt; in the hero) --&gt;
+&lt;section&gt;&lt;/section&gt;
+&lt;!-- Main content --&gt;
+&lt;main role="main"&gt;&lt;/main&gt;
+&lt;!-- Footer, copyright etc. --&gt;
+&lt;footer role="contentinfo"&gt;&lt;/footer&gt;
+        </code></pre>
+
+        <aside class="notes">
+            <p>This is <strong>Level A</strong></p>
+            <p>The hero assumes that the <code>&gt;h1&lt;</code> is not in there.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>Two tricks with bi-directional text:</p>
+
+        <pre><code class="html" data-trim>
+&lt;p&gt;
+    The title is
+    "&lt;span lang="ar"&gt;مفتاح معايير الويب!&lt;/span&gt;"
+    in Arabic.
+&lt;/p&gt;
+&lt;p&gt;
+    The title is
+    "&lt;span lang="ar"&gt;مفتاح معايير الويب!&amp;rlm;&lt;/span&gt;"
+    in Arabic.
+&lt;/p&gt;
+        </code></pre>
+
+        <p>
+            The title is
+            "<span lang="ar">مفتاح معايير الويب!</span>"
+            in Arabic.
+        </p>
+        <p>
+            The title is
+            "<span lang="ar">مفتاح معايير الويب!&rlm;</span>"
+            in Arabic.
+        </p>
+
+    </section>
+
+    <section>
+
+        <p>Use <code>dir</code> attribute to correct bi-directional text.</p>
+
+        <pre><code class="html" data-trim>
+&lt;p&gt;
+    The title is
+    "&lt;span lang="he"&gt;פעילות הבינאום, W3C&lt;/span&gt;"
+    in Hebrew.
+&lt;/p&gt;
+&lt;p&gt;
+    The title is
+    "&lt;span lang="he" dir="rtl"&gt;פעילות הבינאום, W3C&lt;/span&gt;"
+    in Hebrew.
+&lt;/p&gt;
+        </code></pre>
+
+        <p>
+            The title is
+            "<span lang="he">פעילות הבינאום, W3C</span>"
+            in Hebrew.
+        </p>
+        <p>
+            The title is
+            "<span lang="he" dir="rtl">פעילות הבינאום, W3C</span>"
+            in Hebrew.
+        </p>
+
+    </section>
+
+    <section>
+
+        <p>Make sure the DOM order matches the visual order:</p>
+
+        <p>Mobile:</p>
+        <p>
+            1️⃣<br>
+            2️⃣<br>
+            3️⃣
+        </p>
+
+        <p>Desktop:</p>
+        <p>1️⃣ 2️⃣ 3️⃣</p>
+
+    </section>
+
+    <section>
+
+        <p>If you need to move things around, consider using <a href="https://gist.github.com/james-jlo-long/fe69c667463d127063617a2b4d5a54c5">BreakPoints</a>.</p>
+
+        <pre style="font-size:30%"><code class="js" data-trim>
+var breakpoints = new BreakPoints({
+    md: 576
+    // ...
+});
+
+var nodeToMove = document.querySelector("...");
+var parentNode = nodeToMove.closest("...");
+
+breakpoints.on("change", "md", function (e) {
+
+    if (e.detail.matches) {
+        parentNode.appendChild(nodeToMove);
+    } else {
+        parentNode.insertBefore(nodeToMove, parentNode.firstChild);
+    }
+
+}, true);
+        </code></pre>
+
+        <p class="fragment">Don't just re-order things with CSS because the tab order will be wrong.</p>
+
+    </section>
+
+    <section>
+
+        <p>You may be thinking that you can set the tab order using <code>tabindex</code>.</p>
+        <p class="fragment"><strong>Don't do it</strong> - you'd have to do it for <em>every</em> focusable element!</p>
+
+        <div class="fragment">
+
+            <p>There are 2 exceptions:</p>
+            <dl>
+                <dt><code>tabindex="-1"</code></dt>
+                <dd>I can gain focus but I'm not in the tab order.</dd>
+                <dt><code>tabindex="0"</code></dt>
+                <dd>I am part of the natural tab order.</dd>
+            </dl>
+
+        </div>
+
+    </section>
+
+    <section>
+
+        <p>Make sure inputs have labels.</p>
+
+        <pre><code class="html" data-trim>
+&lt;label for="input-id"&gt;Descriptive label&lt;/label&gt;
+&lt;input type="text" id="input-id"&gt;
+
+&lt;input type="text" aria-label="Descriptive label"&gt;
+
+&lt;p id="text-id"&gt;Descriptive text&lt;/p&gt;
+&lt;input type="text" aria-labelledby="text-id"&gt;
+        </code></pre>
+
+    </section>
+
+</section>
+
+<section>
+
+    <h2>Distinguishable</h2>
+
+    <section>
+        <p>Users need to be able to tell the difference between foreground and background.</p>
+    </section>
+
+    <section>
+
+        <p>Don't just use colour to show information.</p>
+
+        <div class="fragment">
+
+            <p>Don't just do this:</p>
+
+            <pre><code class="html" data-trim>
+&lt;input type="text"&gt;
+&lt;input type="text" class="is-error"&gt;
+            </code></pre>
+
+        </div>
+
+        <div class="fragment">
+
+            <p>This is better.</p>
+
+            <pre><code class="html" data-trim>
+&lt;input type="text" aria-invalid="true"&gt;
+            </code></pre>
+
+        </div>
+
+        <div class="fragment">
+
+            <p>This is the best.</p>
+
+            <pre style="font-size:40%"><code class="html" data-trim>
+&lt;label for="input-id"&gt;Descriptive label&lt;/label&gt;
+&lt;input type="text" id="input-id" aria-invalid="true" aria-errormessage="error-id"&gt;
+&lt;label for="input-id" id="error-id"&gt;Descriptive error message&lt;/label&gt;
+            </code></pre>
+
+        </div>
+
+        <aside class="notes">
+            <p>Screen readers don't see classes but they will see <code>aria-invalid</code>.</p>
+            <p>jQuery Validate does "best" (without <code>aria-errormessage</code>) by default.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>Alerts are another good colour gotcha.</p>
+
+        <pre><code class="html" data-trim>
+&lt;div class="alert alert-error"&gt;Lorem ipsum dolor ...&lt;/div&gt;
+        </code></pre>
+
+        <div class="fragment">
+
+            <p>As well as telling assistive technologies that this is an alert, make sure there's something that visually identifies it as a problem.</p>
+
+            <pre><code class="html" data-trim>
+&lt;div role="alert" class="error"&gt;
+    &lt;i class="fa fa-warning" aria-label="Warning!"&gt;&lt;/i&gt;
+    Lorem ipsum dolor ...
+&lt;/div&gt;
+            </code></pre>
+
+        </div>
+
+    </section>
+
+</section>
+
+<!--section id="time-based-media">
 
     <h2>Time-based Media</h2>
 
@@ -756,28 +1083,11 @@
 
     </section>
 
-    <section>
-
-        <p>This is more of a request than an actual WCAG order.</p>
-
-        <p class="fragment">Please stop adding carousels to designs.</p>
-
-        <div class="fragment">
-            <p>For a carousel, we need to add functionality like making it pausable or letting the user adjust the time.</p>
-            <p>We need to prevent links in hidden slides being clickable and focusable.</p>
-            <p>We need to announce when content changes.</p>
-        </div>
-
-        <p class="fragment">They're also distracting.</p>
-
-        <aside class="notes">
-            <p>They're just <em>really</em> hard to get right.</p>
-            <p>They're a Dark Souls boss battle at the end of accessibility.</p>
-        </aside>
-
-    </section>
-
 </section>
+
+<section id="tools">
+    <p>placeholder for tools</p>
+</section-->
 
 <section id="questions">
     <h1>Any questions?</h1>
