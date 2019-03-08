@@ -4,7 +4,7 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="initial-scale=1, width=device-width">
-<title>WCAG for Developers</title>
+<title>WCAG for Frontend Developers</title>
 
 <link rel="stylesheet" href="./reveal/css/reveal.css">
 <link rel="stylesheet" href="./reveal/css/theme/black.css">
@@ -52,16 +52,15 @@
     padding: 0;
     text-align: center;
     height: 6em;
-    background-color: #fff;
     font-size: 75%;
     flex-basis: calc(25% - 0.5em);
     justify-content: center;
 }
 
-.contrast-demo__fail { color: #ff6600; }
-.contrast-demo__a    { color: #ff6000; }
-.contrast-demo__aa   { color: #cc4e00; }
-.contrast-demo__aaa  { color: #ae1900; }
+.reveal .contrast-demo__fail { background-color: #e27885; color: #b92d3b; }
+.reveal .contrast-demo__a    { background-color: #eb99a2; color: #ac2a37; }
+.reveal .contrast-demo__aa   { background-color: #f2b3bb; color: #982530; }
+.reveal .contrast-demo__aaa  { background-color: #f8d7da; color: #721c24; }
 
 @keyframes flasher {
     0%, 100% {
@@ -100,7 +99,7 @@
 
 <section>
     <h1>Web Content Accessibility Guidelines</h1>
-    <p>WCAG 2.1 for developers</p>
+    <p>WCAG 2.1 for front-end developers</p>
 </section>
 
 <section>
@@ -112,7 +111,9 @@
         <li><a href="#/introduction-to-wcag">Introduction to WCAG</a></li>
         <li><a href="#/the-law">The law</a></li>
 
-        <li><a href="#/text-alternatives">Text Alternatives</a></li>
+        <li><a href="#/building-webpages">Building Webpages</a></li>
+        <li><a href="#/languages">Languages</a></li>
+        <li><a href="#/widgets">Widgets</a></li>
 
         <!--li><a href="#/time-based-media">Time-based Media</a></li>
         <li><a href="#/adaptable">Adaptable</a></li>
@@ -124,7 +125,7 @@
     </ol>
 
     <aside class="notes">
-        <p>This doesn't cover everything in WCAG, just what I think developers need to know.</p>
+        <p>This doesn't cover everything in WCAG, just what I think front-end developers need to know.</p>
     </aside>
 
 </section>
@@ -346,6 +347,700 @@
 
         <aside class="notes">
             <p>Couldn't find the website so can't fully describe how bad it was.</p>
+        </aside>
+
+    </section>
+
+</section>
+
+<!--
+################################################################################
+-->
+
+<section id="building-webpages">
+
+    <h2>Building webpages</h2>
+
+    <section>
+        <p>Here's what the rules say about making web pages.</p>
+    </section>
+
+    <section>
+
+        <p>Use WAI-ARIA landmark roles to identify content areas.</p>
+
+        <pre><code class="html" data-trim>
+&lt;!-- Header, Logo etc. --&gt;
+&lt;header role="banner"&gt;&lt;/header&gt;
+&lt;!-- Primary navigation --&gt;
+&lt;nav role="navigation"&gt;&lt;/nav&gt;
+&lt;!-- Success/error alerts --&gt;
+&lt;div role="alert"&gt;&lt;/div&gt;
+&lt;!-- Hero - no role (assuming no &lt;h1&gt; in the hero) --&gt;
+&lt;section&gt;&lt;/section&gt;
+&lt;!-- Main content --&gt;
+&lt;main role="main"&gt;&lt;/main&gt;
+&lt;!-- Footer, copyright etc. --&gt;
+&lt;footer role="contentinfo"&gt;&lt;/footer&gt;
+        </code></pre>
+
+        <aside class="notes">
+            <p>This is <strong>Level A</strong></p>
+            <p>The hero assumes that the <code>&gt;h1&lt;</code> is not in there.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>We should be able to bypass content that's repeated across pages.</p>
+        <p class="fragment">WAI-ARIA landmark roles are a way to do that. We could also use "Skip to content" links or collapsed elements.</p>
+
+        <aside class="notes">
+            <p>Next slide: "Skip to content" links don't have to be visible to sighted users.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <pre><code class="html" data-trim>
+&lt;body&gt;
+    &lt;ul class="nav-access" aria-label="Short-cuts"&gt;
+        &lt;li&gt;
+            &lt;a href="#content" class="nav-access__link"&gt;
+                Skip to main content
+            &lt;/a&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+    &lt;!-- header, nav, hero --&gt;
+    &lt;main id="content" role="main" aria-label="Main content"&gt;
+        &lt;!-- ... --&gt;
+    &lt;/main&gt;
+    &lt;!-- teasers, footer --&gt;
+&lt;/body&gt;
+        </code></pre>
+
+    </section>
+
+    <section>
+
+        <pre style="font-size:40%"><code class="css" data-trim>
+.nav-access {
+    left: 0;
+    position: absolute;
+    top: -20rem; /* [1] */
+    width: 100%;
+    z-index: 1070;
+}
+
+.nav-access__link {
+    /*
+    @extend .btn; @extend .btn-orange; @extend .btn-block;
+    */
+    left: 0;
+    position: absolute;
+    top: 0;
+}
+
+.nav-access__link:focus {
+    top: 20rem; /* [1] */
+}
+        </code></pre>
+
+    </section>
+
+    <section>
+
+        <p>Bootstrap 4 has classes to do this.</p>
+
+        <pre><code class="html" data-trim>
+&lt;a href="#content" class="sr-only sr-only-focusable"&gt;
+    Skip to main content
+&lt;/a&gt;
+        </code></pre>
+
+        <p>This works by changing <code>position:absolute</code> to <code>position:static</code> so it might affect the layout.</p>
+
+    </section>
+
+    <section>
+
+        <p>We should probably let users know where they are within a set of pages.</p>
+
+        <div class="fragment">
+
+            <pre><code class="html" data-trim>
+&lt;nav class="sidebar" aria-label="Page sections"&gt;
+    &lt;ul&gt;
+        &lt;li&gt;
+            &lt;a href="#one"&gt;One&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;a href="#two" aria-current="page"&gt;Two&lt;/a&gt;
+        &lt;/li&gt;
+        &lt;li&gt;
+            &lt;a href="#three"&gt;Three&lt;/a&gt;
+        &lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;
+            </code></pre>
+
+        </div>
+
+        <aside class="notes">
+            <p>This is a Level AAA technique.</p>
+            <p>It's the design team's job to include breadcrumbs in the design - it's our job to make them work.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <pre><code class="css" data-trim>
+/* Was: */
+.sidebar a.is-active {
+    /* ... */
+}
+
+/* Now: */
+.sidebar a[aria-current="page"] {
+    /* ... */
+}
+        </code></pre>
+
+        <p>These selectors have the same selector strength and efficiency. They work in everything we need them to.</p>
+
+    </section>
+
+    <section>
+
+        <p>For HTML:</p>
+
+        <ul>
+            <li>Elements that need them should have complete start and end tags.</li>
+            <li>Nest according to specs (only within valid parents, only contain valid children).</li>
+            <li>No duplicate attributes.</li>
+            <li>IDs are unique.</li>
+        </ul>
+
+        <p class="fragment"><em>tl;dr</em> write valid HTML.</p>
+
+        <aside class="notes">
+            <p>Consider validating.</p>
+            <p>Some <code>aria-*</code> attributes are only valid inside a certain <code>role</code>.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>Make sure user agents and assistive technologies can read status messages.</p>
+
+        <div class="fragment">
+
+            <p>AJAX add-to-cart means the cart needs a role.</p>
+
+            <pre><code class="html" data-trim>
+&lt;div id="basket" role="status"&gt;
+    &lt;p&gt;2 items&lt;/p&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;!-- ... --&gt;&lt;/li&gt;
+        &lt;li&gt;&lt;!-- ... --&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/div&gt;
+            </code></pre>
+
+        </div>
+
+        <div class="fragment">
+
+            <p>Same as search results.</p>
+
+            <pre><code class="html" data-trim>
+&lt;p role="status"&gt;27 results found&lt;/p&gt;
+            </code></pre>
+
+        </div>
+
+    </section>
+
+    <section>
+
+        <p>If we show all form error in one place, it needs a role and <code>aria-atomic</code>.</p>
+
+        <pre style="font-size:40%;"><code class="html" data-trim>
+&lt;form method="post" action="" id="my-form"&gt;
+    &lt;div id="errors" role="alert" aria-atomic="true"&gt;&lt;/div&gt;
+    &lt;p&gt;
+        &lt;label for="first"&gt;First name (required)&lt;/label&gt;
+        &lt;input name="first" id="first" type="text"&gt;
+    &lt;/p&gt;
+&lt;/form&gt;
+        </code></pre>
+
+        <pre style="font-size:40%;"><code class="js" data-trim>
+// There's much better error identification later on.
+var form = document.getElementById("my-form");
+form.addEventListener("submit", function (e) {
+
+    if (document.getElementById("first").value === "") {
+        document.getElementById("errors").innerHTML += (
+            "&lt;p&gt;Please enter your first name.&lt;/p&gt;"
+        );
+    }
+
+});
+        </code></pre>
+
+        <aside class="notes">
+            <p>This is pretty bad validation - use jQuery Validate instead.</p>
+        </aside>
+
+    </section>
+
+</section>
+
+<section id="language">
+
+    <h2>Language</h2>
+
+    <section>
+        <p>This includes language and vocabulary.</p>
+    </section>
+
+    <section>
+
+        <p>Pages need a language</p>
+
+        <p>HTML 5</p>
+        <pre><code class="html" data-trim>
+&lt;!doctype html&gt;
+&lt;html lang="fr"&gt;
+        </code></pre>
+
+        <div class="fragment">
+
+            <p>XHTML 1.1</p>
+            <pre><code class="html" data-trim>
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+   "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr"&gt;
+            </code></pre>
+
+        </div>
+
+        <p class="fragment">For XHTML transitional, use <code>lang</code> and <code>xml:lang</code>.</p>
+
+    </section>
+
+    <section>
+
+        <p>The language should be a lower-case ISO2 code of the language.</p>
+        <pre><code class="html" data-trim>
+&lt;html lang="en"&gt;
+&lt;html lang="fr"&gt;
+&lt;html lang="da"&gt;
+&lt;html lang="el"&gt;
+        </code></pre>
+
+    </section>
+
+    <section>
+
+        <p>It can include a script subtag to define the script that's being used.</p>
+        <pre><code class="html" data-trim>
+&lt;!-- Japanese written in Katakana --&gt;
+&lt;html lang="ja-Kana"&gt;
+&lt;!-- Russian written in Cyrillic --&gt;
+&lt;html lang="ru-Cyrl"&gt;
+        </code></pre>
+
+    </section>
+
+    <section>
+
+        <p>It can include a region subtag. Usually that's the upper-case ISO2 country code.</p>
+        <pre><code class="html" data-trim>
+&lt;html lang="en-GB"&gt;
+&lt;html lang="fr-CA"&gt;
+&lt;html lang="da-DK"&gt;
+&lt;html lang="el-GR"&gt;
+        </code></pre>
+
+        <div class="fragment">
+
+            <p>... but not always</p>
+
+            <pre><code class="html" data-trim>
+&lt;!-- Central American Spanish --&gt;
+&lt;html lang="es-013"&gt;
+            </code></pre>
+
+        </div>
+
+    </section>
+
+    <section>
+
+        <p>All the parts can be combined but they're always in the order language-script-region.</p>
+
+        <pre><code class="html" data-trim>
+&lt;!-- Russian written in Cyrillic spoken in Belarus --&gt;
+&lt;html lang="ru-Cyrl-BY"&gt;
+        </code></pre>
+
+        <p class="fragment">The language alone is usually enough.</p>
+
+        <aside class="notes">
+            <p>If you're unsure about the ISO2 code then look it up.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>Add <code>lang</code> to any different language except for:</p>
+
+        <ul>
+            <li>Technical terms. ("Nasopharyngitis")</li>
+            <li>Proper names. ("Vladimir Putin")</li>
+            <li>Indeterminate language. ("Lorem ipsum dolor ...")</li>
+            <li>Words/phrases that are part of the vernacular. ("status quo")</li>
+        </ul>
+
+        <pre><code class="html" data-trim>
+&lt;p&gt;
+    ... so I said
+    &lt;span lang="zh-CN"&gt;新年快乐&lt;/span&gt;
+    and left.
+&lt;/p&gt;
+        </code></pre>
+
+        <aside class="notes">
+            <p>新年快乐 = Happy New Year</p>
+            <p>Nasopharyngitis = common cold</p>
+            <p>Status quo is latin</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>Abbreviations should be explained.</p>
+        <p>This can be in the copy itself ...</p>
+        <pre style="font-size:40%;"><code class="html" data-trim>
+&lt;p&gt;
+    The United Nations High Commissioner for Human Rights (UNHCR)
+    was established in 1950 to provide protection and assistance
+    to refugees.
+&lt;/p&gt;
+        </code></pre>
+        <p>... or in the markup</p>
+        <pre style="font-size:40%;"><code class="html" data-trim>
+&lt;p&gt;
+    Reading the
+    &lt;abbr title="Web Content Accessibility Guidelines"&gt;WCAG&lt;/abbr&gt;
+    is really boring.
+&lt;/p&gt;
+        </code></pre>
+        <p class="fragment">Be aware that the markup version fails <strong>1.4.13 (AA)</strong>.</p>
+
+        <aside class="notes">
+            <p>"Copy itself" version isn't our responsibility.</p>
+            <p>1.4.13 = Content on Hover or Focus - explained in Widgets.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>Two tricks with bi-directional text:</p>
+
+        <pre><code class="html" data-trim>
+&lt;p&gt;
+    The title is
+    "&lt;span lang="ar"&gt;مفتاح معايير الويب!&lt;/span&gt;"
+    in Arabic.
+&lt;/p&gt;
+&lt;p&gt;
+    The title is
+    "&lt;span lang="ar"&gt;مفتاح معايير الويب!&amp;rlm;&lt;/span&gt;"
+    in Arabic.
+&lt;/p&gt;
+        </code></pre>
+
+        <p>
+            The title is
+            "<span lang="ar">مفتاح معايير الويب!</span>"
+            in Arabic.
+        </p>
+        <p>
+            The title is
+            "<span lang="ar">مفتاح معايير الويب!&rlm;</span>"
+            in Arabic.
+        </p>
+
+        <aside class="notes">
+            <p>There's a Right-Left-Mark and an Left-Right-Mark.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>Use <code>dir</code> attribute to correct bi-directional text.</p>
+
+        <pre><code class="html" data-trim>
+&lt;p&gt;
+    The title is
+    "&lt;span lang="he"&gt;פעילות הבינאום, W3C&lt;/span&gt;"
+    in Hebrew.
+&lt;/p&gt;
+&lt;p&gt;
+    The title is
+    "&lt;span lang="he" dir="rtl"&gt;פעילות הבינאום, W3C&lt;/span&gt;"
+    in Hebrew.
+&lt;/p&gt;
+        </code></pre>
+
+        <p>
+            The title is
+            "<span lang="he">פעילות הבינאום, W3C</span>"
+            in Hebrew.
+        </p>
+        <p>
+            The title is
+            "<span lang="he" dir="rtl">פעילות הבינאום, W3C</span>"
+            in Hebrew.
+        </p>
+
+    </section>
+
+</section>
+
+<section>
+
+    <h2>Navigable</h2>
+
+    <section>
+        <p>As well as the page structure being navigable, we need to allow for keyboard navigation.</p>
+    </section>
+
+    <section>
+
+        <p>Make sure the DOM order matches the visual order:</p>
+
+        <p>Mobile:</p>
+        <p>
+            1️⃣<br>
+            2️⃣<br>
+            3️⃣
+        </p>
+
+        <p>Desktop:</p>
+        <p>1️⃣ 2️⃣ 3️⃣</p>
+
+    </section>
+
+    <section>
+
+        <p>If you need to move things around, consider using <a href="https://gist.github.com/james-jlo-long/fe69c667463d127063617a2b4d5a54c5">BreakPoints</a>.</p>
+
+        <pre style="font-size:30%"><code class="js" data-trim>
+var breakpoints = new BreakPoints({
+    md: 576
+    // ...
+});
+
+var nodeToMove = document.querySelector("...");
+var parentNode = nodeToMove.closest("...");
+
+breakpoints.on("change", "md", function (e) {
+
+    if (e.detail.matches) {
+        parentNode.appendChild(nodeToMove);
+    } else {
+        parentNode.insertBefore(nodeToMove, parentNode.firstChild);
+    }
+
+}, true);
+        </code></pre>
+
+        <p class="fragment">Don't just re-order things with CSS because the focus/tab order will be wrong.</p>
+
+    </section>
+
+    <section>
+
+        <p>You may be thinking that you can set the tab order using <code>tabindex</code>.</p>
+        <p class="fragment"><strong>Don't do it</strong> - you'd have to do it for <em>every</em> focusable element!</p>
+
+        <div class="fragment">
+
+            <p>There are 2 exceptions:</p>
+            <dl>
+                <dt><code>tabindex="-1"</code></dt>
+                <dd>I can gain focus but I'm not in the tab order.</dd>
+                <dt><code>tabindex="0"</code></dt>
+                <dd>I am part of the natural tab order.</dd>
+            </dl>
+
+        </div>
+
+    </section>
+
+    <section>
+
+        <p>We should be able to tell which element has focus when we tab through the page.</p>
+
+        <div class="fragment">
+
+            <p>Don't add this unless there's something to replace it.</p>
+
+            <pre><code class="css" data-trim>
+a {
+    outline: none;
+}
+            </code></pre>
+
+        </div>
+
+        <div class="fragment">
+
+            <p>Anchors and buttons need a hover and focus state.</p>
+
+            <pre><code class="css" data-trim>
+a:hover,
+a:focus {
+    /* ... */
+}
+            </code></pre>
+
+        </div>
+
+    </section>
+
+    <section>
+
+        <p>If you need to remove the outline for mouse, keep it for keyboard!</p>
+
+        <pre><code class="css" data-trim>
+/* twitter.com/leaverou/status/1045768279753666562 */
+:focus:not(:focus-visible) {
+    outline: none;
+}
+        </code></pre>
+
+        <p class="fragment">As of March 2019, this doesn't work in anything.</p>
+
+    </section>
+
+    <section>
+
+        <pre style="font-size:40%;"><code class="html" data-trim>
+&lt;a href="..." class="my-link"&gt;
+    &lt;span class="my-link__focus-hider" tabindex="-1"&gt;
+        Click here to go somewhere
+    &lt;/span&gt;
+&lt;/a&gt;
+        </code></pre>
+
+        <pre style="font-size:40%;"><code class="css" data-trim>
+.my-link {
+    /* No padding, no border */
+}
+
+.my-link:focus {
+    outline: 2px solid pink;
+}
+
+.my-link__focus-hider {
+    padding: 1em;
+    width: 100%;
+    height: 100%;
+}
+/* no `.my-link__focus-hider:focus` styles */
+        </code></pre>
+
+    </section>
+
+    <section>
+        <p>Placeholder</p>
+        <ul>
+            <li>Focus order 2.4.3 (A)</li>
+            <!--li>DOM order</li-->
+            <li>Link purpose 2.4.4 (A) - also include aria text</li>
+            <!--li>Focus visible 2.4.7 (AA)</li-->
+        </ul>
+    </section>
+
+</section>
+
+<section id="widgets">
+
+    <h2>Widgets</h2>
+
+    <section>
+        <p>Users need to be able to interact with the things we build the way they want to.</p>
+    </section>
+
+    <section>
+
+        <p>Content that appears on hover should also appear on focus.</p>
+
+        <ul class="fragment">
+            <li>The user should be able to <strong>dismiss</strong> the content without moving the mouse.</li>
+            <li>The user should be able to <strong>hover</strong> over the content without the content disappearing.</li>
+            <li>The content should remain visible until the hover/focus is lost, the user dismisses it or the information is no longer valid.</li>
+        </ul>
+
+    </section>
+
+    <section>
+
+        <p>We should be able to operate our widgets with the keyboard if we want.</p>
+        <p class="fragment">There should be no keyboard trap.</p>
+
+        <aside class="notes">
+            <p>Not sure how this would affect things like the Christmas game.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>Carousels are the boss battle at the end of accessibility.</p>
+        <p class="fragment">As well as mouse and finger, they need to work with the keyboard.</p>
+        <p class="fragment">The user must be able to pause the auto-play or hide the carousel on any device.</p>
+        <p class="fragment">It needs the appropriate <code>role</code> and <code>aria-*</code> attributes so screen readers can understand it.</p>
+
+        <aside class="notes">
+            <p>I've asked the design team to cut back on carousels.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>Tappable things need to be fat-finger friendly. This means a button must be at least <strong>44 &times; 44 pixels</strong> unless:</p>
+        <ul>
+            <li>There's an equivalent that's big enough.</li>
+            <li>It's inline with a block of text.</li>
+            <li>The size is determined by the User Agent.</li>
+            <li>The button being that small is essential to convery the meaning.</li>
+        </ul>
+
+    </section>
+
+    <section>
+
+        <p><img src="./images/best-practices.png" alt="WAI-ARIA Authoring Practices website" class="big"></p>
+        <p><a href="https://www.w3.org/TR/wai-aria-practices-1.1/">https://www.w3.org/TR/wai-aria-practices-1.1/</a></p>
+
+        <aside class="notes">
+            <p>Menu on the side.</p>
+            <p>I usually google "aria best practices" to find this.</p>
         </aside>
 
     </section>
@@ -594,6 +1289,8 @@ breakpoints.on("change", "md", function (e) {
 &lt;input type="text" aria-labelledby="text-id"&gt;
         </code></pre>
 
+        <p class="fragment">Just putting the label in as the <code>placeholder</code> text isn't enough - use one of the techniques above.</p>
+
     </section>
 
 </section>
@@ -660,7 +1357,7 @@ breakpoints.on("change", "md", function (e) {
 
         <div class="fragment">
 
-            <p>As well as telling assistive technologies that this is an alert, make sure there's something that visually identifies it as a problem.</p>
+            <p>Make sure there's something visually distinct. Mark it as an alert for screen readers as well.</p>
 
             <pre><code class="html" data-trim>
 &lt;div role="alert" class="error"&gt;
@@ -673,7 +1370,45 @@ breakpoints.on("change", "md", function (e) {
 
     </section>
 
+    <section>
+
+        <p>Make sure the contrast between background and foreground is at least 4.5:1.</p>
+
+        <div class="contrast-demo">
+            <p class="contrast-demo__fail">
+                #e27885/#b92d3b<br>
+                2.07:1 😟
+            </p>
+            <p class="contrast-demo__a">
+                #eb99a2/ac2a37<br>
+                3.06:1 😒
+            </p>
+            <p class="contrast-demo__aa">
+                #f2b3bb/#982530<br>
+                4.52:1 😃
+            </p>
+            <p class="contrast-demo__aaa">
+                #f8d7da/#721c24<br>
+                8.25:1 😍
+            </p>
+        </div>
+
+        <p class="fragment">Check your success, warning and notification alerts as well.</p>
+
+        <aside class="notes">
+            <p>8.25:1 is the Bootstrap colours.</p>
+        </aside>
+
+    </section>
+
 </section>
+
+<!--
+################################################################################
+-->
+
+
+
 
 <!--section id="time-based-media">
 
