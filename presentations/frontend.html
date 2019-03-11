@@ -89,6 +89,16 @@
     margin: 0 auto;
     max-height: 50vh;
 }
+
+.reveal .text-sm { font-size: 40%; }
+.reveal .text-xs { font-size: 30%; }
+
+.reveal p > code {
+    background-color: #3f3f3f;
+    font-size: 75%;
+    padding: 0.1em 0.25em;
+    white-space: nowrap;
+}
 </style>
 
 </head>
@@ -133,6 +143,10 @@
 <section id="state-of-disability">
 
     <h2>The state of disability</h2>
+
+    <section>
+        <p>What is disability and how wide-spread is it?</p>
+    </section>
 
     <section>
 
@@ -261,6 +275,10 @@
     <h2>Introduction to WCAG</h2>
 
     <section>
+        <p>What is WCAG and how does it work?</p>
+    </section>
+
+    <section>
 
         <p>The WCAG are a large number of guidelines, most of which have exceptions.</p>
 
@@ -327,6 +345,10 @@
     <h2>What the law says</h2>
 
     <section>
+        <p>What is the law surrounding this topic?</p>
+    </section>
+
+    <section>
 
         <p>European Union directive 2016/2102 says that the website and mobile applications for public sector bodies need to conform to WCAG 2.0 Level AA.</p>
         <p>New websites must comply from <strong>23 September 2019</strong>.</p>
@@ -386,7 +408,8 @@
 
         <aside class="notes">
             <p>This is <strong>Level A</strong></p>
-            <p>The hero assumes that the <code>&gt;h1&lt;</code> is not in there.</p>
+            <p>The hero assumes that the <code>&lt;h1&gt;</code> is not in there.</p>
+            <p>Only applies to overall page.</p>
         </aside>
 
     </section>
@@ -395,10 +418,6 @@
 
         <p>We should be able to bypass content that's repeated across pages.</p>
         <p class="fragment">WAI-ARIA landmark roles are a way to do that. We could also use "Skip to content" links or collapsed elements.</p>
-
-        <aside class="notes">
-            <p>Next slide: "Skip to content" links don't have to be visible to sighted users.</p>
-        </aside>
 
     </section>
 
@@ -425,7 +444,7 @@
 
     <section>
 
-        <pre style="font-size:40%"><code class="css" data-trim>
+        <pre class="text-xs"><code class="css" data-trim>
 .nav-access {
     left: 0;
     position: absolute;
@@ -436,7 +455,9 @@
 
 .nav-access__link {
     /*
-    @extend .btn; @extend .btn-orange; @extend .btn-block;
+    @extend .btn;
+    @extend .btn-orange;
+    @extend .btn-block;
     */
     left: 0;
     position: absolute;
@@ -567,9 +588,9 @@
 
     <section>
 
-        <p>If we show all form error in one place, it needs a role and <code>aria-atomic</code>.</p>
+        <p>If we show all form errors in one place, it needs a role and <code>aria-atomic</code>.</p>
 
-        <pre style="font-size:40%;"><code class="html" data-trim>
+        <pre class="text-sm"><code class="html" data-trim>
 &lt;form method="post" action="" id="my-form"&gt;
     &lt;div id="errors" role="alert" aria-atomic="true"&gt;&lt;/div&gt;
     &lt;p&gt;
@@ -579,7 +600,7 @@
 &lt;/form&gt;
         </code></pre>
 
-        <pre style="font-size:40%;"><code class="js" data-trim>
+        <pre class="text-sm"><code class="js" data-trim>
 // There's much better error identification later on.
 var form = document.getElementById("my-form");
 form.addEventListener("submit", function (e) {
@@ -727,9 +748,8 @@ form.addEventListener("submit", function (e) {
 
     <section>
 
-        <p>Abbreviations should be explained.</p>
-        <p>This can be in the copy itself ...</p>
-        <pre style="font-size:40%;"><code class="html" data-trim>
+        <p>Abbreviations should be explained either in the copy ...</p>
+        <pre class="text-xs"><code class="html" data-trim>
 &lt;p&gt;
     The United Nations High Commissioner for Human Rights (UNHCR)
     was established in 1950 to provide protection and assistance
@@ -737,10 +757,13 @@ form.addEventListener("submit", function (e) {
 &lt;/p&gt;
         </code></pre>
         <p>... or in the markup</p>
-        <pre style="font-size:40%;"><code class="html" data-trim>
+        <pre class="text-xs"><code class="html" data-trim>
 &lt;p&gt;
     Reading the
-    &lt;abbr title="Web Content Accessibility Guidelines"&gt;WCAG&lt;/abbr&gt;
+    &lt;abbr
+        title="Web Content Accessibility Guidelines"
+        aria-label="Web Content Accessibility Guidelines"
+    &gt;WCAG&lt;/abbr&gt;
     is really boring.
 &lt;/p&gt;
         </code></pre>
@@ -847,7 +870,7 @@ form.addEventListener("submit", function (e) {
 
         <p>If you need to move things around, consider using <a href="https://gist.github.com/james-jlo-long/fe69c667463d127063617a2b4d5a54c5">BreakPoints</a>.</p>
 
-        <pre style="font-size:30%"><code class="js" data-trim>
+        <pre class="text-xs"><code class="js" data-trim>
 var breakpoints = new BreakPoints({
     md: 576
     // ...
@@ -938,7 +961,7 @@ a:focus {
 
     <section>
 
-        <pre style="font-size:40%;"><code class="html" data-trim>
+        <pre class="text-sm"><code class="html" data-trim>
 &lt;a href="..." class="my-link"&gt;
     &lt;span class="my-link__focus-hider" tabindex="-1"&gt;
         Click here to go somewhere
@@ -946,7 +969,7 @@ a:focus {
 &lt;/a&gt;
         </code></pre>
 
-        <pre style="font-size:40%;"><code class="css" data-trim>
+        <pre class="text-sm"><code class="css" data-trim>
 .my-link {
     /* No padding, no border */
 }
@@ -966,94 +989,76 @@ a:focus {
     </section>
 
     <section>
-        <p>Placeholder</p>
-        <ul>
-            <li>Focus order 2.4.3 (A)</li>
-            <!--li>DOM order</li-->
-            <li>Link purpose 2.4.4 (A) - also include aria text</li>
-            <!--li>Focus visible 2.4.7 (AA)</li-->
-        </ul>
-    </section>
 
-</section>
+        <p>It should be possible to programmatically determine the purpose of the link from the link text alone.</p>
 
-<section id="widgets">
-
-    <h2>Widgets</h2>
-
-    <section>
-        <p>Users need to be able to interact with the things we build the way they want to.</p>
-    </section>
-
-    <section>
-
-        <p>Content that appears on hover should also appear on focus.</p>
-
-        <ul class="fragment">
-            <li>The user should be able to <strong>dismiss</strong> the content without moving the mouse.</li>
-            <li>The user should be able to <strong>hover</strong> over the content without the content disappearing.</li>
-            <li>The content should remain visible until the hover/focus is lost, the user dismisses it or the information is no longer valid.</li>
-        </ul>
-
-    </section>
-
-    <section>
-
-        <p>We should be able to operate our widgets with the keyboard if we want.</p>
-        <p class="fragment">There should be no keyboard trap.</p>
+        <table>
+            <thead>
+                <tr>
+                    <th scope="col" class="emoji" aria-label="Confusing">😕</th>
+                    <th scope="col" class="emoji" arial-label="Better example">🙂</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="#">Click here</a></td>
+                    <td><a href="#">Click here to contact us</a></td>
+                </tr>
+                <tr>
+                    <td><a href="#">Find out more</a></td>
+                    <td><a href="#">Find out more about the SuperProduct 3000</a></td>
+                </tr>
+                <tr>
+                    <td><a href="#">Buy now</a></td>
+                    <td><a href="#">Add the SuperProduct 3000 to your shopping cart</a></td>
+                </tr>
+            </tbody>
+        </table>
 
         <aside class="notes">
-            <p>Not sure how this would affect things like the Christmas game.</p>
+            <p>This is <strong>Level A</strong>.</p>
+            <p>Screen readers can extract a list of links from the page.</p>
         </aside>
 
     </section>
 
     <section>
 
-        <p>Carousels are the boss battle at the end of accessibility.</p>
-        <p class="fragment">As well as mouse and finger, they need to work with the keyboard.</p>
-        <p class="fragment">The user must be able to pause the auto-play or hide the carousel on any device.</p>
-        <p class="fragment">It needs the appropriate <code>role</code> and <code>aria-*</code> attributes so screen readers can understand it.</p>
+        <p>If the design doesn't allow for that, we have some solutions.</p>
 
-        <aside class="notes">
-            <p>I've asked the design team to cut back on carousels.</p>
-        </aside>
+        <pre class="text-sm"><code class="html" data-trim>
+&lt;!-- We can add to the markup --&gt;
+&lt;a href="..."&gt;
+    Find out more
+    &lt;span class="sr-only"&gt;about the SuperProduct 3000&lt;/span&gt;
+&lt;/a&gt;
 
-    </section>
-
-    <section>
-
-        <p>Tappable things need to be fat-finger friendly. This means a button must be at least <strong>44 &times; 44 pixels</strong> unless:</p>
-        <ul>
-            <li>There's an equivalent that's big enough.</li>
-            <li>It's inline with a block of text.</li>
-            <li>The size is determined by the User Agent.</li>
-            <li>The button being that small is essential to convery the meaning.</li>
-        </ul>
+&lt;!-- or change the reading --&gt;
+&lt;button type="button"
+    aria-label="Add the SuperProduct 3000 to your shopping cart"&gt;
+    Buy now
+&lt;/button&gt;
+        </code></pre>
 
     </section>
 
     <section>
 
-        <p><img src="./images/best-practices.png" alt="WAI-ARIA Authoring Practices website" class="big"></p>
-        <p><a href="https://www.w3.org/TR/wai-aria-practices-1.1/">https://www.w3.org/TR/wai-aria-practices-1.1/</a></p>
-
-        <aside class="notes">
-            <p>Menu on the side.</p>
-            <p>I usually google "aria best practices" to find this.</p>
-        </aside>
+        <pre><code class="css" data-trim>
+/* Bootstrap v4.3 */
+.sr-only {
+    position: absolute;
+    width: 1px;
+    height: 1px;
+    padding: 0;
+    overflow: hidden;
+    clip: rect(0, 0, 0, 0);
+    white-space: nowrap;
+    border: 0;
+}
+        </code></pre>
 
     </section>
-
-</section>
-
-<!--
-################################################################################
--->
-
-<section id="text-alternatives">
-
-    <h2>Text alternatives</h2>
 
     <section>
 
@@ -1077,6 +1082,7 @@ a:focus {
 
         <aside class="notes">
             <p><code>aria-labelledby</code> is needed to fix a bug in Chrome and Firefox.</p>
+            <p>You could also use <code>aria-label</code> on the <code>&lt;svg&gt;</code>.</p>
         </aside>
 
     </section>
@@ -1118,161 +1124,12 @@ a:focus {
 
 </section>
 
-<section>
+<section id="inputs">
 
-    <h2>Adaptable</h2>
-
-    <section>
-        <p>Content should be able to be presented in different ways or layouts without losing content or functionality.</p>
-    </section>
+    <h2>Inputs</h2>
 
     <section>
-
-        <p>Use WAI-ARIA landmark roles to identify content areas.</p>
-
-        <pre><code class="html" data-trim>
-&lt;!-- Header, Logo etc. --&gt;
-&lt;header role="banner"&gt;&lt;/header&gt;
-&lt;!-- Primary navigation --&gt;
-&lt;nav role="navigation"&gt;&lt;/nav&gt;
-&lt;!-- Success/error alerts --&gt;
-&lt;div role="alert"&gt;&lt;/div&gt;
-&lt;!-- Hero - no role (assuming no &lt;h1&gt; in the hero) --&gt;
-&lt;section&gt;&lt;/section&gt;
-&lt;!-- Main content --&gt;
-&lt;main role="main"&gt;&lt;/main&gt;
-&lt;!-- Footer, copyright etc. --&gt;
-&lt;footer role="contentinfo"&gt;&lt;/footer&gt;
-        </code></pre>
-
-        <aside class="notes">
-            <p>This is <strong>Level A</strong></p>
-            <p>The hero assumes that the <code>&gt;h1&lt;</code> is not in there.</p>
-        </aside>
-
-    </section>
-
-    <section>
-
-        <p>Two tricks with bi-directional text:</p>
-
-        <pre><code class="html" data-trim>
-&lt;p&gt;
-    The title is
-    "&lt;span lang="ar"&gt;مفتاح معايير الويب!&lt;/span&gt;"
-    in Arabic.
-&lt;/p&gt;
-&lt;p&gt;
-    The title is
-    "&lt;span lang="ar"&gt;مفتاح معايير الويب!&amp;rlm;&lt;/span&gt;"
-    in Arabic.
-&lt;/p&gt;
-        </code></pre>
-
-        <p>
-            The title is
-            "<span lang="ar">مفتاح معايير الويب!</span>"
-            in Arabic.
-        </p>
-        <p>
-            The title is
-            "<span lang="ar">مفتاح معايير الويب!&rlm;</span>"
-            in Arabic.
-        </p>
-
-    </section>
-
-    <section>
-
-        <p>Use <code>dir</code> attribute to correct bi-directional text.</p>
-
-        <pre><code class="html" data-trim>
-&lt;p&gt;
-    The title is
-    "&lt;span lang="he"&gt;פעילות הבינאום, W3C&lt;/span&gt;"
-    in Hebrew.
-&lt;/p&gt;
-&lt;p&gt;
-    The title is
-    "&lt;span lang="he" dir="rtl"&gt;פעילות הבינאום, W3C&lt;/span&gt;"
-    in Hebrew.
-&lt;/p&gt;
-        </code></pre>
-
-        <p>
-            The title is
-            "<span lang="he">פעילות הבינאום, W3C</span>"
-            in Hebrew.
-        </p>
-        <p>
-            The title is
-            "<span lang="he" dir="rtl">פעילות הבינאום, W3C</span>"
-            in Hebrew.
-        </p>
-
-    </section>
-
-    <section>
-
-        <p>Make sure the DOM order matches the visual order:</p>
-
-        <p>Mobile:</p>
-        <p>
-            1️⃣<br>
-            2️⃣<br>
-            3️⃣
-        </p>
-
-        <p>Desktop:</p>
-        <p>1️⃣ 2️⃣ 3️⃣</p>
-
-    </section>
-
-    <section>
-
-        <p>If you need to move things around, consider using <a href="https://gist.github.com/james-jlo-long/fe69c667463d127063617a2b4d5a54c5">BreakPoints</a>.</p>
-
-        <pre style="font-size:30%"><code class="js" data-trim>
-var breakpoints = new BreakPoints({
-    md: 576
-    // ...
-});
-
-var nodeToMove = document.querySelector("...");
-var parentNode = nodeToMove.closest("...");
-
-breakpoints.on("change", "md", function (e) {
-
-    if (e.detail.matches) {
-        parentNode.appendChild(nodeToMove);
-    } else {
-        parentNode.insertBefore(nodeToMove, parentNode.firstChild);
-    }
-
-}, true);
-        </code></pre>
-
-        <p class="fragment">Don't just re-order things with CSS because the tab order will be wrong.</p>
-
-    </section>
-
-    <section>
-
-        <p>You may be thinking that you can set the tab order using <code>tabindex</code>.</p>
-        <p class="fragment"><strong>Don't do it</strong> - you'd have to do it for <em>every</em> focusable element!</p>
-
-        <div class="fragment">
-
-            <p>There are 2 exceptions:</p>
-            <dl>
-                <dt><code>tabindex="-1"</code></dt>
-                <dd>I can gain focus but I'm not in the tab order.</dd>
-                <dt><code>tabindex="0"</code></dt>
-                <dd>I am part of the natural tab order.</dd>
-            </dl>
-
-        </div>
-
+        <p>Form fields need some care and attention.</p>
     </section>
 
     <section>
@@ -1291,6 +1148,265 @@ breakpoints.on("change", "md", function (e) {
 
         <p class="fragment">Just putting the label in as the <code>placeholder</code> text isn't enough - use one of the techniques above.</p>
 
+        <aside class="notes">
+            <p>Adding a <code>sr-only</code> class to the <code>&lt;label&gt;</code> is fine.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>You don't need <code>id/for</code> if you nest your input.</p>
+
+        <pre><code class="html" data-trim>
+&lt;label&gt;
+    &lt;input type="checkbox" name="tandc"&gt;
+    I have read the terms and conditions
+&lt;/label&gt;
+        </code></pre>
+
+        <div class="fragment">
+
+            <p>But it's always better to include it if you can.</p>
+
+            <pre><code class="html" data-trim>
+&lt;label for="tandc"&gt;
+    &lt;input type="checkbox" name="tandc" id="tandc"&gt;
+    I have read the terms and conditions
+&lt;/label&gt;
+            </code></pre>
+
+        </div>
+
+        <aside class="notes">
+            <p>WAI: <q>Generally, explicit labels are better supported by assistive technology.</q></p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>Don't worry too much about styling some inputs. It's <em>far</em> easier to leave these as native elements:</p>
+
+        <ul>
+            <li>Checkboxes</li>
+            <li>Radio buttons</li>
+            <li>Dropdowns *</li>
+            <li>Scrollbars</li>
+        </ul>
+
+        <p class="fragment">* Except for Select2.</p>
+
+        <aside class="notes">
+            <p>Admittedly, scrollbars don't count as inputs.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <h3>Pop quiz!</h3>
+
+        <pre class="text-xs"><code class="html" data-trim>
+&lt;p&gt;&lt;button type="button"&gt;Do nothing&lt;/button&gt;&lt;/p&gt;
+&lt;ul&gt;
+    &lt;li&gt;
+        &lt;label for="option-a"&gt;
+            &lt;input type="checkbox" name="option" id="option-a" value="a"&gt;
+            Alpha
+        &lt;/label&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+        &lt;label for="option-b"&gt;
+            &lt;input type="checkbox" name="option" id="option-b" value="b" checked&gt;
+            Bravo
+        &lt;/label&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+        &lt;label for="option-c"&gt;
+            &lt;input type="checkbox" name="option" id="option-c" value="c"&gt;
+            Charlie
+        &lt;/label&gt;
+    &lt;/li&gt;
+&lt;/ul&gt;
+        </code></pre>
+
+        <p class="fragment">Now what if they were radio buttons?</p>
+
+        <aside class="notes">
+            <p>Focused on the button, I press tab - which element has focus? (A / B)</p>
+            <p>I press the down arrow - what happens? (Page scrolls / C selected)</p>
+            <p>Option A is indeterminate. I click it. What is A's state now? (Checked)</p>
+            <p>If you don't get all the answers right, maybe don't mess around with this stuff.</p>
+            <p>Show the form elements demo.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>Errors should be described to the user in text.</p>
+
+        <p>Prevailing wisdom seems to be to make the error a label. You should also flag it with <code>aria-invalid</code> and link it up using <code>aria-errormessage</code>.</p>
+        <pre><code class="html" data-trim>
+&lt;label for="input-id"&gt;Input&lt;/label&gt;
+&lt;input type="text" id="input-id"
+    aria-errormessage="error-id"
+    aria-invalid="true"&gt;
+&lt;label for="input-id" id="error-id"&gt;Lorem ipsum ...&lt;/label&gt;
+        </code></pre>
+
+    </section>
+
+    <section>
+
+        <p>Show an error as soon as you detect it.</p>
+        <ul class="fragment">
+            <li>Please enter a valid e-mail address.</li>
+            <li>This field is required.</li>
+        </ul>
+        <p class="fragment">This is what jQuery Validate does.</p>
+
+        <aside class="notes">
+            <p>jQuery Validate doesn't add the <code>aria-errormessage</code> attribute.</p>
+        </aside>
+
+    </section>
+
+</section>
+
+<section id="widgets">
+
+    <h2>Widgets</h2>
+
+    <section>
+        <p>Users need to be able to interact with the things we build the way they want to.</p>
+    </section>
+
+    <section>
+
+        <p>First rule of accessible widgets: if there's a native element that does the job - use it.</p>
+
+        <pre class="fragment"><code class="html" data-trim>
+&lt;!-- Don't do this --&gt;
+&lt;h3 role="button"&gt;Section heading&lt;/h3&gt;
+
+&lt;!-- This wouldn't make sense --&gt;
+&lt;h3 role="heading button" aria-level="3"&gt;Section heading&lt;/h3&gt;
+
+&lt;!-- Do this instead --&gt;
+&lt;h3&gt;
+    &lt;button type="button"&gt;Section heading&lt;/button&gt;
+&lt;/h3&gt;
+        </code></pre>
+
+        <aside class="notes">
+            <p>You might see this in footers the become collapsible.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>Content that appears on hover should also appear on focus.</p>
+
+        <ul class="fragment">
+            <li>The user should be able to <strong>dismiss</strong> the content without moving the mouse.</li>
+            <li>The user should be able to <strong>hover</strong> over the content without the content disappearing.</li>
+            <li>The content should remain visible until the hover/focus is lost, the user dismisses it or the information is no longer valid.</li>
+        </ul>
+
+        <aside class="notes">
+            <p>Bootstrap has Tooltips and Popovers - both <strong>fail</strong> these tests.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>We should be able to operate our widgets with the keyboard if we want.</p>
+        <p class="fragment">There should be no keyboard trap.</p>
+
+        <aside class="notes">
+            <p>Not sure how this would affect things like the Christmas game.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>Make sure that hidden stuff is actually hidden.</p>
+
+        <pre class="fragment text-sm"><code class="css" data-trim>
+.not-hidden {
+    height: 0;
+    overflow: hidden;
+}
+
+.also-not-hidden {
+    visibility: hidden;
+    /* opacity: 0; */
+}
+
+.actually-hidden {
+    display: none;
+}
+        </code></pre>
+
+        <pre class="fragment text-sm"><code class="html" data-trim>
+&lt;div class="not-hidden" aria-hidden="true" inert&gt;
+    Really hidden.
+&lt;/div&gt;
+        </code></pre>
+
+        <aside class="notes">
+            <p>Not hidden means screen readers still see the content and links are still in the tab order.</p>
+            <p>Option: listen for <code>transitionend</code> and toggle a class to set <code>display; none;</code>.</p>
+            <p><code>inert</code> requires a polyfill.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>Carousels are the boss battle at the end of accessibility.</p>
+        <p class="fragment">As well as mouse and finger, they need to work with the keyboard.</p>
+        <p class="fragment">The user must be able to pause the auto-play or hide the carousel on any device.</p>
+        <p class="fragment">It needs the appropriate <code>role</code> and <code>aria-*</code> attributes so screen readers can understand it.</p>
+
+        <aside class="notes">
+            <p>I've asked the design team to cut back on carousels.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>Tappable things need to be fat-finger friendly. This means a button must be at least <strong>44 &times; 44 pixels</strong> unless:</p>
+        <ul>
+            <li>There's an equivalent that's big enough.</li>
+            <li>It's inline with a block of text.</li>
+            <li>The size is determined by the User Agent.</li>
+            <li>Being that small is essential to convey the meaning.</li>
+        </ul>
+
+        <aside class="notes">
+            <p>"Determined by the User Agent" = native inputs.</p>
+            <p>Not sure if <code>&lt;label&gt;</code> around a checkbox counts, but probably does.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p><img src="./images/best-practices.png" alt="WAI-ARIA Authoring Practices website" class="big"></p>
+        <p><a href="https://www.w3.org/TR/wai-aria-practices-1.1/">https://www.w3.org/TR/wai-aria-practices-1.1/</a></p>
+
+        <aside class="notes">
+            <p>Menu on the side.</p>
+            <p>I usually google "aria best practices" to find this.</p>
+        </aside>
+
     </section>
 
 </section>
@@ -1300,7 +1416,13 @@ breakpoints.on("change", "md", function (e) {
     <h2>Distinguishable</h2>
 
     <section>
+
         <p>Users need to be able to tell the difference between foreground and background.</p>
+
+        <aside class="notes">
+            <p>Usually this is the design team's job but sometimes we need to add alerts.</p>
+        </aside>
+
     </section>
 
     <section>
@@ -1312,7 +1434,6 @@ breakpoints.on("change", "md", function (e) {
             <p>Don't just do this:</p>
 
             <pre><code class="html" data-trim>
-&lt;input type="text"&gt;
 &lt;input type="text" class="is-error"&gt;
             </code></pre>
 
@@ -1320,7 +1441,7 @@ breakpoints.on("change", "md", function (e) {
 
         <div class="fragment">
 
-            <p>This is better.</p>
+            <p>This is a little better.</p>
 
             <pre><code class="html" data-trim>
 &lt;input type="text" aria-invalid="true"&gt;
@@ -1332,7 +1453,7 @@ breakpoints.on("change", "md", function (e) {
 
             <p>This is the best.</p>
 
-            <pre style="font-size:40%"><code class="html" data-trim>
+            <pre class="text-sm"><code class="html" data-trim>
 &lt;label for="input-id"&gt;Descriptive label&lt;/label&gt;
 &lt;input type="text" id="input-id" aria-invalid="true" aria-errormessage="error-id"&gt;
 &lt;label for="input-id" id="error-id"&gt;Descriptive error message&lt;/label&gt;
@@ -1396,198 +1517,20 @@ breakpoints.on("change", "md", function (e) {
         <p class="fragment">Check your success, warning and notification alerts as well.</p>
 
         <aside class="notes">
-            <p>8.25:1 is the Bootstrap colours.</p>
+            <p>8.25:1 is the Bootstrap one.</p>
+            <p>Google "contast analyser" and find the "Web AIM" one.</p>
         </aside>
 
     </section>
 
-</section>
-
-<!--
-################################################################################
--->
-
-
-
-
-<!--section id="time-based-media">
-
-    <h2>Time-based Media</h2>
-
     <section>
 
-        <p><span class="emoji">📽 🔊</span></p>
-        <p>Basically, provide alternatives for video or audio.</p>
+        <p><img src="./images/contrast.png" alt="WebAIM Colour Contrast website" class="big"></p>
+        <p><a href="https://webaim.org/resources/contrastchecker/">https://webaim.org/resources/contrastchecker/</a></p>
 
         <aside class="notes">
-            <p>Only giving cliff-notes for this since we don't do a lot of it.</p>
+            <p>Google "contast analyser".</p>
         </aside>
-
-    </section>
-
-    <section>
-        <p>For Level A compliance, this just means text alternatives. Song lyrics, script for the training video, paragraphs below the video containing the video's text etc.</p>
-    </section>
-
-    <section>
-
-        <p>Level AA covers captions for live video and audio description for videos.</p>
-
-        <aside class="notes">
-            <p>Whereas A allows text alternative or audio description (1.2.3) AA needs audio description (1.2.5).</p>
-        </aside>
-
-    </section>
-
-    <section>
-
-        <p>Level AAA covers things like sign language, extended audio descriptions and audio-only live video alternatives.</p>
-
-        <aside class="notes">
-            <p>Extended audio description can pause the video to describe a scene.</p>
-        </aside>
-
-    </section>
-
-</section>
-
-<section id="adaptable">
-
-    <h2>Adaptable</h2>
-
-    <section>
-        <p>Make sure the content can be displayed in different ways without losing content (responsive design).</p>
-        <p>Please make sure the layout doesn't require a certain orientation unless essential.</p>
-    </section>
-
-    <section>
-
-        <p>Here's the order for elements:</p>
-
-        <p>Mobile:</p>
-        <p>
-            1️⃣<br>
-            2️⃣<br>
-            3️⃣
-        </p>
-
-        <p>Desktop:</p>
-        <p>1️⃣ 2️⃣ 3️⃣</p>
-
-        <aside class="notes">
-            <p>We can work around a different layout but it makes things harder for us.</p>
-            <p>We (frontenders) need to worry about focus and tab order.</p>
-        </aside>
-
-    </section>
-
-    <section>
-
-        <p>We shouldn't need both vertical and horizontal scrollbars to see all the content.</p>
-        <p>Unless it's essential to convey the meaning, we shouldn't need a second scrollbar for:</p>
-        <ul>
-            <li>Vertical scrolling content at a width of <strong>320 pixels</strong></li>
-            <li>Horizontal scrolling content at a height of <strong>256 pixels</strong></li>
-        </ul>
-
-        <p class="fragment">We should be able to zoom in to 200% without loss of functionality.</p>
-
-        <aside class="notes">
-            <p>Trello is an example of horizontal scrolling content.</p>
-            <p>320px = 1280px at 400%; 256px = 1024px at 400%</p>
-            <p>Consider form fields - "first" &amp; "last" on same line, "last" hidden when zoomed!</p>
-            <p>Responsive layouts are usually zoomable by design.</p>
-        </aside>
-
-    </section>
-
-</section>
-
-<section id="colour">
-
-    <h2>Colour</h2>
-
-    <section>
-        <p>Don't rely purely on colour to differentiate things.</p>
-    </section>
-
-    <section>
-
-        <p>Click the green heart to continue:</p>
-        <p>
-            <button type="button" class="emoji">❤️</button>
-            <button type="button" class="emoji">💚</button>
-            <button type="button" class="emoji">💜</button>
-        </p>
-
-        <p>Normal, invalid and valid inputs:</p>
-        <p>
-            <input type="text" class="input">
-            <input type="text" class="input is-invalid">
-            <input type="text" class="input is-valid">
-        </p>
-
-        <p class="fragment">Click <a href="#" class="bad-link">here</a> to continue.</p>
-
-        <aside class="notes">
-            <p>When you're designing a form, be aware that we need to be able to add error messages to it.</p>
-            <p>Check your layout on greyscale to see if the link stands out.</p>
-        </aside>
-
-    </section>
-
-    <section>
-
-        <p>The colour contrast between text and background should be:</p>
-        <ul>
-            <li>3:1 Level A</li>
-            <li>4.5:1 Level AA</li>
-            <li>7:1 Level AAA</li>
-        </ul>
-
-        <div class="fragment">
-            <p>Big text (at least 18 points or 14 points and bold) can be the level below.</p>
-            <p>Logos are exempt.</p>
-        </div>
-
-        <aside class="notes">
-            <p>Black/white = 21:1, white/white = 1:1</p>
-            <p>18pt = 24px, 14pt = 18.66px</p>
-            <p>Bold = 700; not semi-bold, not black.</p>
-        </aside>
-
-    </section>
-
-    <section>
-
-        <p>Text on a <code>#ffffff</code> background.</p>
-
-        <div class="contrast-demo">
-            <p class="contrast-demo__fail">
-                #ff6600<br>
-                2.94:1<br>
-                Regular: Fail<br>
-                Big: Fail
-            </p>
-            <p class="contrast-demo__a">
-                #ff6000<br>
-                3.03:1<br>
-                Regular: A<br>
-                Big: AA
-            </p>
-            <p class="contrast-demo__aa">
-                #cc4e00<br>
-                4.51:1<br>
-                Regular: AA<br>
-                Big: AAA
-            </p>
-            <p class="contrast-demo__aaa">
-                #ae1900<br>
-                7.15:1<br>
-                Regular: AAA<br>
-                Big: AAA
-            </p>
-        </div>
 
     </section>
 
@@ -1598,12 +1541,40 @@ breakpoints.on("change", "md", function (e) {
     <h2>Animations</h2>
 
     <section>
+        <p>Animations aren't always as accessible as you'd think.</p>
+    </section>
+
+    <section>
 
         <p>Consider whether animation is necessary.</p>
-        <p>Don't make anything flash more than 3 times a second.</p>
+
+        <div class="fragment">
+
+            <p>Some users prefer not to see animations. We can detect that in CSS.</p>
+            <pre><code class="css" data-trim>
+@media screen and (prefers-reduced-motion) {
+    .my-element {
+        transition: none;
+    }
+}
+            </code></pre>
+
+        </div>
 
         <aside class="notes">
             <p>Some iOS 7 users reported motion sickness and vertigo from some of the animations.</p>
+            <p>As of March 2019 <code>prefers-reduced-motion</code> only works in Firefox and Safari.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>Don't make anything flash more than 3 times a second.</p>
+        <p>A simple transition less than 0.3 seconds isn't a problem since it changes and stays.</p>
+
+        <aside class="notes">
+            <p><strong>Does anyone have photo-sensitive epilepsy here?</strong></p>
         </aside>
 
     </section>
@@ -1614,215 +1585,37 @@ breakpoints.on("change", "md", function (e) {
 
 </section>
 
-<section id="text">
-
-    <h2>Text</h2>
-
-    <section>
-
-        <p>We should be able to apply these styles without any loss of functionality.</p>
-
-        <pre><code class="css" data-trim>
-.any-text {
-    letter-spacing: 0.12em; /* Tracking */
-    line-height:    1.5;    /* Line spacing */
-    margin-bottom:  2em;    /* Spacing after paragraphs */
-    word-spacing:   0.16em; /* Word spacing */
-}
-        </code></pre>
-
-        <p>All values are relative to the font-size of the text.</p>
-
-    </section>
-
-    <section>
-
-        <p>It should be possible to programmatically determine the purpose of the link from the link text alone.</p>
-
-        <table>
-            <thead>
-                <tr>
-                    <th scope="col" class="emoji" aria-label="Confusing">😕</th>
-                    <th scope="col" class="emoji" arial-label="Better example">🙂</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><a href="#">Click here</a></td>
-                    <td><a href="#">Click here to contact us</a></td>
-                </tr>
-                <tr>
-                    <td><a href="#">Find out more</a></td>
-                    <td><a href="#">Find out more about the SuperProduct 3000</a></td>
-                </tr>
-                <tr>
-                    <td><a href="#">Buy now</a></td>
-                    <td><a href="#">Add the SuperProduct 3000 to your shopping cart</a></td>
-                </tr>
-            </tbody>
-        </table>
-
-        <aside class="notes">
-            <p>This is <strong>Level A</strong>.</p>
-            <p>Screen readers can extract a list of links from the page.</p>
-            <p>There are techniques we can use to add invisible text to these links.</p>
-        </aside>
-
-    </section>
-
-    <section>
-
-        <p>Headings and labels should be descriptive as well.</p>
-
-        <table>
-            <thead>
-                <tr>
-                    <th scope="col" class="emoji" aria-label="Confusing">😕</th>
-                    <th scope="col" class="emoji" arial-label="Better example">🙂</th>
-                </tr>
-            </thead>
-            <tbody>
-                <tr>
-                    <td><strong>Page</strong></td>
-                    <td><strong>Contact Us</strong></td>
-                </tr>
-                <tr>
-                    <td><strong>Product</strong></td>
-                    <td><strong>Acme SuperProduct 3000</strong></td>
-                </tr>
-            </tbody>
-        </table>
-
-        <p>If the page is only showing a single product, titles such as "<strong>Hardware</strong>" or "<strong>Drivers</strong>" can be understood from context.</p>
-
-        <aside class="notes">
-            <p>This is <strong>Level AA</strong>.</p>
-        </aside>
-
-    </section>
-
-    <section>
-
-        <p>Form fields should have lables.</p>
-
-        <p>We can make the labels invisible if necessary, but it's easier to include them in the design.</p>
-        <p>Putting the label inside the input field (placeholder text) is confusing.</p>
-
-    </section>
-
-    <section>
-
-        <h3>Level AAA Techniques</h3>
-
-        <p>Try to avoid using jargon or idioms. Provide a way for explaining them like a glossary or definition list.</p>
-        <p class="fragment">Add a mechanism for expanding abbreviations or include them in the text.</p>
-        <p class="fragment">Generally the page is too complex for someone with a <q>lower secondary education level</q> then provide a summary or graphs/diagrams.</p>
-
-        <aside class="notes">
-            <p>Roughly 11 years old / Year 7.</p>
-        </aside>
-
-    </section>
-
-    <section>
-
-        <p>WCAG 1.4.8 (AAA) For a large block of text, the user should be able to do the following:</p>
-        <ol>
-            <li>Change the foreground and/or background colours.</li>
-            <li>Limit the width to 80 characters (40 if CJK).</li>
-            <li>Prevent the text being justified.</li>
-            <li>Expand line spacing to at least space-and-a-half within paragraphs and spacing after paragraphs to at least 1.5 times larger than the line spacing.</li>
-            <li>Expand the text to 200% without assistive technology and without losing functionality.</li>
-        </ol>
-
-        <aside class="notes">
-            <p>CJK = Chinese, Japanese or Korean.</p>
-            <p>Justified = left &amp; right aligned.</p>
-        </aside>
-
-    </section>
-
-    <section>
-        <p>It turns out that font selection isn't that big of a deal.</p>
-    </section>
-
-</section>
-
-<section id="ux-ui">
-
-    <h2>UX and UI</h2>
-
-    <section>
-
-        <p>The navigation and identification should be consistent throughout the site.</p>
-        <p class="fragment">This doesn't mean that the navigation can't expand/collapse, just that the order and position don't change between pages.</p>
-        <p class="fragment">Identification means things like similar terms or icons.</p>
-
-    </section>
-
-    <section>
-
-        <p>There should be multiple ways of working out where you are within a set of pages.</p>
-        <p>Ways we can achieve this are:</p>
-        <ul>
-            <li>Sitemap</li>
-            <li>Site search</li>
-            <li>Table of contents</li>
-            <li>Links ("Previous" and "Next" etc.)</li>
-        </ul>
-
-        <div class="fragment">
-            <p>Location can be found through breadcrumb trail or a highlighted link (e.g. in the sidebar).</p>
-        </div>
-
-        <aside class="notes">
-            <p>We don't need all of these ways, one will do.</p>
-            <p>Location is Level AAA.</p>
-        </aside>
-
-    </section>
-
-    <section>
-
-        <p>There shouldn't be a "change of context" when an element gains focus or an input is used.</p>
-        <p>Basically, if you want to go somewhere or do something, use a button.</p>
-
-        <aside class="notes">
-            <p>Remember the early 2000's when using a dropdown to change page was cool?</p>
-        </aside>
-
-    </section>
-
-    <section>
-
-        <p>If you need to do something through gesture, give us a button to do it as well.</p>
-        <p>For example: stretch-to-zoom on Google Maps can also be done with the plus button.</p>
-
-    </section>
-
-    <section>
-
-        <p>Any custom UI element should have a target size of at least <strong>44 &times; 44 pixels</strong> unless:</p>
-        <ul>
-            <li>There's a equivalent that's large enough.</li>
-            <li>It's inline in a block of text.</li>
-            <li>It's User Agent controlled (checkboxes etc.).</li>
-            <li>The size is essential to the information being conveyed.</li>
-        </ul>
-
-        <p class="fragment">We will assume that you intented native <strong>checkboxes</strong>, <strong>radio buttons</strong>, <strong>dropdowns</strong> and <strong>scrollbars</strong>.</p>
-
-        <aside class="notes">
-            <p>Exception for dropdowns: Select2</p>
-        </aside>
-
-    </section>
-
-</section>
-
 <section id="tools">
-    <p>placeholder for tools</p>
-</section-->
+
+    <h2>Tools</h2>
+
+    <section>
+        <p>There are a few tools available to us to help.</p>
+    </section>
+
+    <section>
+
+        <p><img src="./images/audit.png" alt="Chrome Audit tab" class="big"></p>
+
+        <aside class="notes">
+            <p>One of the better ones. Validates ARIA roles.</p>
+            <p>Won't work locally unless you simulate a server.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p><img src="./images/firefox-audit.png" alt="Firefox Audit tab" class="big"></p>
+
+        <aside class="notes">
+            <p>Gives detailed information on every element.</p>
+            <p>Right-click to see information on a specific element
+        </aside>
+
+    </section>
+
+</section>
 
 <section id="questions">
     <h1>Any questions?</h1>
