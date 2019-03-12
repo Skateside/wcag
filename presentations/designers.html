@@ -9,87 +9,13 @@
 <link rel="stylesheet" href="./reveal/css/reveal.css">
 <link rel="stylesheet" href="./reveal/css/theme/black.css">
 <link rel="stylesheet" href="./reveal/lib/css/zenburn.css">
+<link rel="stylesheet" href="./custom.css">
 
 <style>
-.reveal table.small {
-    font-size: 50%;
-}
-
-.reveal td {
-    vertical-align: top;
-}
-
-.reveal .emoji {
-    font-size: 200%;
-}
-
-.d-b { display: block !important; }
-.logo {
-    border-width: 0 !important;
-    box-shadow: none !important;
-    background-color: transparent !important;
-}
-
-.input {
-    border: 1px solid #ccc;
-}
-.input.is-invalid { background-color: #FCC; }
-.input.is-valid { background-color: #CFC; }
-
-.reveal .bad-link { color: #CCC; }
-
-.contrast-demo {
-    display: flex;
-    flex-direction: row;
-}
-.reveal .contrast-demo__fail,
-.reveal .contrast-demo__a,
-.reveal .contrast-demo__aa,
-.reveal .contrast-demo__aaa {
-    align-items: center;
-    display: flex;
-    margin: 0.25em;
-    padding: 0;
-    text-align: center;
-    height: 6em;
-    background-color: #fff;
-    font-size: 75%;
-    flex-basis: calc(25% - 0.5em);
-    justify-content: center;
-}
-
-.contrast-demo__fail { color: #ff6600; }
-.contrast-demo__a    { color: #ff6000; }
-.contrast-demo__aa   { color: #cc4e00; }
-.contrast-demo__aaa  { color: #ae1900; }
-
-@keyframes flasher {
-    0%, 100% {
-        background-color: #fff;
-    }
-    50% {
-        background-color: #000;
-    }
-}
-
-.reveal .flasher {
-    animation: flasher 0.33s infinite paused;
-    height: 5em;
-    width: 80%;
-    outline: 0.1em solid #fff;
-    outline-offset: 0.1em;
-    margin: 0 auto;
-}
-
-.reveal .flasher.is-playing {
-    animation-play-state: running;
-}
-
-.reveal section img.big {
-    display: block;
-    margin: 0 auto;
-    max-height: 50vh;
-}
+.contrast-demo__fail { background-color: #fff; color: #ff6600; }
+.contrast-demo__a    { background-color: #fff; color: #ff6000; }
+.contrast-demo__aa   { background-color: #fff; color: #cc4e00; }
+.contrast-demo__aaa  { background-color: #fff; color: #ae1900; }
 </style>
 
 </head>
@@ -130,6 +56,7 @@
     <h2>The state of disability</h2>
 
     <section>
+        <p><span class="emoji">♿️</span></p>
         <p>What is disability and how wide-spread is it?</p>
     </section>
 
@@ -260,6 +187,7 @@
     <h2>Introduction to WCAG</h2>
 
     <section>
+        <p><span class="emoji">📑</span></p>
         <p>What is WCAG and how does it work?</p>
     </section>
 
@@ -330,6 +258,7 @@
     <h2>What the law says</h2>
 
     <section>
+        <p><span class="emoji">👮‍♀️ 👮‍♂️</span></p>
         <p>What is the law surrounding this topic?</p>
     </section>
 
@@ -350,7 +279,8 @@
     <section>
 
         <p>In January 2012 the Royal National Institute of the Blind (RNIB) started legal action against the low-cost airline Bmibaby because their website couldn't be used.</p>
-        <p>So there is legal precedent for this sort of thing.</p>
+        <p class="fragment">In January 2019, Beyoncé's Parkwood Entertainment was sued over website accessibility because it voilated the Americans With Disabilities Act (1990).</p>
+        <p class="fragment">So there is legal precedent for this sort of thing.</p>
 
         <aside class="notes">
             <p>Couldn't find the website so can't fully describe how bad it was.</p>
@@ -406,6 +336,7 @@
     <h2>Adaptable</h2>
 
     <section>
+        <p><span class="emoji">🤳</span></p>
         <p>Make sure the content can be displayed in different ways without losing content (responsive design).</p>
         <p>Please make sure the layout doesn't require a certain orientation unless essential.</p>
     </section>
@@ -458,6 +389,7 @@
     <h2>Colour</h2>
 
     <section>
+        <p><span class="emoji">🎨</span></p>
         <p>Don't rely purely on colour to differentiate things.</p>
     </section>
 
@@ -549,6 +481,7 @@
 
     <section>
 
+        <p><span class="emoji">🎞</span></p>
         <p>Consider whether animation is necessary.</p>
         <p>Don't make anything flash more than 3 times a second.</p>
 
@@ -571,6 +504,13 @@
 
     <section>
 
+        <p><span class="emoji">📝</span></p>
+        <p>Rules about copy, vocabulary and text layout.</p>
+
+    </section>
+
+    <section>
+
         <p>We should be able to apply these styles without any loss of functionality.</p>
 
         <pre><code class="css" data-trim>
@@ -590,7 +530,7 @@
 
         <p>It should be possible to programmatically determine the purpose of the link from the link text alone.</p>
 
-        <table>
+        <table class="text-md">
             <thead>
                 <tr>
                     <th scope="col" class="emoji" aria-label="Confusing">😕</th>
@@ -702,6 +642,13 @@
 <section id="ux-ui">
 
     <h2>UX and UI</h2>
+
+    <section>
+
+        <p><span class="emoji">💯</span></p>
+        <p>How the user should work with the website.</p>
+
+    </section>
 
     <section>
 

@@ -1,0 +1,89 @@
+.reveal table.small {
+    font-size: 50%;
+}
+
+.reveal td {
+    vertical-align: top;
+}
+
+.reveal .emoji {
+    font-size: 200%;
+}
+
+.d-b { display: block !important; }
+.logo {
+    border-width: 0 !important;
+    box-shadow: none !important;
+    background-color: transparent !important;
+}
+
+.input {
+    border: 1px solid #ccc;
+}
+.input.is-invalid { background-color: #FCC; }
+.input.is-valid { background-color: #CFC; }
+
+.reveal .bad-link { color: #CCC; }
+
+.contrast-demo {
+    display: flex;
+    flex-direction: row;
+}
+.reveal .contrast-demo__fail,
+.reveal .contrast-demo__a,
+.reveal .contrast-demo__aa,
+.reveal .contrast-demo__aaa {
+    align-items: center;
+    display: flex;
+    margin: 0.25em;
+    padding: 0;
+    text-align: center;
+    height: 6em;
+    font-size: 75%;
+    flex-basis: calc(25% - 0.5em);
+    justify-content: center;
+}
+
+.reveal .contrast-demo__fail { background-color: #e27885; color: #b92d3b; }
+.reveal .contrast-demo__a    { background-color: #eb99a2; color: #ac2a37; }
+.reveal .contrast-demo__aa   { background-color: #f2b3bb; color: #982530; }
+.reveal .contrast-demo__aaa  { background-color: #f8d7da; color: #721c24; }
+
+@keyframes flasher {
+    0%, 100% {
+        background-color: #fff;
+    }
+    50% {
+        background-color: #000;
+    }
+}
+
+.reveal .flasher {
+    animation: flasher 0.33s infinite paused;
+    height: 5em;
+    width: 80%;
+    outline: 0.1em solid #fff;
+    outline-offset: 0.1em;
+    margin: 0 auto;
+}
+
+.reveal .flasher.is-playing {
+    animation-play-state: running;
+}
+
+.reveal section img.big {
+    display: block;
+    margin: 0 auto;
+    max-height: 50vh;
+}
+
+.reveal .text-md { font-size: 75%; }
+.reveal .text-sm { font-size: 40%; }
+.reveal .text-xs { font-size: 30%; }
+
+.reveal p > code {
+    background-color: #3f3f3f;
+    font-size: 75%;
+    padding: 0.1em 0.25em;
+    white-space: nowrap;
+}

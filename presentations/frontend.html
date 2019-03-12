@@ -9,97 +9,7 @@
 <link rel="stylesheet" href="./reveal/css/reveal.css">
 <link rel="stylesheet" href="./reveal/css/theme/black.css">
 <link rel="stylesheet" href="./reveal/lib/css/zenburn.css">
-
-<style>
-.reveal table.small {
-    font-size: 50%;
-}
-
-.reveal td {
-    vertical-align: top;
-}
-
-.reveal .emoji {
-    font-size: 200%;
-}
-
-.d-b { display: block !important; }
-.logo {
-    border-width: 0 !important;
-    box-shadow: none !important;
-    background-color: transparent !important;
-}
-
-.input {
-    border: 1px solid #ccc;
-}
-.input.is-invalid { background-color: #FCC; }
-.input.is-valid { background-color: #CFC; }
-
-.reveal .bad-link { color: #CCC; }
-
-.contrast-demo {
-    display: flex;
-    flex-direction: row;
-}
-.reveal .contrast-demo__fail,
-.reveal .contrast-demo__a,
-.reveal .contrast-demo__aa,
-.reveal .contrast-demo__aaa {
-    align-items: center;
-    display: flex;
-    margin: 0.25em;
-    padding: 0;
-    text-align: center;
-    height: 6em;
-    font-size: 75%;
-    flex-basis: calc(25% - 0.5em);
-    justify-content: center;
-}
-
-.reveal .contrast-demo__fail { background-color: #e27885; color: #b92d3b; }
-.reveal .contrast-demo__a    { background-color: #eb99a2; color: #ac2a37; }
-.reveal .contrast-demo__aa   { background-color: #f2b3bb; color: #982530; }
-.reveal .contrast-demo__aaa  { background-color: #f8d7da; color: #721c24; }
-
-@keyframes flasher {
-    0%, 100% {
-        background-color: #fff;
-    }
-    50% {
-        background-color: #000;
-    }
-}
-
-.reveal .flasher {
-    animation: flasher 0.33s infinite paused;
-    height: 5em;
-    width: 80%;
-    outline: 0.1em solid #fff;
-    outline-offset: 0.1em;
-    margin: 0 auto;
-}
-
-.reveal .flasher.is-playing {
-    animation-play-state: running;
-}
-
-.reveal section img.big {
-    display: block;
-    margin: 0 auto;
-    max-height: 50vh;
-}
-
-.reveal .text-sm { font-size: 40%; }
-.reveal .text-xs { font-size: 30%; }
-
-.reveal p > code {
-    background-color: #3f3f3f;
-    font-size: 75%;
-    padding: 0.1em 0.25em;
-    white-space: nowrap;
-}
-</style>
+<link rel="stylesheet" href="./custom.css">
 
 </head>
 <body>
@@ -116,22 +26,18 @@
 
     <h2>Topics</h2>
 
-    <ol>
+    <ol class="text-md">
         <li><a href="#/state-of-disability">The State of Disability</a></li>
         <li><a href="#/introduction-to-wcag">Introduction to WCAG</a></li>
         <li><a href="#/the-law">The law</a></li>
-
         <li><a href="#/building-webpages">Building Webpages</a></li>
-        <li><a href="#/languages">Languages</a></li>
+        <li><a href="#/language">Language</a></li>
+        <li><a href="#/navigable">Navigable</a></li>
+        <li><a href="#/inputs">Inputs</a></li>
         <li><a href="#/widgets">Widgets</a></li>
-
-        <!--li><a href="#/time-based-media">Time-based Media</a></li>
-        <li><a href="#/adaptable">Adaptable</a></li>
-        <li><a href="#/colour">Colour</a></li>
+        <li><a href="#/distinguishable">Distinguishable</a></li>
         <li><a href="#/animations">Animations</a></li>
-        <li><a href="#/text">Text</a></li>
-        <li><a href="#/ux-ui">UX and UI</a></li>
-        <li><a href="#/tools">Tools</a></li-->
+        <li><a href="#/tools">Tools</a></li>
     </ol>
 
     <aside class="notes">
@@ -145,6 +51,7 @@
     <h2>The state of disability</h2>
 
     <section>
+        <p><span class="emoji">♿️</span></p>
         <p>What is disability and how wide-spread is it?</p>
     </section>
 
@@ -275,6 +182,7 @@
     <h2>Introduction to WCAG</h2>
 
     <section>
+        <p><span class="emoji">📑</span></p>
         <p>What is WCAG and how does it work?</p>
     </section>
 
@@ -345,6 +253,7 @@
     <h2>What the law says</h2>
 
     <section>
+        <p><span class="emoji">👮‍♀️ 👮‍♂️</span></p>
         <p>What is the law surrounding this topic?</p>
     </section>
 
@@ -365,7 +274,8 @@
     <section>
 
         <p>In January 2012 the Royal National Institute of the Blind (RNIB) started legal action against the low-cost airline Bmibaby because their website couldn't be used.</p>
-        <p>So there is legal precedent for this sort of thing.</p>
+        <p class="fragment">In January 2019, Beyoncé's Parkwood Entertainment was sued over website accessibility because it voilated the Americans With Disabilities Act (1990).</p>
+        <p class="fragment">So there is legal precedent for this sort of thing.</p>
 
         <aside class="notes">
             <p>Couldn't find the website so can't fully describe how bad it was.</p>
@@ -375,15 +285,12 @@
 
 </section>
 
-<!--
-################################################################################
--->
-
 <section id="building-webpages">
 
     <h2>Building webpages</h2>
 
     <section>
+        <p><span class="emoji">🕷 🕸</span></p>
         <p>Here's what the rules say about making web pages.</p>
     </section>
 
@@ -419,6 +326,10 @@
         <p>We should be able to bypass content that's repeated across pages.</p>
         <p class="fragment">WAI-ARIA landmark roles are a way to do that. We could also use "Skip to content" links or collapsed elements.</p>
 
+        <aside class="notes">
+            <p>Make sure collapsed content is actually hidden - more in Widgets.</p>
+        </aside>
+
     </section>
 
     <section>
@@ -440,11 +351,15 @@
 &lt;/body&gt;
         </code></pre>
 
+        <aside class="notes">
+            <p>This is the markup we have in Digigraphie.</p>
+        </aside>
+
     </section>
 
     <section>
 
-        <pre class="text-xs"><code class="css" data-trim>
+        <pre class="text-sm"><code class="css" data-trim>
 .nav-access {
     left: 0;
     position: absolute;
@@ -454,11 +369,7 @@
 }
 
 .nav-access__link {
-    /*
-    @extend .btn;
-    @extend .btn-orange;
-    @extend .btn-block;
-    */
+    /* (other button styles) */
     left: 0;
     position: absolute;
     top: 0;
@@ -468,6 +379,10 @@
     top: 20rem; /* [1] */
 }
         </code></pre>
+
+        <aside class="notes">
+            <p>Skip-to-content link is invisible until needed.</p>
+        </aside>
 
     </section>
 
@@ -482,6 +397,10 @@
         </code></pre>
 
         <p>This works by changing <code>position:absolute</code> to <code>position:static</code> so it might affect the layout.</p>
+
+        <aside class="notes">
+            <p>WAI-ARIA Best Practice carousel uses this.</p>
+        </aside>
 
     </section>
 
@@ -556,13 +475,72 @@
 
     <section>
 
+        <p>This extends to semantic meaning of elements - always use the right element for the job.</p>
+
+        <div class="fragment">
+
+            <p>But beware of CSS removing the semantic meaning.</p>
+            <pre><code class="css" data-trim>
+/* This removes the semantic meaning of tables */
+table {
+    display: block;
+}
+            </code></pre>
+
+        </div>
+
+        <p class="fragment">Sadly, putting <code>display:table;</code> isn't enough to put it back.</p>
+
+        <aside class="notes">
+            <p>Styling the tables to stack on mobile is a good way of adding <code>display:block</code>.</p>
+            <p>Most other <code>display</code> values have the same effect.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>To preserve the meaning, you need <code>role</code> attributes.</p>
+
+        <pre class="text-sm"><code class="html" data-trim>
+&lt;div aria-labelledby="caption-1"&gt;
+    &lt;table role="table"&gt;
+        &lt;caption id="caption-1"&gt;Lorem ipsum dolor ...&lt;/caption&gt;
+        &lt;thead role="rowgroup"&gt;
+            &lt;tr role="row"&gt;
+                &lt;th scope="col" role="columnheader"&gt;Lorem&lt;/th&gt;
+                &lt;!-- ... --&gt;
+            &lt;/tr&gt;
+        &lt;/thead&gt;
+        &lt;tbody role="rowgroup"&gt;
+            &lt;tr role="row"&gt;
+                &lt;td role="cell"&gt;Ipsum&lt;/td&gt;
+                &lt;!-- ... --&gt;
+            &lt;/tr&gt;
+        &lt;/tbody&gt;
+    &lt;/table&gt;
+&lt;/div&gt;
+        </code></pre>
+
+        <p class="text-md"><a href="http://adrianroselli.com/2018/02/tables-css-display-properties-and-aria.html">http://adrianroselli.com/2018/02/tables-css-display-properties-and-aria.html</a></p>
+
+        <aside class="notes">
+            <p>I built a jQuery plugin to do this for us on Digigraphie but it's very basic.</p>
+            <p><a href="https://git.xigen.co.uk/epson/digigraphie-v2/blob/master/assets/js/script/jquery.accessibleTable.js">https://git.xigen.co.uk/epson/digigraphie-v2/blob/master/assets/js/script/jquery.accessibleTable.js</a></p>
+            <p>This also happens with lists, but that might be less of an issue.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
         <p>Make sure user agents and assistive technologies can read status messages.</p>
 
         <div class="fragment">
 
-            <p>AJAX add-to-cart means the cart needs a role.</p>
+            <p>AJAX add-to-cart means the cart needs a <code>role</code>.</p>
 
-            <pre><code class="html" data-trim>
+            <pre class="text-sm"><code class="html" data-trim>
 &lt;div id="basket" role="status"&gt;
     &lt;p&gt;2 items&lt;/p&gt;
     &lt;ul&gt;
@@ -578,7 +556,7 @@
 
             <p>Same as search results.</p>
 
-            <pre><code class="html" data-trim>
+            <pre class="text-sm"><code class="html" data-trim>
 &lt;p role="status"&gt;27 results found&lt;/p&gt;
             </code></pre>
 
@@ -620,6 +598,26 @@ form.addEventListener("submit", function (e) {
 
     </section>
 
+    <section>
+
+        <p>We shouldn't need both vertical and horizontal scrollbars to see all the content.</p>
+        <p>Unless it's essential to convey the meaning, we shouldn't need a second scrollbar for:</p>
+        <ul>
+            <li>Vertical scrolling content at a width of <strong>320 pixels</strong></li>
+            <li>Horizontal scrolling content at a height of <strong>256 pixels</strong></li>
+        </ul>
+
+        <p class="fragment">We should be able to zoom in to 200% without loss of functionality.</p>
+
+        <aside class="notes">
+            <p>Trello is an example of horizontal scrolling content.</p>
+            <p>320px = 1280px at 400%; 256px = 1024px at 400%</p>
+            <p>Consider form fields - "first" &amp; "last" on same line, "last" hidden when zoomed!</p>
+            <p>Responsive layouts are usually zoomable by design.</p>
+        </aside>
+
+    </section>
+
 </section>
 
 <section id="language">
@@ -627,6 +625,7 @@ form.addEventListener("submit", function (e) {
     <h2>Language</h2>
 
     <section>
+        <p><span class="emoji">💬</span></p>
         <p>This includes language and vocabulary.</p>
     </section>
 
@@ -762,7 +761,7 @@ form.addEventListener("submit", function (e) {
     Reading the
     &lt;abbr
         title="Web Content Accessibility Guidelines"
-        aria-label="Web Content Accessibility Guidelines"
+        aria-label="Web Content Accessibility Guidelines (WCAG)"
     &gt;WCAG&lt;/abbr&gt;
     is really boring.
 &lt;/p&gt;
@@ -840,13 +839,29 @@ form.addEventListener("submit", function (e) {
 
     </section>
 
+    <section>
+
+        <p>We should be able to apply these styles without any loss of functionality.</p>
+
+        <pre><code class="css" data-trim>
+.any-text {
+    letter-spacing: 0.12em;
+    line-height:    1.5;
+    margin-bottom:  2em;
+    word-spacing:   0.16em;
+}
+        </code></pre>
+
+    </section>
+
 </section>
 
-<section>
+<section id="navigable">
 
     <h2>Navigable</h2>
 
     <section>
+        <p><span class="emoji">🧭</span></p>
         <p>As well as the page structure being navigable, we need to allow for keyboard navigation.</p>
     </section>
 
@@ -891,6 +906,10 @@ breakpoints.on("change", "md", function (e) {
         </code></pre>
 
         <p class="fragment">Don't just re-order things with CSS because the focus/tab order will be wrong.</p>
+
+        <aside class="notes">
+            <p><a href="https://gist.github.com/james-jlo-long/fe69c667463d127063617a2b4d5a54c5">https://gist.github.com/james-jlo-long/fe69c667463d127063617a2b4d5a54c5</a></p>
+        </aside>
 
     </section>
 
@@ -962,29 +981,33 @@ a:focus {
     <section>
 
         <pre class="text-sm"><code class="html" data-trim>
-&lt;a href="..." class="my-link"&gt;
-    &lt;span class="my-link__focus-hider" tabindex="-1"&gt;
-        Click here to go somewhere
+&lt;button type="button" class="my-button"&gt;
+    &lt;span class="my-button__focus-hider" tabindex="-1"&gt;
+        Do something
     &lt;/span&gt;
-&lt;/a&gt;
+&lt;/button&gt;
         </code></pre>
 
         <pre class="text-sm"><code class="css" data-trim>
-.my-link {
+.my-button {
     /* No padding, no border */
 }
 
-.my-link:focus {
+.my-button:focus {
     outline: 2px solid pink;
 }
 
-.my-link__focus-hider {
+.my-button__focus-hider {
     padding: 1em;
     width: 100%;
     height: 100%;
 }
-/* no `.my-link__focus-hider:focus` styles */
+/* no `.my-button__focus-hider:focus` styles */
         </code></pre>
+
+        <aside class="notes">
+            <p>Shift+Tab will focus on the button itself instead of the previous element.</p>
+        </aside>
 
     </section>
 
@@ -992,7 +1015,7 @@ a:focus {
 
         <p>It should be possible to programmatically determine the purpose of the link from the link text alone.</p>
 
-        <table>
+        <table class="text-md">
             <thead>
                 <tr>
                     <th scope="col" class="emoji" aria-label="Confusing">😕</th>
@@ -1042,7 +1065,7 @@ a:focus {
 
     </section>
 
-    <section>
+    <!--section>
 
         <pre><code class="css" data-trim>
 /* Bootstrap v4.3 */
@@ -1058,7 +1081,7 @@ a:focus {
 }
         </code></pre>
 
-    </section>
+    </section-->
 
     <section>
 
@@ -1129,6 +1152,7 @@ a:focus {
     <h2>Inputs</h2>
 
     <section>
+        <p><span class="emoji">✍️</span></p>
         <p>Form fields need some care and attention.</p>
     </section>
 
@@ -1199,6 +1223,7 @@ a:focus {
 
         <aside class="notes">
             <p>Admittedly, scrollbars don't count as inputs.</p>
+            <p>I've told the design team that we're making this assumption.</p>
         </aside>
 
     </section>
@@ -1207,28 +1232,26 @@ a:focus {
 
         <h3>Pop quiz!</h3>
 
-        <pre class="text-xs"><code class="html" data-trim>
+        <pre class="text-sm"><code class="html" data-trim>
 &lt;p&gt;&lt;button type="button"&gt;Do nothing&lt;/button&gt;&lt;/p&gt;
-&lt;ul&gt;
-    &lt;li&gt;
-        &lt;label for="option-a"&gt;
-            &lt;input type="checkbox" name="option" id="option-a" value="a"&gt;
-            Alpha
-        &lt;/label&gt;
-    &lt;/li&gt;
-    &lt;li&gt;
-        &lt;label for="option-b"&gt;
-            &lt;input type="checkbox" name="option" id="option-b" value="b" checked&gt;
-            Bravo
-        &lt;/label&gt;
-    &lt;/li&gt;
-    &lt;li&gt;
-        &lt;label for="option-c"&gt;
-            &lt;input type="checkbox" name="option" id="option-c" value="c"&gt;
-            Charlie
-        &lt;/label&gt;
-    &lt;/li&gt;
-&lt;/ul&gt;
+&lt;p&gt;
+    &lt;label for="option-a"&gt;
+        &lt;input type="checkbox" name="option" id="option-a" value="a"&gt;
+        Alpha
+    &lt;/label&gt;
+&lt;/p&gt;
+&lt;p&gt;
+    &lt;label for="option-b"&gt;
+        &lt;input type="checkbox" name="option" id="option-b" value="b" checked&gt;
+        Bravo
+    &lt;/label&gt;
+&lt;/p&gt;
+&lt;p&gt;
+    &lt;label for="option-c"&gt;
+        &lt;input type="checkbox" name="option" id="option-c" value="c"&gt;
+        Charlie
+    &lt;/label&gt;
+&lt;/p&gt;
         </code></pre>
 
         <p class="fragment">Now what if they were radio buttons?</p>
@@ -1241,6 +1264,11 @@ a:focus {
             <p>Show the form elements demo.</p>
         </aside>
 
+    </section>
+
+    <section>
+        <p><img src="./images/inputs.png" alt="Demonstration elements" class="big"></p>
+        <p><a href="https://git.xigen.co.uk/snippets/57">https://git.xigen.co.uk/snippets/57</a></p>
     </section>
 
     <section>
@@ -1265,10 +1293,38 @@ a:focus {
             <li>Please enter a valid e-mail address.</li>
             <li>This field is required.</li>
         </ul>
+        <p class="fragment">If the user tries to submit a form with errors, focus on the first input with an error.</p>
         <p class="fragment">This is what jQuery Validate does.</p>
 
         <aside class="notes">
             <p>jQuery Validate doesn't add the <code>aria-errormessage</code> attribute.</p>
+        </aside>
+
+    </section>
+
+    <section>
+        <p><img src="./images/ebay.png" alt="eBay registration form" class="big"></p>
+    </section>
+
+    <section>
+
+        <p>If you've got low vision so you zoom into the page, you might miss the second column.</p>
+        <p><img src="./images/ebayzoom.png" alt="Registration form zoomed in" class="big"></p>
+
+        <aside class="notes">
+            <p>eBay images from <a href="https://axesslab.com/disabled-buttons-suck/">https://axesslab.com/disabled-buttons-suck/</a>.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>This is also a really good reason not to disable the submit button.</p>
+        <p>Axess Lab wrote an article about it.</p>
+        <p><a href="https://axesslab.com/disabled-buttons-suck/">https://axesslab.com/disabled-buttons-suck/</a>.</p>
+
+        <aside class="notes">
+            <p>Not a WCAG requirement, just a good idea.</p>
         </aside>
 
     </section>
@@ -1280,6 +1336,7 @@ a:focus {
     <h2>Widgets</h2>
 
     <section>
+        <p><span class="emoji">🎰</span></p>
         <p>Users need to be able to interact with the things we build the way they want to.</p>
     </section>
 
@@ -1308,7 +1365,7 @@ a:focus {
 
     <section>
 
-        <p>Content that appears on hover should also appear on focus.</p>
+        <p>Content that appears on hover should also appear on focus. (1.4.13 - AA)</p>
 
         <ul class="fragment">
             <li>The user should be able to <strong>dismiss</strong> the content without moving the mouse.</li>
@@ -1370,11 +1427,12 @@ a:focus {
     <section>
 
         <p>Carousels are the boss battle at the end of accessibility.</p>
-        <p class="fragment">As well as mouse and finger, they need to work with the keyboard.</p>
-        <p class="fragment">The user must be able to pause the auto-play or hide the carousel on any device.</p>
+        <p class="fragment">They need to work with mouse, finger <em>and</em> keyboard.</p>
+        <p class="fragment">The user must be able to pause the auto-play, change the time to up to 10 times the default, or hide the carousel on any device.</p>
         <p class="fragment">It needs the appropriate <code>role</code> and <code>aria-*</code> attributes so screen readers can understand it.</p>
 
         <aside class="notes">
+            <p>2.2.1 Timing Adjustable (A) and 2.2.2 Pause, Stop, Hide (A).</p>
             <p>I've asked the design team to cut back on carousels.</p>
         </aside>
 
@@ -1411,12 +1469,13 @@ a:focus {
 
 </section>
 
-<section>
+<section id="distinguishable">
 
     <h2>Distinguishable</h2>
 
     <section>
 
+        <p><span class="emoji">🐈 🐕</span></p>
         <p>Users need to be able to tell the difference between foreground and background.</p>
 
         <aside class="notes">
@@ -1541,6 +1600,7 @@ a:focus {
     <h2>Animations</h2>
 
     <section>
+        <p><span class="emoji">🎞</span></p>
         <p>Animations aren't always as accessible as you'd think.</p>
     </section>
 
@@ -1558,12 +1618,12 @@ a:focus {
     }
 }
             </code></pre>
+            <p class="fragment">As of March 2019 <code>prefers-reduced-motion</code> only works in Firefox and Safari.</p>
 
         </div>
 
         <aside class="notes">
             <p>Some iOS 7 users reported motion sickness and vertigo from some of the animations.</p>
-            <p>As of March 2019 <code>prefers-reduced-motion</code> only works in Firefox and Safari.</p>
         </aside>
 
     </section>
@@ -1590,6 +1650,7 @@ a:focus {
     <h2>Tools</h2>
 
     <section>
+        <p><span class="emoji">🛠 🧰</span></p>
         <p>There are a few tools available to us to help.</p>
     </section>
 
