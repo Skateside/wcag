@@ -12,10 +12,10 @@
 <link rel="stylesheet" href="./custom.css">
 
 <style>
-.contrast-demo__fail { background-color: #fff; color: #ff6600; }
-.contrast-demo__a    { background-color: #fff; color: #ff6000; }
-.contrast-demo__aa   { background-color: #fff; color: #cc4e00; }
-.contrast-demo__aaa  { background-color: #fff; color: #ae1900; }
+.reveal .contrast-demo__fail { background-color: #fff; color: #ff6600; }
+.reveal .contrast-demo__a    { background-color: #fff; color: #ff6000; }
+.reveal .contrast-demo__aa   { background-color: #fff; color: #cc4e00; }
+.reveal .contrast-demo__aaa  { background-color: #fff; color: #ae1900; }
 </style>
 
 </head>
@@ -47,6 +47,7 @@
 
     <aside class="notes">
         <p>This doesn't cover everything in WCAG, just what I think designers need to know.</p>
+        <p>If you design things accessibly, we'll have an easier time building them.</p>
     </aside>
 
 </section>
@@ -356,6 +357,7 @@
         <p>1️⃣ 2️⃣ 3️⃣</p>
 
         <aside class="notes">
+            <p>This could be design with content and sidebars.</p>
             <p>We can work around a different layout but it makes things harder for us.</p>
             <p>We (frontenders) need to worry about focus and tab order.</p>
         </aside>
@@ -433,7 +435,6 @@
         </div>
 
         <aside class="notes">
-            <p>Black/white = 21:1, white/white = 1:1</p>
             <p>18pt = 24px, 14pt = 18.66px</p>
             <p>Bold = 700; not semi-bold, not black.</p>
         </aside>
@@ -471,6 +472,22 @@
             </p>
         </div>
 
+        <aside class="notes">
+            <p>Bootstrap error alert is 8.25:1.</p>
+            <p>Black/white = 21:1, white/white = 1:1</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p><img src="./images/contrast.png" alt="WebAIM Colour Contrast website" class="big"></p>
+        <p><a href="https://webaim.org/resources/contrastchecker/">https://webaim.org/resources/contrastchecker/</a></p>
+
+        <aside class="notes">
+            <p>Google "contast analyser" and find the "Web AIM" one.</p>
+        </aside>
+
     </section>
 
 </section>
@@ -487,6 +504,7 @@
 
         <aside class="notes">
             <p>Some iOS 7 users reported motion sickness and vertigo from some of the animations.</p>
+            <p>A transition and flashing are different things.</p>
             <p><strong>Does anyone have photo-sensitive epilepsy here?</strong></p>
         </aside>
 
@@ -523,6 +541,10 @@
         </code></pre>
 
         <p>All values are relative to the font-size of the text.</p>
+
+        <aside class="notes">
+            <p>Note: Tracking not Kerning.</p>
+        </aside>
 
     </section>
 
@@ -684,6 +706,7 @@
 
         <p>There shouldn't be a "change of context" when an element gains focus or an input is used.</p>
         <p>Basically, if you want to go somewhere or do something, use a button.</p>
+        <p class="fragment">Also, if you need to user to interact in some way, let them know.</p>
 
         <aside class="notes">
             <p>Remember the early 2000's when using a dropdown to change page was cool?</p>
@@ -711,6 +734,7 @@
         <p class="fragment">We will assume that you intented native <strong>checkboxes</strong>, <strong>radio buttons</strong>, <strong>dropdowns</strong> and <strong>scrollbars</strong>.</p>
 
         <aside class="notes">
+            <p>If the client explicitly asked for custom UI elements, please let us know.</p>
             <p>Exception for dropdowns: Select2</p>
         </aside>
 

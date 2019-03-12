@@ -1,0 +1,704 @@
+<!doctype html>
+<html lang="en-GB">
+<head>
+
+<meta charset="utf-8">
+<meta name="viewport" content="initial-scale=1, width=device-width">
+<title>WCAG for Backend Developers</title>
+
+<link rel="stylesheet" href="./reveal/css/reveal.css">
+<link rel="stylesheet" href="./reveal/css/theme/black.css">
+<link rel="stylesheet" href="./reveal/lib/css/zenburn.css">
+<link rel="stylesheet" href="./custom.css">
+
+</head>
+<body>
+
+<div class="reveal">
+    <div class="slides">
+
+<section>
+    <h1>Web Content Accessibility Guidelines</h1>
+    <p>WCAG 2.1 for back-end developers</p>
+</section>
+
+<section>
+
+    <h2>Topics</h2>
+
+    <ol class="text-md">
+        <li><a href="#/state-of-disability">The State of Disability</a></li>
+        <li><a href="#/introduction-to-wcag">Introduction to WCAG</a></li>
+        <li><a href="#/the-law">The law</a></li>
+        <!--li><a href="#/building-webpages">Building Webpages</a></li>
+        <li><a href="#/language">Language</a></li>
+        <li><a href="#/navigable">Navigable</a></li>
+        <li><a href="#/inputs">Inputs</a></li>
+        <li><a href="#/widgets">Widgets</a></li>
+        <li><a href="#/distinguishable">Distinguishable</a></li>
+        <li><a href="#/animations">Animations</a></li>
+        <li><a href="#/tools">Tools</a></li-->
+    </ol>
+
+    <aside class="notes">
+        <p>This doesn't cover everything in WCAG, just what I think back-end developers need to know.</p>
+        <p>This is pretty brief since most back-end work is already accessible.</p>
+    </aside>
+
+</section>
+
+<section id="state-of-disability">
+
+    <h2>The state of disability</h2>
+
+    <section>
+        <p><span class="emoji">♿️</span></p>
+        <p>What is disability and how wide-spread is it?</p>
+    </section>
+
+    <section>
+
+        <p><img src="https://uxpa.org/sites/all/themes/uxpa_theme/logo.png" alt="User Experience Professionals Association" class="big logo"></p>
+        <p>UXPA International gave these stats:</p>
+        <p class="fragment">1.3 billion people worldwide are affected by a disability.</p>
+        <p class="fragment">A further 2.4 billion people are family or close friends of those affected.</p>
+        <p class="fragment">That's 3.7 billion people out of 7.5 billion in the world (49.3%).</p>
+
+        <aside class="notes">
+            <p>UXPA = User Experience Professionals Association</p>
+            <blockquote>
+                <p>A happy customer tells a friend; an unhappy customer tells the world.</p>
+                <cite>Unknown</cite>
+            </blockquote>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p><strong>71%</strong> of customers with disabilities will leave a website if it's difficult to use.</p>
+        <p>That represents about <strong>10%</strong> of total online spending.</p>
+
+    </section>
+
+    <section>
+
+        <table class="small">
+            <thead>
+                <tr>
+                    <th scope="col">
+                        <span class="emoji d-b">👁</span>
+                        Vision
+                    </th>
+                    <th scope="col">
+                        <span class="emoji d-b">👂</span>
+                        Hearing
+                    </th>
+                    <th scope="col">
+                        <span class="emoji d-b">🏃‍♂️</span>
+                        Mobility
+                    </th>
+                    <th scope="col">
+                        <span class="emoji d-b">🗣</span>
+                        Speech
+                    </th>
+                    <th scope="col">
+                        <span class="emoji d-b">🤷‍♂️</span>
+                        Cognitive
+                    </th>
+                    <th scope="col">
+                        <span class="emoji d-b">🤯</span>
+                        Neural
+                    </th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>
+                        <ul>
+                            <li>Cataracts</li>
+                            <li>Sun glare</li>
+                            <li>Colour blind</li>
+                            <li>Low vision</li>
+                            <li>Blind</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>Noise</li>
+                            <li>Ear infection</li>
+                            <li>Hard of hearing</li>
+                            <li>Deaf</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>Hands full</li>
+                            <li>Broken arm</li>
+                            <li>Spinal cord injury</li>
+                            <li>Amelia</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>Ambient noise</li>
+                            <li>Speech impediment</li>
+                            <li>Unable to speak</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>Sleepy</li>
+                            <li>Distraction</li>
+                            <li>Migraine</li>
+                            <li>Learning disabilities</li>
+                            <li>Autism</li>
+                            <li>Seizure</li>
+                        </ul>
+                    </td>
+                    <td>
+                        <ul>
+                            <li>Depression</li>
+                            <li>PTSD</li>
+                            <li>Bipolar</li>
+                            <li>Anxiety</li>
+                        </ul>
+                    </td>
+                </tr>
+            </tbody>
+        </table>
+
+        <aside class="notes">
+            <p>These range from permanent through temporary to situational.</p>
+            <p>Amelia is a birth defect of missing limbs.</p>
+            <p>You are <strong>temporarily abled</strong>.</p>
+        </aside>
+
+    </section>
+
+</section>
+
+<section id="introduction-to-wcag">
+
+    <h2>Introduction to WCAG</h2>
+
+    <section>
+        <p><span class="emoji">📑</span></p>
+        <p>What is WCAG and how does it work?</p>
+    </section>
+
+    <section>
+
+        <p>The WCAG are a large number of guidelines, most of which have exceptions.</p>
+
+        <div class="fragment">
+
+            <p>Each guideline has one of three levels:</p>
+
+            <table>
+                <thead>
+                    <tr>
+                        <th scope="col">
+                            <span class="emoji d-b">😒</span>
+                            Level A
+                        </th>
+                        <th scope="col">
+                            <span class="emoji d-b">😃</span>
+                            Level AA
+                        </th>
+                        <th scope="col">
+                            <span class="emoji d-b">😍</span>
+                            Level AAA
+                        </th>
+                    </tr>
+                </thead>
+                <tbody>
+                    <tr>
+                        <td>Basic level of accessibility.</td>
+                        <td>A reasonable standard.</td>
+                        <td>Gold-standard.</td>
+                    </tr>
+                </tbody>
+            </table>
+
+        </div>
+
+        <aside class="notes">
+
+            <dl>
+                <dt>A</dt><dd>We should be doing this anyway.</dd>
+                <dt>AA</dt><dd>Takes a bit more care.</dd>
+                <dt>AAA</dt><dd>W3C say this is hard to hit across the board.</dd>
+            </dl>
+
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p><img src="./images/website.png" alt="WCAG website" class="big"></p>
+        <p><a href="https://www.w3.org/WAI/WCAG21/quickref/">https://www.w3.org/WAI/WCAG21/quickref/</a></p>
+
+        <aside class="notes">
+            <p>Filters on the side.</p>
+            <p>You can just google "wcag" and this website will be near the top of the list.</p>
+        </aside>
+
+    </section>
+
+</section>
+
+<section id="the-law">
+
+    <h2>What the law says</h2>
+
+    <section>
+        <p><span class="emoji">👮‍♀️ 👮‍♂️</span></p>
+        <p>What is the law surrounding this topic?</p>
+    </section>
+
+    <section>
+
+        <p>European Union directive 2016/2102 says that the website and mobile applications for public sector bodies need to conform to WCAG 2.0 Level AA.</p>
+        <p>New websites must comply from <strong>23 September 2019</strong>.</p>
+        <p class="fragment">Old websites must comply from <strong>23 September 2020</strong>.</p>
+        <p class="fragment">Moblie applications must comply from <strong>23 June 2021</strong>.</p>
+
+        <aside class="notes">
+            <p>WCAG 2.0 was published in 2008. WCAG 2.1 was published in 2018.</p>
+            <p>WCAG 2.1 doesn't replace WCAG 2.0, it just adds to it.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>In January 2012 the Royal National Institute of the Blind (RNIB) started legal action against the low-cost airline Bmibaby because their website couldn't be used.</p>
+        <p class="fragment">In January 2019, Beyoncé's Parkwood Entertainment was sued over website accessibility because it voilated the Americans With Disabilities Act (1990).</p>
+        <p class="fragment">So there is legal precedent for this sort of thing.</p>
+
+        <aside class="notes">
+            <p>Couldn't find the website so can't fully describe how bad it was.</p>
+        </aside>
+
+    </section>
+
+</section>
+
+<!--
+################################################################################
+-->
+
+<section id="page-building">
+
+    <h2>Page Building</h2>
+
+    <section>
+        <p><span class="emoji">🏗</span></p>
+        <p>Some basic rules for building pages.</p>
+    </section>
+
+    <section>
+
+        <p>Web pages need to be valid HTML.</p>
+
+        <div class="fragment">
+
+            <p>Pages need a <code>&lt;title&gt;</code> tag.</p>
+            <p>Pro tip: put the company name at the end of the title.</p>
+
+            <pre><code class="html" data-trim>
+&lt;!-- Instead of this: --&gt;
+&lt;title&gt;Xigen Design - About us&lt;/title&gt;
+
+&lt;!-- Do this: --&gt;
+&lt;title&gt;About us - Xigen Design&lt;/title&gt;
+            </code></pre>
+
+        </div>
+
+        <aside class="notes">
+            <p>The "pro tip" isn't part of WCAG. It stops all the tabs looking the same when they're many.</p>
+            <p>Might be important to know if you're integrating a template.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>Form errors should be connected to the input.</p>
+        <p>Prevailing wisdom is to make them a <code>&lt;label&gt;</code> element.</p>
+
+        <pre><code class="html" data-trim>
+&lt;label for="input-id"&gt;Descriptive label&lt;/label&gt;
+
+&lt;input type="text" id="input-id"
+    aria-invalid="true"
+    aria-errormessage="error-id"&gt;
+
+&lt;label for="input-id" id="error-id"&gt;
+    Descriptive error message
+&lt;/label&gt;
+        </code></pre>
+
+        <aside class="notes">
+            <p>Because of the <code>for</code>/<code>aria-errormessage</code> association, the label can be anywhere on the page.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>Page navigation should always be in the same place and the same order.</p>
+        <div class="fragment">
+
+            <p>However, sub-navigation can be added/removed.</p>
+
+            <pre class="text-sm"><code class="html" data-trim>
+&lt;nav&gt;
+    &lt;ul&gt;
+        &lt;li&gt;&lt;a href="..."&gt;Home&lt;/a&gt;&lt;/li&gt;
+        &lt;li&gt;
+            &lt;a href="..." aria-current="page"&gt;What is this?&lt;/a&gt;
+            &lt;ul&gt;
+                &lt;li&gt;&lt;a href="..."&gt;Why am I here?&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="..."&gt;How did you get here?&lt;/a&gt;&lt;/li&gt;
+                &lt;li&gt;&lt;a href="..."&gt;Can I go now?&lt;/a&gt;&lt;/li&gt;
+            &lt;/ul&gt;
+        &lt;/li&gt;
+        &lt;li&gt;&lt;a href="..."&gt;Contact us&lt;/a&gt;&lt;/li&gt;
+    &lt;/ul&gt;
+&lt;/nav&gt;
+            </code></pre>
+
+        </div>
+
+        <aside class="notes">
+            <p>It can change between users, but the order &amp; location should be consistent.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>Pages need a language</p>
+
+        <p>HTML 5</p>
+        <pre><code class="html" data-trim>
+&lt;!doctype html&gt;
+&lt;html lang="fr"&gt;
+        </code></pre>
+
+        <div class="fragment">
+
+            <p>XHTML 1.1</p>
+            <pre><code class="html" data-trim>
+&lt;!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.1//EN"
+   "http://www.w3.org/TR/xhtml11/DTD/xhtml11.dtd"&gt;
+&lt;html xmlns="http://www.w3.org/1999/xhtml" xml:lang="fr"&gt;
+            </code></pre>
+
+        </div>
+
+        <p class="fragment">XHTML transitional uses <code>lang</code> and <code>xml:lang</code>.</p>
+
+        <aside class="notes">
+            <p>Front-end should take care of this for you.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>The language should be a lower-case ISO2 code of the language.</p>
+        <pre><code class="html" data-trim>
+&lt;html lang="en"&gt;
+&lt;html lang="fr"&gt;
+&lt;html lang="da"&gt;
+&lt;html lang="el"&gt;
+        </code></pre>
+
+    </section>
+
+    <section>
+
+        <p>It can include a script subtag to define the script that's being used.</p>
+        <pre><code class="html" data-trim>
+&lt;!-- Japanese written in Katakana --&gt;
+&lt;html lang="ja-Kana"&gt;
+&lt;!-- Russian written in Cyrillic --&gt;
+&lt;html lang="ru-Cyrl"&gt;
+        </code></pre>
+
+    </section>
+
+    <section>
+
+        <p>It can include a region subtag. Usually that's the upper-case ISO2 country code.</p>
+        <pre><code class="html" data-trim>
+&lt;html lang="en-GB"&gt;
+&lt;html lang="fr-CA"&gt;
+&lt;html lang="da-DK"&gt;
+&lt;html lang="el-GR"&gt;
+        </code></pre>
+
+        <div class="fragment">
+
+            <p>... but not always</p>
+
+            <pre><code class="html" data-trim>
+&lt;!-- Central American Spanish --&gt;
+&lt;html lang="es-013"&gt;
+            </code></pre>
+
+        </div>
+
+    </section>
+
+    <section>
+
+        <p>All the parts can be combined but they're always in the order language-script-region.</p>
+
+        <pre><code class="html" data-trim>
+&lt;!-- Russian written in Cyrillic spoken in Belarus --&gt;
+&lt;html lang="ru-Cyrl-BY"&gt;
+        </code></pre>
+
+        <p class="fragment">The language alone is usually enough.</p>
+
+        <aside class="notes">
+            <p>Just in-case you need to validate the language.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>We use the <code>dir</code> attribute to correct bi-directional text.</p>
+
+        <pre><code class="html" data-trim>
+&lt;p&gt;
+    The title is
+    "&lt;span lang="he"&gt;פעילות הבינאום, W3C&lt;/span&gt;"
+    in Hebrew.
+&lt;/p&gt;
+&lt;p&gt;
+    The title is
+    "&lt;span lang="he" dir="rtl"&gt;פעילות הבינאום, W3C&lt;/span&gt;"
+    in Hebrew.
+&lt;/p&gt;
+        </code></pre>
+
+        <p>
+            The title is
+            "<span lang="he">פעילות הבינאום, W3C</span>"
+            in Hebrew.
+        </p>
+        <p>
+            The title is
+            "<span lang="he" dir="rtl">פעילות הבינאום, W3C</span>"
+            in Hebrew.
+        </p>
+
+    </section>
+
+    <section>
+
+        <p>If your CMS validates the markup a user enters, we need to allow for <code>dir</code> and <code>lang</code> attributes.</p>
+        <pre><code class="html" data-trim>
+&lt;p&gt;
+    ... so I said
+    &lt;span lang="zh-CN"&gt;新年快乐&lt;/span&gt;
+    and left.
+&lt;/p&gt;
+        </code></pre>
+
+        <div class="fragment">
+            <p>We also need to allow <code>role</code> and <code>aria-*</code> attributes.</p>
+            <pre><code class="html" data-trim>
+&lt;i class="fa fa-icon" aria-hidden="true"&gt;&lt;/i&gt;
+            </code></pre>
+        </div>
+
+        <aside class="notes">
+            <p>新年快乐 = Happy New Year; <code>zh-CN</code> = simplified Chinese</p>
+            <p>I can get you a white-list of <code>aria-*</code> attributes if you need it.</p>
+        </aside>
+
+    </section>
+
+</section>
+
+<section id="user-accounts">
+
+    <h2>User Accounts</h2>
+
+    <section>
+
+        <p><span class="emoji">👥 🛒</span></p>
+        <p>Processes for interacting with a logged-in state.</p>
+
+    </section>
+
+    <section>
+
+        <p>For legal or financial commitments, at least one of the following is true:</p>
+
+        <dl>
+            <dt>Reversible</dt>
+            <dd>Submissions can be reversed.</dd>
+            <dt>Checked</dt>
+            <dd>Data is checked and the user can correct it.</dd>
+            <dt>Confirmed</dt>
+            <dd>The user can review, confirm and correct data before finalising.</dd>
+        </dl>
+
+        <aside class="notes">
+            <p>WCAG 3.3.4 (AA) if you want to read the full text.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>By having client-side and server-side validation, we automatically get <strong>Checked</strong>.</p>
+        <p class="fragment">The "checkout confirmation" page means we get <strong>Confirmed</strong>.</p>
+        <p class="fragment">If we do this with all user-entered data, we hit Level AAA.</p>
+
+        <aside class="notes">
+            <p>WCAG 3.3.6 (AAA).</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>For steps in a checkout process, for example, use <code>aria-current="step"</code> instead of a class.</p>
+
+        <pre><code class="html" data-trim>
+&lt;ol aria-label="Checkout progress"&gt;
+    &lt;li&gt;
+        &lt;a href="#billing"&gt;Billing&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+        &lt;a href="#shipping"&gt;Shipping&lt;/a&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+        &lt;span aria-current="step"&gt;Payment&lt;/span&gt;
+    &lt;/li&gt;
+    &lt;li&gt;
+        &lt;span&gt;Confirmation&lt;/span&gt;
+    &lt;/li&gt;
+&lt;/ol&gt;
+        </code></pre>
+
+        <aside class="notes">
+            <p>Probably more of a front-end technique but screen readers can't read classes.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>If a user is logged out automatically, they should be able to continue with no loss of data when they log back in.</p>
+        <p>For example, if a user hits "submit" and gets re-directed to the log-in screen, logging in should submit the form, or at least show the form with their data still there.</p>
+
+        <aside class="notes">
+            <p>This is actually a Level AAA step, but I think Symfony does it anyway.</p>
+        </aside>
+
+    </section>
+
+</section>
+
+<section id="time-limits">
+
+    <h2>Time limits</h2>
+
+    <section>
+
+        <p><span class="emoji">⏳</span></p>
+        <p>Basically, give users enough time to use the site.</p>
+
+        <aside class="notes">
+            <p>Going to give cliff-notes for this since it doesn't fully apply.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>With content that changes after a set time, one of the following should be true.</p>
+
+        <ol aria-flowto="time-limit-part-2">
+            <li>User can turn off the time limit.</li>
+            <li>User can adjust the time limit to up to 10 times the default.</li>
+            <li>User is warned at least 20 seconds before the change and can extend the time.</li>
+        </ol>
+
+        <p>...</p>
+
+        <aside class="notes">
+            <p>Extending should be simple, quick and obvious.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>...</p>
+
+        <ol id="time-limit-part-2" start="4">
+            <li>Time limit is part of a real-time event and there's no alternative.</li>
+            <li>Time limit is essential and extending it would invalidate the activity.</li>
+            <li>Time limit is more than 20 hours.</li>
+        </ol>
+
+        <aside class="notes">
+            <p>Real-time event example: auction.</p>
+            <p>Invalidate example: ticket selling website.</p>
+        </aside>
+
+    </section>
+
+</section>
+
+<section id="questions">
+    <h1>Any questions?</h1>
+</section>
+
+    </div>
+</div>
+
+
+
+<script src="./reveal/lib/js/head.min.js"></script>
+<script src="./reveal/js/reveal.js"></script>
+<script>
+Reveal.initialize({
+
+    dependencies: [
+
+        // Speaker notes.
+        {
+            src: "./reveal/plugin/notes/notes.js",
+            async: true
+        },
+
+        // Syntax highlighting.
+        {
+            src: "./reveal/plugin/highlight/highlight.js",
+            async: true,
+            callback: function () {
+                hljs.initHighlightingOnLoad();
+            }
+        }
+
+    ]
+
+});
+</script>
+
+</body>
+</html>

@@ -42,6 +42,7 @@
 
     <aside class="notes">
         <p>This doesn't cover everything in WCAG, just what I think front-end developers need to know.</p>
+        <p>We have the lion's share of the work here.</p>
     </aside>
 
 </section>
@@ -296,6 +297,32 @@
 
     <section>
 
+        <p>Pages should have a <code>&lt;title&gt;</code> tag.</p>
+
+        <div class="fragment">
+
+            <p>Pro tip: put the company name at the end of the title.</p>
+
+            <pre><code class="html" data-trim>
+&lt;!-- Instead of this: --&gt;
+&lt;title&gt;Xigen Design - About us&lt;/title&gt;
+
+&lt;!-- Do this: --&gt;
+&lt;title&gt;About us - Xigen Design&lt;/title&gt;
+            </code></pre>
+
+            <p>This prevents all the icons looking the same when we have a lot of open tabs.</p>
+
+        </div>
+
+        <aside class="notes">
+            <p>The "pro tip" isn't part of WCAG, just a good idea.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
         <p>Use WAI-ARIA landmark roles to identify content areas.</p>
 
         <pre><code class="html" data-trim>
@@ -430,6 +457,7 @@
 
         <aside class="notes">
             <p>This is a Level AAA technique.</p>
+            <p><code>aria-current</code> has a few possible values.</p>
             <p>It's the design team's job to include breadcrumbs in the design - it's our job to make them work.</p>
         </aside>
 
@@ -492,6 +520,7 @@ table {
         <p class="fragment">Sadly, putting <code>display:table;</code> isn't enough to put it back.</p>
 
         <aside class="notes">
+            <p>Anchors go somewhere, buttons do something.</p>
             <p>Styling the tables to stack on mobile is a good way of adding <code>display:block</code>.</p>
             <p>Most other <code>display</code> values have the same effect.</p>
         </aside>
@@ -738,7 +767,7 @@ form.addEventListener("submit", function (e) {
         </code></pre>
 
         <aside class="notes">
-            <p>新年快乐 = Happy New Year</p>
+            <p>新年快乐 = Happy New Year; <code>zh-CN</code> = simplified Chinese</p>
             <p>Nasopharyngitis = common cold</p>
             <p>Status quo is latin</p>
         </aside>
@@ -1365,6 +1394,41 @@ a:focus {
 
     <section>
 
+        <p>We should be able to operate our widgets with the keyboard if we want.</p>
+        <p class="fragment">There should be no keyboard trap.</p>
+        <div class="fragment">
+            <p>If your widget has custom keyboard short-cuts then one of the following is true:</p>
+            <ul>
+                <li>You can turn it off.</li>
+                <li>You can remap them to one or more non-printable characters.</li>
+                <li>Short-cuts are only active when widget is focussed.</li>
+            </ul>
+        </div>
+
+        <aside class="notes">
+            <p>Not sure how this would affect things like the Christmas game.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>Pointer gestures (things like "stretch to zoom") should be mapped to single pointer gestures (things like "click to zoom in").</p>
+        <p>This is the same for motion gestures ("shake to undo").</p>
+
+        <div class="fragment">
+            <p>The user should be able to cancel a single pointer gesture.</p>
+            <p>This means listen for things like <code>click</code> or <code>keypress</code>/<code>input</code> rather than <code>mousedown</code> or <code>keydown</code>.</p>
+        </div>
+
+        <aside class="notes">
+            <p>Click only counts if mousedown and mouseup are on the same element.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
         <p>Content that appears on hover should also appear on focus. (1.4.13 - AA)</p>
 
         <ul class="fragment">
@@ -1375,17 +1439,6 @@ a:focus {
 
         <aside class="notes">
             <p>Bootstrap has Tooltips and Popovers - both <strong>fail</strong> these tests.</p>
-        </aside>
-
-    </section>
-
-    <section>
-
-        <p>We should be able to operate our widgets with the keyboard if we want.</p>
-        <p class="fragment">There should be no keyboard trap.</p>
-
-        <aside class="notes">
-            <p>Not sure how this would affect things like the Christmas game.</p>
         </aside>
 
     </section>
@@ -1426,20 +1479,6 @@ a:focus {
 
     <section>
 
-        <p>Carousels are the boss battle at the end of accessibility.</p>
-        <p class="fragment">They need to work with mouse, finger <em>and</em> keyboard.</p>
-        <p class="fragment">The user must be able to pause the auto-play, change the time to up to 10 times the default, or hide the carousel on any device.</p>
-        <p class="fragment">It needs the appropriate <code>role</code> and <code>aria-*</code> attributes so screen readers can understand it.</p>
-
-        <aside class="notes">
-            <p>2.2.1 Timing Adjustable (A) and 2.2.2 Pause, Stop, Hide (A).</p>
-            <p>I've asked the design team to cut back on carousels.</p>
-        </aside>
-
-    </section>
-
-    <section>
-
         <p>Tappable things need to be fat-finger friendly. This means a button must be at least <strong>44 &times; 44 pixels</strong> unless:</p>
         <ul>
             <li>There's an equivalent that's big enough.</li>
@@ -1451,6 +1490,31 @@ a:focus {
         <aside class="notes">
             <p>"Determined by the User Agent" = native inputs.</p>
             <p>Not sure if <code>&lt;label&gt;</code> around a checkbox counts, but probably does.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>There shouldn't be a "change of context" when an element gains focus or an input is used.</p>
+        <p>Basically, if you want to go somewhere or do something, use a button.</p>
+
+        <aside class="notes">
+            <p>Remember the early 2000's when using a dropdown to change page was cool?</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>Carousels are the boss battle at the end of accessibility.</p>
+        <p class="fragment">They need to work with mouse, finger <em>and</em> keyboard.</p>
+        <p class="fragment">The user must be able to pause the auto-play, change the time to up to 10 times the default, or hide the carousel on any device.</p>
+        <p class="fragment">It needs the appropriate <code>role</code> and <code>aria-*</code> attributes so screen readers can understand it.</p>
+
+        <aside class="notes">
+            <p>2.2.1 Timing Adjustable (A) and 2.2.2 Pause, Stop, Hide (A).</p>
+            <p>I've asked the design team to cut back on carousels.</p>
         </aside>
 
     </section>
@@ -1577,7 +1641,6 @@ a:focus {
 
         <aside class="notes">
             <p>8.25:1 is the Bootstrap one.</p>
-            <p>Google "contast analyser" and find the "Web AIM" one.</p>
         </aside>
 
     </section>
@@ -1588,7 +1651,7 @@ a:focus {
         <p><a href="https://webaim.org/resources/contrastchecker/">https://webaim.org/resources/contrastchecker/</a></p>
 
         <aside class="notes">
-            <p>Google "contast analyser".</p>
+            <p>Google "contast analyser" and find the "Web AIM" one.</p>
         </aside>
 
     </section>
