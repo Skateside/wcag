@@ -4,7 +4,7 @@
 
 <meta charset="utf-8">
 <meta name="viewport" content="initial-scale=1, width=device-width">
-<title>WCAG for Backend Developers</title>
+<title>WCAG for QA</title>
 
 <link rel="stylesheet" href="./reveal/css/reveal.css">
 <link rel="stylesheet" href="./reveal/css/theme/black.css">
@@ -19,7 +19,7 @@
 
 <section>
     <h1>Web Content Accessibility Guidelines</h1>
-    <p>WCAG 2.1 for back-end developers</p>
+    <p>WCAG 2.1 for QA</p>
 </section>
 
 <section>
@@ -30,14 +30,14 @@
         <li><a href="#/state-of-disability">The State of Disability</a></li>
         <li><a href="#/introduction-to-wcag">Introduction to WCAG</a></li>
         <li><a href="#/the-law">The Law</a></li>
-        <li><a href="#/page-building">Page Building</a></li>
+        <!--li><a href="#/page-building">Page Building</a></li>
         <li><a href="#/user-accounts">User Accounts</a></li>
-        <li><a href="#/time-limits">Time Limits</a></li>
+        <li><a href="#/time-limits">Time Limits</a></li-->
     </ol>
 
     <aside class="notes">
-        <p>This doesn't cover everything in WCAG, just what I think back-end developers need to know.</p>
-        <p>This is pretty brief since most back-end work is already accessible.</p>
+        <p>This doesn't cover everything in WCAG, just what I think QA needs to know.</p>
+        <p>Questions that you should be asking of our work from now on.</p>
     </aside>
 
 </section>
@@ -281,7 +281,534 @@
 
 </section>
 
-<section id="page-building">
+<!--
+################################################################################
+-->
+
+<section id="tools">
+
+    <h2>Tools</h2>
+
+    <section>
+        <p><span class="emoji">🛠 🧰</span></p>
+        <p>There are a few tools available.</p>
+    </section>
+
+    <section>
+
+        <p><img src="./images/screen-readers.jpg" alt="Screen reader logos" class="big"></p>
+
+        <aside class="notes">
+            <p>Correct term is "assistive technologies".</p>
+            <p>JAWS, NV Access (NVDA), Apple VoiceOver, Window-Eyes.</p>
+            <p>Other tools only catch 25-30% of issues.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p><img src="./images/audit.png" alt="Chrome Audit tab" class="big"></p>
+
+        <aside class="notes">
+            <p>One of the better ones. Validates ARIA roles.</p>
+            <p>Won't work locally unless you simulate a server.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p><img src="./images/firefox-audit.png" alt="Firefox Audit tab" class="big"></p>
+
+        <aside class="notes">
+            <p>Gives detailed information on every element.</p>
+            <p>Right-click to see information on a specific element.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p><img src="./images/accessibility-insights.png" alt="Accessibility Insights website" class="big"></p>
+        <p class="text-md"><a href="https://accessibilityinsights.io/">https://accessibilityinsights.io/</a></p>
+
+        <aside class="notes">
+            <p>Chrome plugin with very detailed information about any accessibility issues.</p>
+            <p>Has a 3 minute introduction video.</p>
+        </aside>
+
+    </section>
+
+</section>
+
+<section id="inputs">
+
+    <h2>Inputs</h2>
+
+    <section>
+        <p><span class="emoji">✍️</span></p>
+        <p>Form fields need some care and attention.</p>
+    </section>
+
+    <section>
+
+        <p>How are errors displayed?</p>
+        <p class="fragment">It shouldn't just be a change in colour.</p>
+        <p class="fragment">There should be error messages and they should be easy to understand.</p>
+        <p class="fragment">Fields should be validated if you press <code>enter</code> in a text field.</p>
+
+        <aside class="notes">
+            <p>"Please enter a valid (serial number)" is fine because a user would know that.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>Is the input labelled?</p>
+        <p class="fragment">The label might not be visible but should be available to assistive technologies.</p>
+
+        <aside class="notes">
+            <p>The Firefox Accessibility console tab might help here.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>Due to acessibility concerns, we probably won't be styling these elements without being explicitly told to:</p>
+        <ul>
+            <li>Checkboxes</li>
+            <li>Radio buttons</li>
+            <li>Dropdowns *</li>
+            <li>Scrollbars</li>
+        </ul>
+        <p class="fragment">* We might use something like Select2 for dropdowns since it offers a lot more features.</p>
+
+    </section>
+
+    <section>
+
+        <p>For checkboxes:</p>
+        <ul>
+            <li>Move between options with <code>tab</code> / <code>shift</code> + <code>tab</code></li>
+            <li>Toggle with <code>space</code>.</li>
+            <li>Activating an indeterminate checkbox makes it checked.</li>
+        </ul>
+
+        <p>For radio buttons:</p>
+        <ul>
+            <li><code>tab</code> goes to the checked one.</li>
+            <li>Cursor keys change the value.</li>
+        </ul>
+
+        <aside class="notes">
+            <p>Radio <code>tab</code> focuses on first one if nothing is checked.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p><img src="./images/inputs.png" alt="Demonstration elements" class="big"></p>
+        <p><a href="https://git.xigen.co.uk/snippets/57">https://git.xigen.co.uk/snippets/57</a></p>
+
+        <aside class="notes">
+            <p>Caveats: Maybe we didn't need <code>&lt;optgroup&gt;</code> or indeterminate checkboxes. Maybe nothing gets disabled.</p>
+            <p>Our solution doesn't have to match this fully.</p>
+            <p>Responsive and you can focus on titles.</p>
+        </aside>
+
+    </section>
+
+</section>
+
+<section id="widgets">
+
+    <h2>Widgets</h2>
+
+    <section>
+
+        <p><span class="emoji">🎰</span></p>
+        <p>Our widgets need to be accessible to all.</p>
+
+    </section>
+
+    <section>
+
+        <p>Our widgets shouldn't be limited to specific input mechanisms.</p>
+        <p class="fragment">As well as mouse, our widgets should work with finger and keyboard.</p>
+
+    </section>
+
+    <section>
+
+        <p><img src="./images/best-practices.png" alt="WAI-ARIA Authoring Practices website" class="big"></p>
+        <p><a href="https://www.w3.org/TR/wai-aria-practices-1.1/">https://www.w3.org/TR/wai-aria-practices-1.1/</a></p>
+
+        <aside class="notes">
+            <p>There is a gold standard for mouse/keyboard. Don't know if it works with finger.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>Can I use the widget with the keyboard?</p>
+
+        <ul class="fragment">
+            <li>Cursor keys usually navigate.</li>
+            <li><code>enter</code> usually activates.</li>
+            <li><code>esc</code> usually cancels.</li>
+            <li><code>backspace</code> sometimes goes to the previous step.</li>
+        </ul>
+
+        <p class="fragment">Can I <code>tab</code> past the widget?</p>
+
+        <aside class="notes">
+            <p>Sometimes other cursor keys goes to the previous step.</p>
+            <p>We shouldn't have created a keyboard trap.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>If the widget has short-cut keys, then at least one of the following should be true:</p>
+        <ul>
+            <li>You can turn off the short-cut keys.</li>
+            <li>You can remap them to one or more non-printable characters.</li>
+            <li>They're only active while the widget is focussed.</li>
+        </ul>
+
+    </section>
+
+    <section>
+
+        <p>If there's a pointer gesture, is there a corresponding button?</p>
+        <p class="fragment">Same with a motion gesture.</p>
+
+        <aside class="notes">
+            <p>Pointer gesture example: stretch to zoom in (Google Maps).</p>
+            <p>Motion gesture example: iPhone's shake to undo.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>Carousels suck for accessibility in general.</p>
+        <p class="fragment">But if the carousel automatically plays, can you either hide it or pause it?</p>
+        <p class="fragment">... on all devices?</p>
+
+        <aside class="notes">
+            <p>I used to pause on hover which wouldn't work on a phone.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>If content appears on hover:</p>
+        <ul>
+            <li class="fragment">Does it also appear on focus?</li>
+            <li class="fragment">If I trigger it on hover, can I move the mouse down to the content?</li>
+            <li class="fragment">Can I dismiss it without moving the mouse?</li>
+            <li class="fragment">Does it stay in place until the user dismisses it or it's no longer relevant?</li>
+        </ul>
+
+        <aside class="notes">
+            <p>1.4.13 Content on Hover or Focus - Level AA</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>Are hidden things actually hidden?</p>
+        <p class="fragment">You shouldn't be able to focus on or inside any element that's hidden.</p>
+        <p class="fragment">Screen readers shouldn't read out any of the hidden content.</p>
+
+        <aside class="notes">
+            <p>Some CSS techniques we use to hide content doesn't hide it fully.</p>
+        </aside>
+
+    </section>
+
+</section>
+
+<section id="inner-sections">
+
+    <h2>Inner Sections</h2>
+
+    <section>
+        <p><span class="emoji">🧩</span></p>
+        <p>Any time we have to add something to an existing site / CMS content.</p>
+    </section>
+
+    <section>
+
+        <p>Is the <code>tab</code> order logical? <span class="fragment">It should be the same as the visual order.</span></p>
+        <p class="fragment">You should be able to tell which element you're focussed on when tabbing. <span class="fragment">This might not be possible due to the site's existing styles.</span></p>
+
+        <aside class="notes">
+            <p>Clients / PM's frequently ask for the focus outline to be removed.</p>
+            <p>If we fix it for an inner section, it could conflict with a global fix later.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>Can link text be programmatically determined?</p>
+
+        <table class="text-md">
+            <thead>
+                <tr>
+                    <th scope="col" class="emoji" aria-label="Confusing">😕</th>
+                    <th scope="col" class="emoji" arial-label="Better example">🙂</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><a href="#">Click here</a></td>
+                    <td><a href="#">Click here to contact us</a></td>
+                </tr>
+                <tr>
+                    <td><a href="#">Find out more</a></td>
+                    <td><a href="#">Find out more about the SuperProduct 3000</a></td>
+                </tr>
+                <tr>
+                    <td><a href="#">Buy now</a></td>
+                    <td><a href="#">Add the SuperProduct 3000 to your shopping cart</a></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <aside class="notes">
+            <p>This is <strong>Level A</strong>.</p>
+            <p>Screen readers can extract a list of links from the page.</p>
+            <p>Check Firefox - we may have hidden text due to style guides.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>The same goes for headings.</p>
+
+        <table class="text-md">
+            <thead>
+                <tr>
+                    <th scope="col" class="emoji" aria-label="Confusing">😕</th>
+                    <th scope="col" class="emoji" arial-label="Better example">🙂</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td><strong>Page</strong></td>
+                    <td><strong>Contact Us</strong></td>
+                </tr>
+                <tr>
+                    <td><strong>Product</strong></td>
+                    <td><strong>Acme SuperProduct 3000</strong></td>
+                </tr>
+            </tbody>
+        </table>
+
+        <p>If the page is only showing a single product, titles such as "<strong>Hardware</strong>" or "<strong>Drivers</strong>" can be understood from context.</p>
+
+        <aside class="notes">
+            <p>This is <strong>Level AA</strong>.</p>
+            <p>This may be a limitation of the design.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>Is there a text alternative?</p>
+        <p class="fragment">All images should have an <code>alt</code> attribute, even if it's empty (decorative images).</p>
+
+        <aside class="notes">
+            <p>For images but also video - not background video.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>Is text in a different language from the rest of the page marked using a <code>lang</code> attribute?</p>
+        <div class="fragment">
+            <p>Is the <code>lang</code> value valid?</p>
+            <ul>
+                <li>Lower-case ISO2 language: <code>lang="ru"</code>.</li>
+                <li>Optional script subtag: <code>lang="ru-Cyrl"</code>.</li>
+                <li>Optional region subtag: <code>lang="ru-BY"</code>.</li>
+                <li>Maybe all three: <code>lang="ru-Cyrl-BY"</code>.</li>
+            </ul>
+        </div>
+
+        <aside class="notes">
+            <p>BY = Belarus</p>
+        </aside>
+
+    </section>
+
+</section>
+
+<section id="web-sites">
+
+    <h2>Web sites</h2>
+
+    <section>
+        <p><span class="emoji">🏞</span></p>
+        <p>There are more things to consider if we built the whole site.</p>
+    </section>
+
+    <section>
+
+        <p>Are there any landmark roles on the site?</p>
+
+        <pre><code class="html" data-trim>
+&lt;!-- Header, Logo etc. --&gt;
+&lt;header role="banner"&gt;&lt;/header&gt;
+&lt;!-- Primary navigation --&gt;
+&lt;nav role="navigation"&gt;&lt;/nav&gt;
+&lt;!-- Success/error alerts --&gt;
+&lt;div role="alert"&gt;&lt;/div&gt;
+&lt;!-- Hero - no role (assuming no &lt;h1&gt; in the hero) --&gt;
+&lt;section&gt;&lt;/section&gt;
+&lt;!-- Main content --&gt;
+&lt;main role="main"&gt;&lt;/main&gt;
+&lt;!-- Footer, copyright etc. --&gt;
+&lt;footer role="contentinfo"&gt;&lt;/footer&gt;
+        </code></pre>
+
+        <aside class="notes">
+            <p>This is <strong>Level A</strong></p>
+            <p>The hero assumes that the <code>&lt;h1&gt;</code> is not in there.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>Can you skip repeated sections of the page, such as navigation?</p>
+        <div class="fragment">
+            <p>Landmark roles allow assistive technologies to do this.</p>
+            <p>Skip-to-content links let the rest of us do it.</p>
+        </div>
+        <p class="fragment">The link may be visually hidden - try pressing <code>tab</code> after a reload.</p>
+
+    </section>
+
+    <section>
+
+        <p>Is the navigation consistent?</p>
+        <p class="fragment">Some pages may add to / expand the navigation, but the navigation should remain in the same place and the same order.</p>
+
+    </section>
+
+    <section>
+
+        <p>Can you work out wher you are from within a series of pages?</p>
+        <p class="fragment">Is the distinction purely visible or has something like <code>aria-current="page"</code> or <code>aria-current="step"</code> been used?</p>
+
+        <aside class="notes">
+            <p>Might not always apply, only for step-by-step processes.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>You shouldn't lose functionality if you do these:</p>
+
+        <p class="fragment">Zoom in to 200%.</p>
+
+        <div class="fragment">
+            <p>Apply these styles to any block of text.</p>
+            <pre><code class="css" data-trim>
+.any-text {
+    letter-spacing: 0.12em;
+    line-height:    1.5;
+    margin-bottom:  2em;
+    word-spacing:   0.16em;
+}
+            </code></pre>
+        </div>
+
+        <aside class="notes">
+            <p>Losing functionality means you're unable to get to the button.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>There shouldn't be vertical and horizontal scrollbars.</p>
+        <p>Vertical content at 320 pixels shouldn't have a horizontal scrollbar.</p>
+        <p>Horizontal content at 256 pixels shouldn't have a vertical scrollbar.</p>
+
+        <aside class="notes">
+            <p>Vertical is more-or-less any website.</p>
+            <p>Horizontal is something like Trello.</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>If there is background audio that:</p>
+        <ol>
+            <li>is primarily foreground speech,</li>
+            <li>is not audio for CAPTCHA and</li>
+            <li>is not vocalisation as expression</li>
+        </ol>
+        <p>then is at least one of these true?</p>
+        <ul>
+            <li>There are no background sounds</li>
+            <li>The background sounds can be turned off.</li>
+            <li>Background sounds are at lease 20 dB lower than the foreground.</li>
+        </ul>
+
+        <aside class="notes">
+            <p>Vocalised expression = singing, rapping etc.</p>
+            <p>20 dB exceptions: occasional sounds lasting only 1 or 2 seconds.<p>
+        </aside>
+
+    </section>
+
+    <section>
+        <p>Is the HTML valid?</p>
+    </section>
+
+</section>
+
+<!--
+
+- Web Sites 🏞
+    - Can you pause any background noise from the site?
+    - Can I bypass repeated blocks?
+        - Skip to content
+        - Landmark roles
+        - Collapsed content
+    - Is the navigation consistent?
+    - Is the HTML valid?
+    - If I'm in a group of pages, do I know which one I'm in?
+    - Is colour contrast sufficient?
+        - Should be at least 4.5:1 / 3:1 for "big" text.
+    - Do I end up with 2 scrollbars?
+        - Vertical content at 320 px shouldn't have a horizontal scrollbar.
+        - Horizontal content at 256 px shouldn't have a vertical scrollbar.
+    - Do I lose functionality if I apply text style changes?
+    - When you zoom in 200%, do you lose functionality?
+-->
+
+
+<!--section id="page-building">
 
     <h2>Page Building</h2>
 
@@ -653,7 +1180,7 @@
 
     </section>
 
-</section>
+</section-->
 
 <section id="questions">
     <h1>Any questions?</h1>
