@@ -397,15 +397,40 @@
             <li>Activating an indeterminate checkbox makes it checked.</li>
         </ul>
 
+    </section>
+
+    <section>
+
         <p>For radio buttons:</p>
         <ul>
             <li><code>tab</code> goes to the checked one.</li>
-            <li>Cursor keys change the value.</li>
+            <li>
+                Cursor keys change the value.
+                <ul>
+                    <li>Previous entry ⬅️ or ⬆️ </li>
+                    <li>Next entry ➡️ or ⬇️ </li>
+                </ul>
+            </li>
         </ul>
 
         <aside class="notes">
             <p>Radio <code>tab</code> focuses on first one if nothing is checked.</p>
+            <p>The cursor keys usually loop through the radio buttons.</p>
         </aside>
+
+    </section>
+
+    <section>
+
+        <p>For dropdowns:</p>
+        <ul>
+            <li><code>tab</code> will focus on the dropdown.</li>
+            <li>Cursor keys will change the option (same as radio buttons).</li>
+            <li><code>space</code> will open the dropdown list.</li>
+            <li><code>enter</code> and <code>esc</code> will close the list.</li>
+            <li>typing will select the first match.</li>
+            <li>Option groups and disabled entries cannot be selected.</li>
+        </ul>
 
     </section>
 
@@ -448,6 +473,7 @@
         <p><a href="https://www.w3.org/TR/wai-aria-practices-1.1/">https://www.w3.org/TR/wai-aria-practices-1.1/</a></p>
 
         <aside class="notes">
+            <p>Google "aria best practices" to find this site.</p>
             <p>There is a gold standard for mouse/keyboard. Don't know if it works with finger.</p>
         </aside>
 
@@ -499,7 +525,7 @@
     <section>
 
         <p>Carousels suck for accessibility in general.</p>
-        <p class="fragment">But if the carousel automatically plays, can you either hide it or pause it?</p>
+        <p class="fragment">If the carousel automatically plays, can you either hide it or pause it?</p>
         <p class="fragment">... on all devices?</p>
 
         <aside class="notes">
@@ -514,6 +540,7 @@
         <ul>
             <li class="fragment">Does it also appear on focus?</li>
             <li class="fragment">If I trigger it on hover, can I move the mouse down to the content?</li>
+            <li class="fragment">If focus, can I <code>tab</code> to the content?</li>
             <li class="fragment">Can I dismiss it without moving the mouse?</li>
             <li class="fragment">Does it stay in place until the user dismisses it or it's no longer relevant?</li>
         </ul>
@@ -543,8 +570,14 @@
     <h2>Inner Sections</h2>
 
     <section>
+
         <p><span class="emoji">🧩</span></p>
         <p>Any time we have to add something to an existing site / CMS content.</p>
+
+        <aside class="notes">
+            <p>The rest of the site should be fine but we probably can't fix it yet if it's not.</p>
+        </aside>
+
     </section>
 
     <section>
@@ -652,6 +685,23 @@
 
         <aside class="notes">
             <p>BY = Belarus</p>
+        </aside>
+
+    </section>
+
+    <section>
+
+        <p>Exceptions that don't need a <code>lang</code> attribute:</p>
+        <ul>
+            <li>Technical terms. ("Nasopharyngitis")</li>
+            <li>Proper names. ("Vladimir Putin")</li>
+            <li>Indeterminate language. ("Lorem ipsum dolor ...")</li>
+            <li>Words/phrases that are part of the vernacular. ("status quo")</li>
+        </ul>
+
+        <aside class="notes">
+            <p>Nasopharyngitis = common cold</p>
+            <p>Status quo is latin</p>
         </aside>
 
     </section>
@@ -771,7 +821,7 @@
         <ul>
             <li>There are no background sounds</li>
             <li>The background sounds can be turned off.</li>
-            <li>Background sounds are at lease 20 dB lower than the foreground.</li>
+            <li>Background sounds are at least 20 dB lower than the foreground.</li>
         </ul>
 
         <aside class="notes">
@@ -782,7 +832,14 @@
     </section>
 
     <section>
+
         <p>Is the HTML valid?</p>
+
+        <aside class="notes">
+            <p>W3C validator should be enough.</p>
+            <p>Also - are <code>aria-*</code> attributes valid and inside the correct <code>role</code> values?</p>
+        </aside>
+
     </section>
 
 </section>
