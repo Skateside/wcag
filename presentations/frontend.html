@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="./reveal/css/theme/black.css">
 <link rel="stylesheet" href="./reveal/lib/css/zenburn.css">
 <link rel="stylesheet" href="./custom.css">
+<link rel="stylesheet" href="./reveal/css/print/pdf.css" media="print">
 
 </head>
 <body>
@@ -890,7 +891,7 @@ form.addEventListener("submit", function (e) {
     <h2>Navigable</h2>
 
     <section>
-        <p><span class="emoji">🧭</span></p>
+        <p><span class="emoji">🔀</span></p>
         <p>As well as the page structure being navigable, we need to allow for keyboard navigation.</p>
     </section>
 
@@ -1718,7 +1719,7 @@ a:focus {
     <h2>Tools</h2>
 
     <section>
-        <p><span class="emoji">🛠 🧰</span></p>
+        <p><span class="emoji">🛠</span></p>
         <p>There are a few tools available to us to help.</p>
     </section>
 
@@ -1780,6 +1781,10 @@ a:focus {
 <script src="./reveal/lib/js/head.min.js"></script>
 <script src="./reveal/js/reveal.js"></script>
 <script>
+Reveal.configure({
+    pdfSeparateFragments: false,
+    pdfMaxPagesPerSlide: 1
+});
 Reveal.initialize({
 
     dependencies: [
@@ -1797,6 +1802,12 @@ Reveal.initialize({
             callback: function () {
                 hljs.initHighlightingOnLoad();
             }
+        },
+
+        // PDF printing.
+        {
+            src: "./reveal/plugin/print-pdf/print-pdf.js",
+            async: true
         }
 
     ]
