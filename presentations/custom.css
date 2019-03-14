@@ -88,3 +88,5 @@
     padding: 0.1em 0.25em;
     white-space: nowrap;
 }
+
+.reveal blockquote { font-style: normal; }
