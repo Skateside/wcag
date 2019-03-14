@@ -10,6 +10,8 @@
 <link rel="stylesheet" href="./reveal/css/theme/black.css">
 <link rel="stylesheet" href="./reveal/lib/css/zenburn.css">
 <link rel="stylesheet" href="./custom.css">
+<link rel="stylesheet" href="./reveal/css/print/pdf.css" media="print">
+
 <style>
 .reveal .contrast-demo__fail { background-color: #fff; color: #ff6600; }
 .reveal .contrast-demo__a    { background-color: #fff; color: #ff6000; }
@@ -36,11 +38,10 @@
         <li><a href="#/state-of-disability">The State of Disability</a></li>
         <li><a href="#/introduction-to-wcag">Introduction to WCAG</a></li>
         <li><a href="#/the-law">The Law</a></li>
-        <!--li><a href="#/tools">Tools</a></li>
+        <li><a href="#/copy">Copy</a></li>
         <li><a href="#/inputs">Inputs</a></li>
         <li><a href="#/widgets">Widgets</a></li>
-        <li><a href="#/inner-sections">Inner Sections</a></li>
-        <li><a href="#/web-sites">Web Sites</a></li-->
+        <li><a href="#/miscellany">Miscellany</a></li>
     </ol>
 
     <aside class="notes">
@@ -706,11 +707,6 @@
 
 </section>
 
-<!--
-
--->
-
-
 <section id="questions">
     <h1>Any questions?</h1>
 </section>
@@ -723,6 +719,10 @@
 <script src="./reveal/lib/js/head.min.js"></script>
 <script src="./reveal/js/reveal.js"></script>
 <script>
+Reveal.configure({
+    pdfSeparateFragments: false,
+    pdfMaxPagesPerSlide: 1
+});
 Reveal.initialize({
 
     dependencies: [
@@ -740,6 +740,12 @@ Reveal.initialize({
             callback: function () {
                 hljs.initHighlightingOnLoad();
             }
+        },
+
+        // PDF printing.
+        {
+            src: "./reveal/plugin/print-pdf/print-pdf.js",
+            async: true
         }
 
     ]

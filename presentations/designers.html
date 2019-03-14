@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="./reveal/css/theme/black.css">
 <link rel="stylesheet" href="./reveal/lib/css/zenburn.css">
 <link rel="stylesheet" href="./custom.css">
+<link rel="stylesheet" href="./reveal/css/print/pdf.css" media="print">
 
 <style>
 .reveal .contrast-demo__fail { background-color: #fff; color: #ff6600; }
@@ -807,6 +808,10 @@
 <script src="./reveal/lib/js/head.min.js"></script>
 <script src="./reveal/js/reveal.js"></script>
 <script>
+Reveal.configure({
+    pdfSeparateFragments: false,
+    pdfMaxPagesPerSlide: 1
+});
 Reveal.initialize({
 
     dependencies: [
@@ -824,6 +829,12 @@ Reveal.initialize({
             callback: function () {
                 hljs.initHighlightingOnLoad();
             }
+        },
+
+        // PDF printing.
+        {
+            src: "./reveal/plugin/print-pdf/print-pdf.js",
+            async: true
         }
 
     ]

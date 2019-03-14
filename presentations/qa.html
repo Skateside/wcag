@@ -10,6 +10,7 @@
 <link rel="stylesheet" href="./reveal/css/theme/black.css">
 <link rel="stylesheet" href="./reveal/lib/css/zenburn.css">
 <link rel="stylesheet" href="./custom.css">
+<link rel="stylesheet" href="./reveal/css/print/pdf.css" media="print">
 
 </head>
 <body>
@@ -288,7 +289,7 @@
     <h2>Tools</h2>
 
     <section>
-        <p><span class="emoji">🛠 🧰</span></p>
+        <p><span class="emoji">🛠</span></p>
         <p>There are a few tools available.</p>
     </section>
 
@@ -569,7 +570,7 @@
 
     <section>
 
-        <p><span class="emoji">🧩</span></p>
+        <p><span class="emoji">🏠</span></p>
         <p>Any time we have to add something to an existing site / CMS content.</p>
 
         <aside class="notes">
@@ -711,7 +712,7 @@
     <h2>Web sites</h2>
 
     <section>
-        <p><span class="emoji">🏞</span></p>
+        <p><span class="emoji">🏙</span></p>
         <p>There are more things to consider if we built the whole site.</p>
     </section>
 
@@ -855,6 +856,10 @@
 <script src="./reveal/lib/js/head.min.js"></script>
 <script src="./reveal/js/reveal.js"></script>
 <script>
+Reveal.configure({
+    pdfSeparateFragments: false,
+    pdfMaxPagesPerSlide: 1
+});
 Reveal.initialize({
 
     dependencies: [
@@ -872,6 +877,12 @@ Reveal.initialize({
             callback: function () {
                 hljs.initHighlightingOnLoad();
             }
+        },
+
+        // PDF printing.
+        {
+            src: "./reveal/plugin/print-pdf/print-pdf.js",
+            async: true
         }
 
     ]
