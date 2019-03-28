@@ -42,7 +42,7 @@
     </ol>
 
     <aside class="notes">
-        <p>This doesn't cover everything in WCAG, just what I think front-end developers need to know.</p>
+        <p>This doesn't cover everything in WCAG, just what I think front-end developers should know.</p>
         <p>We have the lion's share of the work here.</p>
     </aside>
 
@@ -295,7 +295,7 @@
 
     <section>
         <p><span class="emoji">🕷 🕸</span></p>
-        <p>Here's what the rules say about making web pages.</p>
+        <p>Here's what the guidelines say about making web pages.</p>
     </section>
 
     <section>
@@ -482,6 +482,9 @@
 
         <p>These selectors have the same selector strength and efficiency. They work in everything we need them to.</p>
 
+        <aside class="notes">
+            <p>Attribute selectors started working in IE7.</p>
+
     </section>
 
     <section>
@@ -570,7 +573,7 @@ table {
 
         <div class="fragment">
 
-            <p>AJAX add-to-cart means the cart needs a <code>role</code>.</p>
+            <p>AJAX add-to-cart means the cart should have a <code>role</code>.</p>
 
             <pre class="text-sm"><code class="html" data-trim>
 &lt;div id="basket" role="status"&gt;
@@ -837,6 +840,7 @@ form.addEventListener("submit", function (e) {
 
         <aside class="notes">
             <p>There's a Right-Left-Mark and an Left-Right-Mark.</p>
+            <p><span lang="ar" dir="rtl">مفتاح معايير الويب!</span> = Web Standards Key!</p>
         </aside>
 
     </section>
@@ -869,6 +873,10 @@ form.addEventListener("submit", function (e) {
             in Hebrew.
         </p>
 
+        <aside class="notes">
+            <p><span dir="rtl" lang="he">פעילות הבינאום, W3C</span> = Internationalisation Activity, W3C</p>
+        </aside>
+
     </section>
 
     <section>
@@ -894,7 +902,7 @@ form.addEventListener("submit", function (e) {
 
     <section>
         <p><span class="emoji">🔀</span></p>
-        <p>As well as the page structure being navigable, we need to allow for keyboard navigation.</p>
+        <p>As well as the page structure being navigable, we should allow for keyboard navigation.</p>
     </section>
 
     <section>
@@ -982,7 +990,7 @@ a {
 
         <div class="fragment">
 
-            <p>Anchors and buttons need a hover and focus state.</p>
+            <p>Anchors and buttons should have a hover and focus state.</p>
 
             <pre><code class="css" data-trim>
 a:hover,
@@ -1189,7 +1197,7 @@ a:focus {
 
     <section>
         <p><span class="emoji">✍️</span></p>
-        <p>Form fields need some care and attention.</p>
+        <p>Form fields could use some care and attention.</p>
     </section>
 
     <section>
@@ -1339,7 +1347,13 @@ a:focus {
     </section>
 
     <section>
+
         <p><img src="./images/ebay.png" alt="eBay registration form" class="big"></p>
+
+        <aside class="notes">
+            <p>Consider this basic form layout to see why those points are important.</p>
+        </aside>
+
     </section>
 
     <section>
@@ -1361,6 +1375,7 @@ a:focus {
 
         <aside class="notes">
             <p>Not a WCAG requirement, just a good idea.</p>
+            <p>Disabled buttons can't be clicked or gain focus. User will have no idea what's wrong.</p>
         </aside>
 
     </section>
@@ -1373,13 +1388,13 @@ a:focus {
 
     <section>
         <p><span class="emoji">🎰</span></p>
-        <p>Users need to be able to interact with the things we build the way they want to.</p>
+        <p>Users should be able to interact with the things we build the way they want to.</p>
     </section>
 
     <section>
 
         <p>First rule of accessible widgets: if there's a native element that does the job - use it.</p>
-
+        <p class="fragment"><code>&lt;a&gt;</code> goes somewhere, <code>&lt;button&gt;</code> does something.</p>
         <pre class="fragment"><code class="html" data-trim>
 &lt;!-- Don't do this --&gt;
 &lt;h3 role="button"&gt;Section heading&lt;/h3&gt;
@@ -1486,7 +1501,7 @@ a:focus {
 
     <section>
 
-        <p>Tappable things need to be fat-finger friendly. This means a button must be at least <strong>44 &times; 44 pixels</strong> unless:</p>
+        <p>Tappable things should be fat-finger friendly. This means a button should be at least <strong>44 &times; 44 pixels</strong> unless:</p>
         <ul>
             <li>There's an equivalent that's big enough.</li>
             <li>It's inline with a block of text.</li>
@@ -1516,9 +1531,9 @@ a:focus {
     <section>
 
         <p>Carousels are the boss battle at the end of accessibility.</p>
-        <p class="fragment">They need to work with mouse, finger <em>and</em> keyboard.</p>
-        <p class="fragment">The user must be able to pause the auto-play, change the time to up to 10 times the default, or hide the carousel on any device.</p>
-        <p class="fragment">It needs the appropriate <code>role</code> and <code>aria-*</code> attributes so screen readers can understand it.</p>
+        <p class="fragment">They should work with mouse, finger <em>and</em> keyboard.</p>
+        <p class="fragment">The user should be able to pause the auto-play, change the time to up to 10 times the default, or hide the carousel on any device.</p>
+        <p class="fragment">It should have the appropriate <code>role</code> and <code>aria-*</code> attributes so screen readers can understand it.</p>
 
         <aside class="notes">
             <p>2.2.1 Timing Adjustable (A) and 2.2.2 Pause, Stop, Hide (A).</p>
@@ -1548,7 +1563,7 @@ a:focus {
     <section>
 
         <p><span class="emoji">🐈 🐕</span></p>
-        <p>Users need to be able to tell the difference between foreground and background.</p>
+        <p>Users should be able to tell the difference between foreground and background.</p>
 
         <aside class="notes">
             <p>Usually this is the design team's job but sometimes we need to add alerts.</p>
